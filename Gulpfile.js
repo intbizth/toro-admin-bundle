@@ -12,7 +12,7 @@ var gutil = require('gulp-util');
 var env = gutil.env.env;
 
 var rootPath = '../../../web/assets/admin/';
-var nodeRoot = '../../../node_modules/';
+var nodePath = '../../../node_modules/';
 
 var paths = {
     js: [
