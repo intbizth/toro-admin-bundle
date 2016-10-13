@@ -1,0 +1,16 @@
+sylius_admin_channel:
+    resource: |
+        alias: sylius.channel
+        section: admin
+        templates: ToroAdminBundle:Crud
+        except: ['show']
+        redirect: index
+        grid: sylius_admin_channel
+        vars:
+          all:
+              subheader: toro.ui.configure_channels_available_in_your_store
+              templates:
+                  form: ToroAdminBundle:Channel:_form.html.twig
+          index:
+              icon: ti-harddrives
+    type: sylius.resource

@@ -1,0 +1,17 @@
+sylius_admin_taxon:
+    resource: "@ToroAdminBundle/Resources/config/routing/taxon.yml"
+
+sylius_admin_channel:
+    resource: "@ToroAdminBundle/Resources/config/routing/channel.yml"
+
+sylius_admin_zone:
+    resource: "@ToroAdminBundle/Resources/config/routing/zone.yml"
+
+sylius_admin_country:
+    resource: "@ToroAdminBundle/Resources/config/routing/country.yml"
+
+sylius_admin_locale:
+    resource: "@ToroAdminBundle/Resources/config/routing/locale.yml"
+
+sylius_admin_user:
+    resource: "@ToroAdminBundle/Resources/config/routing/admin_user.yml"

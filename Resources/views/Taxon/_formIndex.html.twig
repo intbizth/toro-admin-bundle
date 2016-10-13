@@ -1,0 +1,25 @@
+{% import "ToroAdminBundle:Macro:buttons.html.twig" as btn %}
+{% form_theme form 'ToroAdminBundle:Form:theme.html.twig' %}
+
+{{ form_start(form, {'action': path('sylius_admin_taxon_create'), 'attr': {'class': 'ui loadable form', 'novalidate': 'novalidate'}}) }}
+
+    {{ form_errors(form) }}
+
+    <div class="panel">
+        <div class="panel-heading">
+            <h3 class="panel-title">{{ "Create News"|trans }}</h3>
+        </div>
+        <div class="panel-body">
+            {{ form_row(form.code) }}
+            {{ form_row(form.parent) }}
+        </div>
+    </div>
+
+    {{ form_row(form.translations) }}
+
+    <div class="pull-right btn-group-lg">
+        {{ btn.submit() }}
+    </div>
+
+    {{ form_row(form._token) }}
+{{ form_end(form, {'render_rest': false}) }}

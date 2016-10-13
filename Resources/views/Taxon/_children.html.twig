@@ -1,0 +1,38 @@
+{% import "ToroAdminBundle:Macro:buttons.html.twig" as btn %}
+{% import "ToroAdminBundle:Macro:messages.html.twig" as msg %}
+
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            {{ render(path('sylius_admin_taxon_show_bycode', {
+                code: app.request.get('code'),
+                template: "ToroAdminBundle:Taxon:_showName.html.twig"
+            })) }}
+        </h3>
+    </div>
+
+    {% if taxons|length %}
+        <table class="table table-hover">
+            <tbody>
+            {% for taxon in taxons %}
+                <tr>
+                    <td style="padding-left: {{ (taxon.level) * 20 }}px">
+                        {{ taxon.name }}
+                    </td>
+                    <td class="muted">{{ taxon.code }}</td>
+                    <td class="actions">
+                        {{ btn.settings([
+                        btn.edit(path('sylius_admin_taxon_update', {id: taxon.id})),
+                        btn.delete(path('sylius_admin_taxon_delete', {id: taxon.id}))
+                        ]) }}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="panel-body">
+            {{ msg.info('ui.admin.taxon.index.no_results'|trans) }}
+        </div>
+    {% endif %}
+</div>

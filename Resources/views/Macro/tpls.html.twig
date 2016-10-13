@@ -1,0 +1,17 @@
+{% macro form_error(form) %}
+    <script id="form-errors" type="text/x-handlebars-template">
+        {%- raw %}
+            <div class="alert alert-danger alert-dismissible">
+                <h4>{{title}}</h4>
+                <ul>
+                    {{#each errors}}
+                    <li>{{this}}</li>
+                    {{/each}}
+                </ul>
+                <button class="close" data-dismiss="alert">
+                    <i class="pci-cross pci-circle"></i>
+                </button>
+            </div>
+        {% endraw -%}
+    </script>
+{% endmacro %}

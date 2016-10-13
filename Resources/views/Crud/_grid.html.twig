@@ -1,0 +1,45 @@
+{% import 'ToroAdminBundle:Macro:messages.html.twig' as messages %}
+{% import 'ToroAdminBundle:Crud/Macro:sorting.html.twig' as sorting %}
+
+{% set data = grid.data %}
+{% set definition = grid.definition %}
+{% set requestAttributes = app.request.attributes %}
+
+<div class="crud-grid-list">
+    {% if data|length > 0 %}
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                {% for field in definition.fields %}
+                    {% if field.enabled %}
+                        {% if definition.isSortableBy(field.name) %}
+                            {{ sorting.tableHeader(grid, field, requestAttributes) }}
+                        {% else %}
+                            <th class="toro-table-column-{{ field.name }}">{{ field.label|trans }}</th>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+                {% if definition.actionGroups.item is defined and definition.getActions('item')|length > 0 %}
+                    <th class="toro-table-column-actions">{{ 'toro.ui.actions'|trans }}</th>
+                {% endif %}
+            </tr>
+            </thead>
+            <tbody>
+            {% for row in data %}
+                <tr>
+                    {% for field in definition.fields %}
+                        {% if field.enabled %}
+                            <td>{{ sylius_grid_render_field(grid, field, row) }}</td>
+                        {% endif %}
+                    {% endfor %}
+                    {% if definition.actionGroups.item is defined and definition.getActions('item')|length > 0 %}
+                        <td class="actions">{{ include('ToroAdminBundle:Crud:_gridActions.html.twig') }}</td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        {{ messages.info('toro.ui.no_results_to_display'|trans) }}
+    {% endif %}
+</div>

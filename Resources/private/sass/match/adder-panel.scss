@@ -1,0 +1,34 @@
+.adder-panel {
+  .adder-form {
+    display: none;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .adder-entry-item {
+    td {
+      vertical-align: middle;
+    }
+    .adder-actions {
+      text-align: center;
+    }
+
+    &:hover {
+      .adder-actions {
+      }
+    }
+  }
+
+  .adder-update-form {
+    padding-top: 20px;
+  }
+}
+
+#away-club-panel,
+#home-club-panel {
+  height: 200px;
+}
+
+#away-club-panel .club-logo,
+#home-club-panel .club-logo {
+  max-height: 100px;
+}

@@ -1,0 +1,5 @@
+parameters:
+    form.factory.class: Toro\Bundle\AdminBundle\Form\Factory
+    sylius.cache:
+        type: file_system
+    sylius.uploader.filesystem: sylius_image

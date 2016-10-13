@@ -1,0 +1,15 @@
+{% macro crumble(crumbs = {}) %}
+    <ul class="breadcrumb">
+        {% for crumb in crumbs %}
+            {% if loop.last %}
+                <li class="active">{{ crumb.label }}</li>
+            {% elseif crumb.url is defined %}
+                <li><a href="{{ crumb.url }}">{{ crumb.label }}</a></li>
+            {% else %}
+                <li>{{ crumb.label }}</li>
+            {% endif %}
+        {% else %}
+            <li><a href="{{ path('sylius_admin_dashboard') }}">{{ 'toro.ui.administration'|trans }}</a></li>
+        {% endfor %}
+    </ul>
+{% endmacro %}

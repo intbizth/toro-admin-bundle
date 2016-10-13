@@ -1,0 +1,40 @@
+sylius_grid:
+    grids:
+        sylius_admin_country:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: "%sylius.model.country.class%"
+            sorting:
+                code:
+                    path: code
+                    direction: asc
+            fields:
+                code:
+                    type: string
+                    label: Code
+                name:
+                    type: twig
+                    label: Name
+                    path: .
+                    options:
+                        template: ToroAdminBundle:Country/Field:name.html.twig
+                enabled:
+                    type: twig
+                    label: Enabled
+                    options:
+                        template: ToroAdminBundle:Grid/Field:enabled.html.twig
+            filters:
+                code:
+                    type: string
+                    label: Code
+                enabled:
+                    type: boolean
+                    label: Enabled
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update

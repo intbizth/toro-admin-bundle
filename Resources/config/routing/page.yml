@@ -1,0 +1,15 @@
+toro_admin_cms_page:
+    resource: |
+        alias: toro.page
+        section: admin
+        templates: ToroAdminBundle:Crud
+        except: ['show']
+        redirect: update
+        grid: toro_admin_page
+        vars:
+          all:
+            templates:
+                form: ToroCmsBundle:Admin/Page:_form_bs4.html.twig
+          index:
+            icon: ti-book
+    type: sylius.resource

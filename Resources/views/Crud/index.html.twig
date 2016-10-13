@@ -1,0 +1,116 @@
+{% extends 'ToroAdminBundle::layout.html.twig' %}
+{% import 'ToroAdminBundle:Crud/Macro:paginate.html.twig' as paginate %}
+
+{% set data = resources.data is defined ? resources.data : resources %}
+{% set definition = resources.definition is defined ? resources.definition : null %}
+{% set header = configuration.vars.header|default(metadata.applicationName~'.ui.'~metadata.pluralName) %}
+
+{% block title %}{{ parent() }} {{ header|trans }}{% endblock %}
+
+{% block crud_index_header_text %}
+    {{ include('ToroAdminBundle:Crud/Index:_headerText.html.twig') }}
+{% endblock %}
+
+{% block crud_index_header_action %}
+    {{ include('ToroAdminBundle:Crud/Index:_headerAction.html.twig') }}
+{% endblock %}
+
+{% block crud_index_header %}
+    <div class="row crud-index-header">
+        <div class="col-sm-8 crud-index-header-text">
+            {{ block('crud_index_header_text') }}
+            {{ block('crud_index_breadcrumb') }}
+        </div>
+        <div class="col-sm-4 hidden-xs crud-index-header-action">
+            {{ block('crud_index_header_action') }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block crud_index_breadcrumb %}
+    <div class="ui basic segment crud-index-breadcrumb">
+        {% include configuration.vars.templates.breadcrumb|default('ToroAdminBundle:Crud/Breadcrumb:_index.html.twig') %}
+    </div>
+{% endblock %}
+
+{% block crud_index_filter %}
+    {#{{ path('toro_admin_match_index', {criteria:{season:{type:'equal', value:'2'}}}) }}#}
+    {#{{ include('ToroAdminBundle:Crud/Index:_filter.html.twig', {grid: resources}) }}#}
+{% endblock %}
+
+{% block crud_index_mini_filter %}
+    {% set criteria = null %}
+    {% set params = [] %}
+    {% set route = app.request.attributes.get('_route') %}
+
+    {% for name, filter in definition.filters %}
+        {% if filter.options and filter.options.default|default(null) %}
+            {% set criteria = filter %}
+        {% endif %}
+    {% endfor %}
+
+    {% for key, param in app.request.query.all() %}
+        {% if key != 'criteria' %}
+            {% set params = params|merge({(key): param}) %}
+        {% endif %}
+    {% endfor %}
+
+    {% if criteria %}
+        {% set criterias = app.request.query.get('criteria', []) %}
+        {% set criteriaValue = criteria.name in criterias|keys ? criterias[criteria.name]['value'] : null %}
+        {% set filterPath = path(route, params) %}
+
+        <form name="criteria" action="{{ filterPath }}">
+            <div class="form-group">
+                <input type="hidden" name="criteria[{{ criteria.name }}][type]" value="contains">
+                <div class="input-group">
+                    <input type="text" placeholder="Search" class="form-control" autocomplete="off"
+                           name="criteria[{{ criteria.name }}][value]"
+                           value="{{ criteriaValue }}"
+                    >
+                    {% if criteriaValue %}
+                        <a href="{{ filterPath }}" class="input-group-addon" data-toggle="tooltip" title="Reset">x</a>
+                    {% endif %}
+                </div>
+                <button class="btn"><i class="ti-search"></i></button>
+            </div>
+        </form>
+    {% endif %}
+{% endblock %}
+
+{% block crud_index_content_toolbar %}
+    <div class="pad-btm form-inline">
+        <div class="row">
+            <div class="col-sm-6 table-toolbar-left">
+                {{ block('crud_index_mini_filter') }}
+            </div>
+            <div class="col-sm-6 table-toolbar-right">
+                {% if data.haveToPaginate %}
+                    {{ paginate.basic(data) }}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <hr class="hr-sm" style="margin: 0">
+{% endblock %}
+
+{% block crud_index_content %}
+    <div class="panel">
+        <div class="panel-body">
+            {{ block('crud_index_content_toolbar') }}
+            {{ sylius_grid_render(resources, 'ToroAdminBundle:Crud:_grid.html.twig') }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block header %}
+    {{ block('crud_index_header') }}
+{% endblock %}
+
+{% block breadcrumb %}{% endblock %}
+
+{% block content %}
+    {# TODO: js show/hide filter #}
+    {{ block('crud_index_filter') }}
+    {{ block('crud_index_content') }}
+{% endblock %}

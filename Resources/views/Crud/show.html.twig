@@ -1,0 +1,47 @@
+{% extends 'ToroAdminBundle::layout.html.twig' %}
+
+{% set header = configuration.vars.header|default(metadata.applicationName~'.ui.show_'~metadata.name) %}
+{% block title %}{{ parent() }} {{ header|trans }}{% endblock %}
+
+{% block crud_show_header_text %}
+    {{ include('ToroAdminBundle:Crud/Show:_headerText.html.twig') }}
+{% endblock %}
+
+{% block crud_show_breadcrumb %}
+    <div class="ui basic segment crud-show-breadcrumb">
+        {% include configuration.vars.templates.breadcrumb|default('ToroAdminBundle:Crud/Breadcrumb:_show.html.twig') %}
+    </div>
+{% endblock %}
+
+{% block crud_show_header_action %}
+    {{ include('ToroAdminBundle:Crud/Show:_headerAction.html.twig') }}
+{% endblock %}
+
+{% block crud_show_header %}
+    <div class="row crud-show-header">
+        <div class="col-sm-8 crud-show-header-text">
+            {{ block('crud_show_header_text') }}
+            {{ block('crud_show_breadcrumb') }}
+        </div>
+        <div class="col-sm-4 hidden-xs crud-show-header-action">
+            {{ block('crud_show_header_action') }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block crud_show_content %}
+    <div class="panel">
+        <div class="panel-body">
+        </div>
+    </div>
+{% endblock %}
+
+{% block header %}
+    {{ block('crud_show_header') }}
+{% endblock %}
+
+{% block breadcrumb %}{% endblock %}
+
+{% block content %}
+    {{ block('crud_show_content') }}
+{% endblock %}

@@ -1,0 +1,26 @@
+{% block attributes -%}
+    {%- for attrname, attrvalue in attrs -%}
+        {{- " " -}}
+        {%- if attrname in ['placeholder', 'title'] -%}
+            {{- attrname }}="{{ translation_domain is same as(false) ? attrvalue : attrvalue|trans({}, translation_domain) }}"
+        {%- elseif attrvalue is same as(true) -%}
+            {{- attrname }}="{{ attrname }}"
+        {%- elseif attrvalue is not same as(false) -%}
+            {{- attrname }}="{{ attrvalue }}"
+        {%- endif -%}
+    {%- endfor -%}
+{%- endblock attributes -%}
+
+{%- macro tag(name, data, attrs) %}
+    <{{ name }}{{ block('attributes') }}>{{- data|raw -}}</{{ name }}>
+{% endmacro -%}
+
+{%- macro column(size, data, attrs) %}
+    {% set attrs = (attrs|default({}))|merge({class: (attr.class|default('') ~ ' ' ~ size)|trim}) %}
+    <div{{ block('attributes') }}>{{- (data|join)|raw -}}</div>
+{% endmacro -%}
+
+{%- macro row(data, attrs) %}
+    {% set attrs = (attrs|default({}))|merge({class: (attr.class|default('') ~ ' row')|trim}) %}
+    <div{{ block('attributes') }}>{{- (data|join)|raw -}}</div>
+{% endmacro -%}

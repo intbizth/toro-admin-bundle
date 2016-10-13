@@ -1,0 +1,7 @@
+sylius_channel:
+    resources:
+        channel:
+            classes:
+                model: Toro\Bundle\AdminBundle\Model\Channel
+                form:
+                  default: Toro\Bundle\AdminBundle\Form\Type\ChannelType

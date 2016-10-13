@@ -1,0 +1,20 @@
+imports:
+    - { resource: "@ToroAdminBundle/Resources/config/grids/channel.yml" }
+    - { resource: "@ToroAdminBundle/Resources/config/grids/zone.yml" }
+    - { resource: "@ToroAdminBundle/Resources/config/grids/country.yml" }
+    - { resource: "@ToroAdminBundle/Resources/config/grids/locale.yml" }
+    - { resource: "@ToroAdminBundle/Resources/config/grids/taxon.yml" }
+    - { resource: "@ToroAdminBundle/Resources/config/grids/page.yml" }
+    - { resource: "@ToroAdminBundle/Resources/config/grids/admin_user.yml" }
+
+sylius_grid:
+    templates:
+        action:
+            create_zone: "ToroAdminBundle:Zone/Action:createZone.html.twig"
+            show: "ToroAdminBundle:Grid/Action:show.html.twig"
+            create: "ToroAdminBundle:Grid/Action:create.html.twig"
+            update: "ToroAdminBundle:Grid/Action:update.html.twig"
+            delete: "ToroAdminBundle:Grid/Action:delete.html.twig"
+        filter:
+            string: "ToroAdminBundle:Grid/Filter:string.html.twig"
+            boolean: "ToroAdminBundle:Grid/Filter:boolean.html.twig"

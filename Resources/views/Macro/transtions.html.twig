@@ -1,0 +1,33 @@
+{% macro actions(object, route, method = 'PATCH', btn_css = '', form = true) %}
+    {% set state = object.state %}
+    {% set transitions = ts_possibles(object) %}
+    {% set color = ts_state_color(state) %}
+
+    {% if transitions|length %}
+        {% set btn_css = "btn-ts-state btn-ts-state-" ~ state ~ " btn btn-" ~ color ~ " " ~ btn_css %}
+        <div class="dropdown box-inline">
+            <button type="button" data-toggle="dropdown" class="dropdown-toggle {{ btn_css }}">
+                {{ ts_state_label(state) }} <i class="dropdown-caret"></i>
+            </button>
+            <ul class="dropdown-menu">
+                {% for ts in transitions %}
+                    {% set routing = path(route, {"id": object.id, "transition": ts.name, "graph": ts.graph}) %}
+                    <li class="ts-action ts-{{ ts.name }} ts-color-{{ ts.color }}">
+                        {% if form %}
+                            <form action="{{ routing }}" method="post">
+                                <input type="hidden" name="_method" value="{{ method }}">
+                                <button type="submit" data-ts-action class="btn btn-white" data-requires-confirmation>
+                                    {{ ts.label|raw }}
+                                </button>
+                            </form>
+                        {% else %}
+                            <a href="{{ routing }}" data-method="{{ method }}" data-ts-action data-requires-confirmation>{{ ts.label|raw }}</a>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% else %}
+        <div class="label label-{{ color }}">{{ ts_state_label(state) }}</div>
+    {% endif %}
+{% endmacro %}

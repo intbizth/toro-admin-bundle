@@ -1,0 +1,4 @@
+{% import "ToroAdminBundle:Macro:transtions.html.twig" as ts %}
+{% do ts_graph_set(options.vars.graph) %}
+
+{{ ts.actions(data, options.vars.route) }}

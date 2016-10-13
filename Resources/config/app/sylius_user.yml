@@ -1,0 +1,15 @@
+sylius_user:
+    resources:
+        admin:
+            user:
+                classes:
+                    model: Toro\Bundle\AdminBundle\Model\AdminUser
+                    repository: Toro\Bundle\AdminBundle\Doctrine\ORM\AdminUserRepository
+                    form:
+                        default: Toro\Bundle\AdminBundle\Form\Type\AdminUserType
+        admin_oauth:
+            user:
+                classes:
+                    model: Toro\Bundle\AdminBundle\Model\AdminOAuth
+                    interface: Sylius\Component\User\Model\UserOAuthInterface
+                    controller: Sylius\Bundle\ResourceBundle\Controller\ResourceController

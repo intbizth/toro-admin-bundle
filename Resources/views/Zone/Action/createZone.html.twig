@@ -1,0 +1,22 @@
+<div class="dropdown">
+    <button class="btn btn-purple btn-lg dropdown-toggle" data-toggle="dropdown" type="button" aria-expanded="false">
+        {{ 'toro.ui.create'|trans }} <i class="dropdown-caret"></i>
+    </button>
+    <ul class="dropdown-menu dropdown-menu-right">
+        <li>
+            <a class="item" href="{{ path(grid.requestConfiguration.getRouteName('create'), {'type': 'country'}) }}">
+                <i class="plus icon"></i> {{ 'Countries'|trans }}
+            </a>
+        </li>
+        <li>
+            <a class="item" href="{{ path(grid.requestConfiguration.getRouteName('create'), {'type': 'province'}) }}">
+                <i class="plus icon"></i> {{ 'Provinces'|trans }}
+            </a>
+        </li>
+        <li>
+            <a class="item" href="{{ path(grid.requestConfiguration.getRouteName('create'), {'type': 'zone'}) }}">
+                <i class="plus icon"></i> {{ 'Other zones'|trans }}
+            </a>
+        </li>
+    </ul>
+</div>

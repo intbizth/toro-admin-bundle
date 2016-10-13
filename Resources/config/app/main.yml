@@ -1,0 +1,15 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: doctrine_cache.yml }
+    - { resource: doctrine.yml }
+    - { resource: twig.yml }
+    - { resource: fos_rest.yml }
+    - { resource: jms_serializer.yml }
+    - { resource: liip_imagine.yml }
+    - { resource: stof_doctrine_extensions.yml }
+    - { resource: sylius_channel.yml }
+    - { resource: sylius_locale.yml }
+    - { resource: sylius_mailer.yml }
+    - { resource: sylius_resource.yml }
+    - { resource: sylius_user.yml }
+    - { resource: sylius_grid.yml }

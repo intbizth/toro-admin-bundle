@@ -1,0 +1,79 @@
+{% extends 'ToroAdminBundle::layout.html.twig' %}
+{% form_theme form 'ToroAdminBundle:Form:theme.html.twig' %}
+
+{% set header = configuration.vars.header|default(metadata.applicationName~'.ui.new_'~metadata.name) %}
+
+{% block title %}{{ parent() }} {{ header|trans }}{% endblock %}
+
+{% block crud_create_header_text %}
+    {{ include('ToroAdminBundle:Crud/Create:_headerText.html.twig') }}
+{% endblock %}
+
+{% block crud_create_header_action %}
+    {{ include('ToroAdminBundle:Crud/Create:_headerAction.html.twig') }}
+{% endblock %}
+
+{% block crud_create_header %}
+    <div class="row crud-create-header">
+        <div class="col-sm-8 crud-create-header-text">
+            {{ block('crud_create_header_text') }}
+            {{ block('crud_create_breadcrumb') }}
+        </div>
+        <div class="col-sm-4 hidden-xs crud-create-header-action">
+            {{ block('crud_create_header_action') }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block crud_create_breadcrumb %}
+    <div class="ui basic segment crud-create-breadcrumb">
+        {% include configuration.vars.templates.breadcrumb|default('ToroAdminBundle:Crud/Breadcrumb:_create.html.twig') %}
+    </div>
+{% endblock %}
+
+{% block crud_create_form_start %}
+    {{ form_start(form, {'action': path(configuration.vars.route.name|default(configuration.getRouteName('create')), configuration.vars.route.parameters|default({})), 'attr': {'class': 'ui loadable form', 'novalidate': 'novalidate'}}) }}
+{% endblock %}
+
+{% block crud_create_form_end %}
+    {{ form_row(form._token) }}
+    {{ form_end(form, {'render_rest': false}) }}
+{% endblock %}
+
+{% block crud_create_form_method %}
+    <input type="hidden" name="_method" value="POST"/>
+{% endblock %}
+
+{% block crud_create_form_action %}
+    <div class="hidden-sm hidden-md hidden-lg">
+        {{ include('ToroAdminBundle:Crud/Create:_headerAction.html.twig') }}
+    </div>
+{% endblock %}
+
+{% block crud_create_content %}
+    {% if configuration.vars.templates.form is defined %}
+        {% include configuration.vars.templates.form %}
+    {% else %}
+        {{ form_widget(form) }}
+    {% endif %}
+{% endblock %}
+
+{% block header %}
+    {{ block('crud_create_header') }}
+{% endblock %}
+
+{% block breadcrumb %}{% endblock %}
+
+{% block box_form_start %}
+    {{ block('crud_create_form_start') }}
+{% endblock %}
+
+{% block box_form_end %}
+    {{ block('crud_create_form_end') }}
+{% endblock %}
+
+{% block content %}
+    {{ block('crud_create_form_method') }}
+    {{ block('crud_create_content') }}
+    {{ block('crud_create_form_action') }}
+{% endblock %}

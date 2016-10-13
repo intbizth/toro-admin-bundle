@@ -1,0 +1,17 @@
+sylius_admin_user:
+    resource: |
+        alias: sylius.admin_user
+        section: admin
+        templates: ToroAdminBundle:Crud
+        except: ['show']
+        redirect: index
+        grid: sylius_admin_user
+        permission: true
+        vars:
+            all:
+                header: toro.ui.admin_users
+                templates:
+                    form: ToroAdminBundle:AdminUser:_form.html.twig
+            index:
+                icon: users
+    type: sylius.resource

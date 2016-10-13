@@ -1,0 +1,41 @@
+sylius_grid:
+    grids:
+        toro_admin_page:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: %toro.model.page.class%
+            sorting:
+                createdAt:
+                    path: createdAt
+                    direction: desc
+            filters:
+                title:
+                    type: string
+                    label: Title
+            fields:
+                published:
+                    type: twig
+                    label: Published
+                    options:
+                        template: ToroAdminBundle:Grid/Field:yesNo.html.twig
+                title:
+                    type: string
+                    label: Title
+                slug:
+                    type: string
+                    label: Slug
+                created_at:
+                    type: datetime
+                    label: Create at
+                    options:
+                        format: d-m-Y H:i
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete

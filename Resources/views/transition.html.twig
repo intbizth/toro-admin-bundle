@@ -1,0 +1,8 @@
+{% from "ToroAdminBundle:Macro:transtions.html.twig" import actions %}
+{% do ts_graph_set(graph) %}
+{% set req = app.request %}
+{% set params = req.get('_route_params')|merge(req.query.all) %}
+
+<div class="box-inline" data-transition="{{ path(req.get('_route'), params) }}" data-ts-uuid="{{ uuid }}">
+    {{ actions(object, route, method, btnCss, false) }}
+</div>

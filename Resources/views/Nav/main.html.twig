@@ -1,0 +1,29 @@
+<nav id="mainnav-container">
+    <div id="mainnav">
+        <div id="mainnav-menu-wrap">
+            <div class="nano">
+                <div class="nano-content">
+
+                    <div id="mainnav-profile" class="mainnav-profile">
+                        <div class="profile-wrap">
+                            <img class="img-circle img-border" src="{{ var_user_avatar }}"
+                                 alt="Profile Picture">
+                            <a class="box-block" data-toggle="collapse" aria-expanded="false">
+                                <p class="mnp-name">{{ var_user_fullname }}</p>
+                                <span class="mnp-desc">{{ var_user_email }}</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <ul id="mainnav-menu" class="list-group">
+                        <li class="list-divider"></li>
+                        <li class="list-header">System Management</li>
+                        {{ include('ToroCoreBundle:Admin/Menu:users.html.twig') }}
+                        <li class="list-header">CMS</li>
+                        {{ include('ToroAdminBundle:Menu:page.html.twig') }}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

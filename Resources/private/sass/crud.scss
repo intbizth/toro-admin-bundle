@@ -1,0 +1,10 @@
+.crud-index-header-action,
+.crud-create-header-action,
+.crud-update-header-action,
+.crud-show-header-action {
+  padding-top: 20px;
+
+  > div {
+    padding-right: 20px;
+  }
+}

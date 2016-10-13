@@ -1,0 +1,5 @@
+{{ include('ToroAdminBundle:Menu:users.html.twig') }}
+
+{% if is_granted('ROLE_ROOT') %}
+    {{ include('ToroAdminBundle:Menu:configuration.html.twig') }}
+{% endif %}

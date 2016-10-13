@@ -1,0 +1,67 @@
+{% macro default(text) %}
+    <span class="ui label">{{ text }}</span>
+{% endmacro %}
+
+{% macro status(status) %}
+    {% import _self as labels %}
+
+    {% if status %}
+        {{ labels.enabled() }}
+    {% else %}
+        {{ labels.disabled() }}
+    {% endif %}
+{% endmacro %}
+
+{% macro default(text) %}
+    <span class="ui label">
+        {{ text|trans }}
+    </span>
+{% endmacro %}
+
+{% macro enabled() %}
+    <span class="ui teal label">
+        <i class="checkmark icon"></i>
+        {{ 'toro.ui.enabled'|trans }}
+    </span>
+{% endmacro %}
+
+{% macro disabled() %}
+    <span class="ui red label">
+        <i class="remove icon"></i>
+        {{ 'toro.ui.disabled'|trans }}
+    </span>
+{% endmacro %}
+
+{% macro yesNo(value) %}
+    {% import _self as labels %}
+
+    {% if value %}
+        {{ labels.yes() }}
+    {% else %}
+        {{ labels.no() }}
+    {% endif %}
+{% endmacro %}
+
+{% macro yes() %}
+    <span class="label label-success">
+        {{ 'toro.ui.yes'|trans }}
+    </span>
+{% endmacro %}
+
+{% macro no() %}
+    <span class="label label-danger">
+        {{ 'toro.ui.no'|trans }}
+    </span>
+{% endmacro %}
+
+{% macro active() %}
+    <span class="label label-success">
+        {{ 'Active'|trans }}
+    </span>
+{% endmacro %}
+
+{% macro inactive() %}
+    <span class="label label-default">
+        {{ 'Inactive'|trans }}
+    </span>
+{% endmacro %}

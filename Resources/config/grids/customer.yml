@@ -1,0 +1,53 @@
+sylius_grid:
+    grids:
+        sylius_admin_customer:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: %sylius.model.customer.class%
+            sorting:
+                createdAt:
+                    path: createdAt
+                    direction: desc
+            fields:
+                first_name:
+                    type: string
+                    label: Firstname
+                last_name:
+                    type: string
+                    label: Lastname
+                email:
+                    type: string
+                    label: Email
+                created_at:
+                    type: datetime
+                    label: Create at
+                    options:
+                        format: d-m-Y H:i
+                confirmed:
+                    type: twig
+                    label: Confirmed
+                    path: .
+                    options:
+                        template: ToroAdminBundle:Customer/Field:confirmed.html.twig
+            filters:
+                confirmed:
+                    type: boolean
+                    label: Confirmed
+                email:
+                    type: string
+                    label: Email
+                name:
+                    type: string
+                    label: Name
+                    options:
+                        fields: [firstName, lastName]
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete

@@ -1,0 +1,35 @@
+sylius_grid:
+    grids:
+        sylius_admin_zone:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: %sylius.model.zone.class%
+            fields:
+                code:
+                    type: string
+                    label: Code
+                name:
+                    type: string
+                    label: Name
+                type:
+                    type: twig
+                    label: Type
+                    options:
+                        template: ToroAdminBundle:Grid/Field:label.html.twig
+            filters:
+                name:
+                    type: string
+                    label: Name
+                code:
+                    type: string
+                    label: Code
+            actions:
+                main:
+                    create:
+                        type: create_zone
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete

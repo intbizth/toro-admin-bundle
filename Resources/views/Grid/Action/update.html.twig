@@ -1,0 +1,3 @@
+{% from 'ToroAdminBundle:Crud/Macro:menus.html.twig' import edit %}
+
+{{ edit(path(grid.requestConfiguration.getRouteName('update'), {'id': data.id})) }}

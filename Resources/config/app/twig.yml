@@ -1,0 +1,9 @@
+twig:
+    debug: "%kernel.debug%"
+    strict_variables: "%kernel.debug%"
+    exception_controller: "FOS\\RestBundle\\Controller\\ExceptionController::showAction"
+    globals:
+        current_locale: "%locale%"
+        branding:
+            name: Inthriy
+            copyright: 2016 Inthriy Admin

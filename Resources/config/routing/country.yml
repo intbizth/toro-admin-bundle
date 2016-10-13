@@ -1,0 +1,16 @@
+sylius_admin_country:
+    resource: |
+        alias: sylius.country
+        section: admin
+        templates: ToroAdminBundle:Crud
+        except: ['show', 'delete']
+        redirect: update
+        grid: sylius_admin_country
+        vars:
+            all:
+                subheader: toro.ui.manage_shipping_destinations
+                templates:
+                    form: ToroAdminBundle:Country:_form.html.twig
+            index:
+                icon: flag
+    type: sylius.resource

@@ -1,0 +1,31 @@
+<li>
+    <a href="#">
+        <i class="ti-panel"></i>
+        <span class="menu-title">Configuration</span>
+        <i class="arrow"></i>
+    </a>
+
+    <ul class="collapse">
+        <li>
+            <a href="{{ path('sylius_admin_channel_index') }}">
+                {# ui.admin.menu.configuration.channel #}
+                <i class="ti-harddrives"></i> {{ 'Channel'|trans }}
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('sylius_admin_taxon_index') }}">
+                <i class="ti-archive"></i> {{ 'Taxonomy'|trans }}
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('sylius_admin_locale_index') }}">
+                <i class="ti-archive"></i> {{ 'Locale'|trans }}
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('sylius_admin_zone_index') }}">
+                <i class="ti-archive"></i> {{ 'Zone'|trans }}
+            </a>
+        </li>
+    </ul>
+</li>

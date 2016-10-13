@@ -1,0 +1,63 @@
+{% from "ToroAdminBundle:Macro:assets.html.twig" import avatar %}
+{% set var_user_avatar = avatar() %}
+{% set var_user_fullname = app.user ? (app.user.fullname|default(app.user.email)) : "" %}
+{% set var_user_email = app.user ? app.user.email : "" %}
+<!DOCTYPE html>
+<html lang="{{ (current_locale|split('_'))[0] }}">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}FA - Admin{% endblock %}</title>
+
+    <link rel="shortcut icon" href="{{ asset('favicon.png') }}">
+
+    {% block fonts %}
+        {#<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>#}
+    {% endblock %}
+
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('assets/admin/css/style.css') }}"/>
+    {% endblock %}
+
+    {% block javascripts %}
+        <script src="{{ asset('assets/admin/js/app.js') }}"></script>
+    {% endblock %}
+</head>
+
+<body>
+{% block body %}
+    <div id="container" class="effect mainnav-lg aside-bright navbar-fixed mainnav-{{ var_nav_scale|default('lg') }}">
+        {{ include('ToroAdminBundle:Nav:top.html.twig') }}
+
+        <div class="boxed">
+            {{ include('ToroAdminBundle:Nav:main.html.twig') }}
+            {#{{ include('ToroAdminBundle:Nav:aside.html.twig') }}#}
+
+            <div id="content-container">
+
+                {% block flashes %}
+                    {{ include('ToroAdminBundle::_flashes.html.twig') }}
+                {% endblock %}
+
+                {% block box_form_start %}{% endblock %}
+                {% block headers %}
+                    {% block header %}{% endblock %}
+                    {% block breadcrumb %}{% endblock %}
+                {% endblock %}
+
+                <div id="page-content">
+                    {% block content %}{% endblock %}
+                </div>
+                {% block box_form_end %}{% endblock %}
+            </div>
+        </div>
+
+        {{ include('ToroAdminBundle:Nav:footer.html.twig') }}
+    </div>
+
+    {% block xjavascripts %}{% endblock %}
+{% endblock %}
+</body>
+</html>

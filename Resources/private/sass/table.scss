@@ -1,0 +1,13 @@
+table {
+  .actions {
+    width: 60px;
+    text-align: center;
+    > div {
+      display: inline-block;
+
+      > .btn {
+        padding: 2px 5px !important;
+      }
+    }
+  }
+}

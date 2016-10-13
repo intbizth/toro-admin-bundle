@@ -1,0 +1,25 @@
+{% if app.session.flashbag|length %}
+    <div class="container-flash">
+        {% for type in ['success', 'error', 'info', 'warning'] %}
+            {% for flash in app.session.flashbag.get(type) %}
+                {% if 'error' == type %}
+                    {% set result = 'danger' %}
+                {% endif %}
+
+                {% set header = 'toro.ui.'~type %}
+
+                <div class="alert alert-{{ result|default(type) }} alert-dismissible fade in" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <strong>{{ header|trans }}</strong>
+                    {% if flash is iterable %}
+                        {{ flash.message|trans(flash.parameters, 'flashes') }}
+                    {% else %}
+                        {{ flash|trans({}, 'flashes') }}
+                    {% endif %}
+                </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+{% endif %}

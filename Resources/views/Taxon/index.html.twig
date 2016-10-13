@@ -1,0 +1,28 @@
+{% extends "ToroAdminBundle:Crud:index.html.twig" %}
+{% set taxonCode = app.request.get('code') %}
+
+{% block crud_index_header_action %}
+    {% if taxonCode %}
+        <div class="text-xs-center text-right">
+            <a class="btn btn-default btn-lg" href="{{ path('sylius_admin_taxon_index') }}">
+                <i class="ti-angle-left"></i> {{ 'ui.back'|trans }}
+            </a>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block crud_index_content %}
+    <div class="fixed-fluid">
+        <div class="fixed-sm-250 fixed-md-350 pull-sm-left">
+            {{ render(path('sylius_admin_taxon_roots', {actions: true})) }}
+        </div>
+        {# padding-bottom: 100px prevent overflow hidden break dropdown showing #}
+        <div class="fluid" style="padding-bottom: 100px">
+            {% if taxonCode %}
+                {{ render(path('sylius_admin_taxon_children', {code: taxonCode})) }}
+            {% else %}
+                {{ render(path('sylius_admin_taxon_index_create')) }}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

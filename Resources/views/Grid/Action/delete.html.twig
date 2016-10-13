@@ -1,0 +1,3 @@
+{% from 'ToroAdminBundle:Crud/Macro:menus.html.twig' import delete %}
+
+{{ delete(path(grid.requestConfiguration.getRouteName('delete'), {'id': data.id})) }}

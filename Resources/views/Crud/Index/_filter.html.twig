@@ -1,0 +1,37 @@
+{% import 'ToroAdminBundle:Macro:buttons.html.twig' as buttons %}
+
+{% set definition = grid.definition %}
+{% set path = path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) %}
+
+{% if definition.filters|length > 0 %}
+    <div class="ui segment crud-index-filter">
+        <form method="get" action="{{ path }}" class="ui form">
+            <div class="two fields">
+                {% for filter in definition.filters %}
+                {{ sylius_grid_render_filter(grid, filter) }}
+
+                {% if loop.index0 % 2 %}
+            </div>
+            <div class="two fields">
+                {% endif %}
+                {% endfor %}
+            </div>
+            {{ buttons.filter() }}
+            {{ buttons.resetFilters(path) }}
+        </form>
+    </div>
+
+    <div class="input-group mar-btm">
+        <div class="input-group-btn">
+            <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" type="button" aria-expanded="false">
+                Action <i class="dropdown-caret"></i>
+            </button>
+            <ul class="dropdown-menu">
+                {% for filter in definition.filters %}
+                    <li><a href="#">Action</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <input type="text" placeholder="Username" class="form-control">
+    </div>
+{% endif %}

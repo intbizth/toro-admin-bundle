@@ -1,0 +1,49 @@
+{% macro default(url, message, id, icon, class) %}
+    <a class="btn {% if icon is not empty %}btn-icon {% endif %}{% if class is not empty %} {{ class }} {% endif %}" {% if id is not empty %} id="{{ id }}"{% endif %}
+       href="{{ url }}">
+        {% if icon is not empty %}
+            <i class="{{ icon }}"></i>
+        {% endif %}
+        {{ message|trans }}
+    </a>
+{% endmacro %}
+
+{% macro show(url, message, id, class) %}
+    {% import _self as buttons %}
+
+    {% if message is empty %}
+        {% set message = 'toro.ui.show'|trans %}
+    {% endif %}
+
+    {{ buttons.default(url, message, id, 'ti-eye') }}
+{% endmacro %}
+
+{% macro edit(url, message, id) %}
+    {% import _self as buttons %}
+
+    {% if message is empty %}
+        {% set message = 'toro.ui.edit'|trans %}
+    {% endif %}
+
+    {{ buttons.default(url, message, id, 'ti-pencil') }}
+{% endmacro %}
+
+{% macro delete(url, message) %}
+    <form action="{{ url }}" method="post" class="delete negative item">
+        <input type="hidden" name="_method" value="DELETE">
+        <button class="btn" type="submit" data-requires-confirmation data-message="{{ 'toro.ui.are_you_sure_to_delete'|trans }}">
+            <i class="ti-trash"></i> {{ message is empty ? 'toro.ui.delete'|trans : message }}
+        </button>
+    </form>
+{% endmacro %}
+
+{% macro actions(items) %}
+    <div class="dropdown">
+        <i class="ti-settings"></i>
+        <div class="dropdown-menu">
+            {% for item in items %}
+                {{ item|raw }}
+            {% endfor %}
+        </div>
+    </div>
+{% endmacro %}

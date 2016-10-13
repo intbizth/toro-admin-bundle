@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services
+                               http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <imports>
+        <import resource="twigs.xml" />
+        <import resource="forms.xml" />
+        <import resource="sylius.xml" />
+    </imports>
+
+    <services>
+        <service id="toro.data_collector" class="Toro\Bundle\AdminBundle\DataCollector\ToroDataCollector" public="false">
+            <argument type="service" id="toro.context.kernel" />
+            <tag name="data_collector" template="ToroAdminBundle:Collector:toro" id="toro" priority="255" />
+        </service>
+
+        <service id="toro.context.kernel" class="Toro\Bundle\AdminBundle\Context\KernelContext">
+            <argument type="service" id="sylius.context.channel" />
+            <argument type="service" id="sylius.context.locale" />
+        </service>
+
+        <service id="toro.context.channel.configure_channel.context" class="Toro\Bundle\AdminBundle\Context\ConfigureChannelContext" public="false">
+            <argument type="service" id="sylius.repository.channel" />
+            <argument type="string">%toro_channel%</argument>
+            <tag name="sylius.context.channel" priority="127" />
+        </service>
+
+        <service id="pagerfanta.view.dropdown" class="Pagerfanta\View\DefaultView" public="false">
+            <argument type="service">
+                <service id="pagerfanta.view.dropdown.templage" class="Toro\Bundle\AdminBundle\Pager\DropDownTemplate">
+                </service>
+            </argument>
+            <tag name="pagerfanta.view" alias="dropdown" />
+        </service>
+    </services>
+</container>

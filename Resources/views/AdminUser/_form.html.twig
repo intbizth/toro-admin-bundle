@@ -1,0 +1,16 @@
+{{ form_errors(form) }}
+
+<div class="panel">
+    <div class="panel-heading">
+        <div class="panel-title">{{ "Info"|trans }}</div>
+    </div>
+    <div class="panel-body">
+        {{ form_row(form.firstName) }}
+        {{ form_row(form.lastName) }}
+        {{ form_row(form.username) }}
+        {{ form_row(form.email) }}
+        {{ form_row(form.plainPassword) }}
+        {{ form_row(form.localeCode) }}
+        {{ form_row(form.enabled) }}
+    </div>
+</div>

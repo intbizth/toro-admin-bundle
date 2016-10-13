@@ -1,0 +1,6 @@
+{% macro avatar(n) %}{{ asset('assets/admin/images/profile/' ~(n ?: (random(9)+1))~ '.png') }}{% endmacro %}
+
+{%- macro cmf_image(image, sizing = '100x100') -%}
+    {% from _self import avatar %}
+    {{ image ? path('liip_imagine_filter', {filter: 'cmf_' ~ sizing, path: image.id}) : avatar() }}
+{%- endmacro -%}

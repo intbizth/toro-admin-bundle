@@ -1,0 +1,4 @@
+{% include 'ToroAdminBundle:Form:_create.html.twig' with {
+'cancel_path': path(configuration.getRouteName('index'),
+configuration.vars.route.parameters|default({}))
+} %}

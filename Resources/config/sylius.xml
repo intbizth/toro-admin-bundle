@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services
+                               http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <imports>
+        <import resource="controller.xml"/>
+        <import resource="sitemap.xml"/>
+        <import resource="email.xml"/>
+    </imports>
+
+    <services>
+        <service id="toro.translation.translatable_listener.doctrine.orm"
+                 class="Toro\Bundle\AdminBundle\Sylius\Fix5674\ORMTranslatableListener"
+                 decorates="sylius.translation.translatable_listener.doctrine.orm">
+            <argument type="service" id="sylius.resource_registry"/>
+            <argument type="service" id="service_container"/>
+            <tag name="doctrine.event_subscriber" connection="default" priority="99"/>
+        </service>
+
+        <service id="sylius.context.channel.cached"
+                 class="Sylius\Component\Channel\Context\CachedPerRequestChannelContext"
+                 decorates="sylius.context.channel" public="false">
+            <argument type="service" id="sylius.context.channel.cached.inner"/>
+            <argument type="service" id="request_stack"/>
+        </service>
+
+        <service id="sylius.theme.context.channel_based"
+                 class="Toro\Bundle\AdminBundle\Sylius\Theme\ChannelBasedThemeContext"
+                 public="false">
+            <argument type="service" id="sylius.context.channel"/>
+            <argument type="service" id="sylius.repository.theme"/>
+        </service>
+
+        <service id="sylius.locale_provider.admin" class="Sylius\Component\Locale\Provider\LocaleProvider"
+                 public="false">
+            <argument type="service" id="sylius.repository.locale"/>
+            <argument>%locale%</argument>
+        </service>
+
+        <service id="sylius.listener.channel"
+                 class="Toro\Bundle\AdminBundle\Sylius\EventListener\ChannelDeletionListener">
+            <argument type="service" id="sylius.repository.channel"/>
+            <tag name="kernel.event_listener" event="sylius.channel.pre_delete" method="onChannelPreDelete"/>
+        </service>
+
+        <service id="sylius.validator.has_enabled_entity"
+                 class="Toro\Bundle\AdminBundle\Sylius\Validator\Constraints\HasEnabledEntityValidator">
+            <argument type="service" id="doctrine"/>
+            <tag name="validator.constraint_validator" alias="sylius_has_enabled_entity"/>
+        </service>
+
+        <service id="sylius.locale_provider.channel_based"
+                 class="Toro\Bundle\AdminBundle\Sylius\Provider\ChannelBasedLocaleProvider"
+                 decorates="sylius.locale_provider">
+            <argument type="service" id="sylius.context.channel"/>
+            <argument>%locale%</argument>
+        </service>
+
+        <service id="sylius.handler.locale_change"
+                 class="Toro\Bundle\AdminBundle\Sylius\Locale\Handler\CompositeLocaleChangeHandler"/>
+
+        <service id="sylius.storage.locale" class="Toro\Bundle\AdminBundle\Sylius\Locale\SessionBasedLocaleStorage">
+            <argument type="service" id="session"/>
+        </service>
+
+        <service id="sylius.context.locale.core" class="Sylius\Component\Locale\Context\CompositeLocaleContext"
+                 decorates="sylius.context.locale">
+            <call method="addContext">
+                <argument type="service">
+                    <service class="Toro\Bundle\AdminBundle\Sylius\Context\AdminBasedLocaleContext">
+                        <argument type="service" id="security.token_storage"/>
+                    </service>
+                </argument>
+            </call>
+            <call method="addContext">
+                <argument type="service">
+                    <service class="Sylius\Bundle\LocaleBundle\Context\RequestBasedLocaleContext">
+                        <argument type="service" id="request_stack"/>
+                        <argument type="service" id="sylius.locale_provider"/>
+                    </service>
+                </argument>
+            </call>
+            <call method="addContext">
+                <argument type="service">
+                    <service class="Toro\Bundle\AdminBundle\Sylius\Context\StorageBasedLocaleContext">
+                        <argument type="service" id="sylius.context.channel"/>
+                        <argument type="service" id="sylius.storage.locale"/>
+                        <argument type="service" id="sylius.locale_provider"/>
+                    </service>
+                </argument>
+            </call>
+            <call method="addContext">
+                <argument type="service">
+                    <service class="Sylius\Component\Locale\Context\ProviderBasedLocaleContext">
+                        <argument type="service" id="sylius.locale_provider"/>
+                    </service>
+                </argument>
+            </call>
+        </service>
+    </services>
+</container>

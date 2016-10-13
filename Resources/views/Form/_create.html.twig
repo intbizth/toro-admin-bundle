@@ -1,0 +1,8 @@
+<div class="text-xs-center text-right">
+    <button class="btn btn-success btn-lg btn-icon" type="submit">
+        <i class="ti-check"></i> <span>{{- 'toro.ui.create'|trans -}}</span>
+    </button>
+    <a class="btn btn-default btn-lg" href="{{ cancel_path|default(app.request.headers.get('referer')) }}">
+        {{ 'toro.ui.cancel'|trans }}
+    </a>
+</div>

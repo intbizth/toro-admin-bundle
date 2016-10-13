@@ -1,0 +1,29 @@
+// tab insided
+.tabbed-pane {
+  //margin: -15px;
+
+  .panel-form {
+    border: none;
+    box-shadow: none;
+    margin: 0;
+
+    .panel-body {
+      padding: 0;
+    }
+
+    .tab-content {
+      box-shadow: none;
+    }
+
+    .nav-tabs > .active > a {
+      border-color: #ddd;
+      border-bottom-color: transparent;
+    }
+  }
+}
+
+.tab-content {
+  &.no-pad {
+    padding: 0;
+  }
+}

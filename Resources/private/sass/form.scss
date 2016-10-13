@@ -1,0 +1,53 @@
+.input-group-addon {
+  padding: 6px 6px;
+  min-width: 35px !important;
+}
+
+label.required {
+  &:after {
+    content: '*';
+    color: red;
+    padding-left: 3px;
+
+    .panel-title & {
+      display: none;
+    }
+  }
+}
+
+input[type=checkbox] + label.required {
+  &:after {
+    content: '';
+  }
+}
+
+div.collection-item + div.collection-item {
+  padding-top: 1rem;
+  //border-top: 1px solid #ddd;
+}
+
+.collection-widget {
+  .table {
+    margin: 0;
+
+    thead {
+      th {
+        border-bottom: none !important;
+      }
+    }
+  }
+}
+
+.collection-box .panel-footer {
+  border-top: none;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  input[type=date].form-control,
+  input[type=time].form-control,
+  input[type=datetime-local].form-control,
+  input[type=month].form-control {
+    line-height: inherit;
+    padding: 4px 12px 3px 12px;
+  }
+}

@@ -1,0 +1,27 @@
+.selectize-control {
+  &.single {
+    height: 29px;
+
+    .selectize-input {
+      min-height: 29px;
+
+      &:after {
+        //display: none;
+        right: 5px;
+        border-color: #848484 transparent transparent transparent;
+      }
+    }
+  }
+}
+
+.selectize-input {
+  padding: 3px 8px 4px 8px;
+  border-radius: 0;
+  border: 1px solid #e9e9e9;
+}
+
+.selectize-control {
+  .time & {
+    min-width: 50px;
+  }
+}

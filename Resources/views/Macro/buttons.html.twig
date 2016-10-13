@@ -1,0 +1,80 @@
+{% macro default(url, message, id, icon, class) %}
+    <a class="ui labeled {% if icon is not empty %}icon {% endif %}button {% if class is not empty %} {{ class }} {% endif %}" {% if id is not empty %} id="{{ id }}"{% endif %} href="{{ url }}">
+        {% if icon is not empty %}
+            <i class="icon {{ icon }}"></i>
+        {% endif %}
+        {{ message|trans }}
+    </a>
+{% endmacro %}
+
+{% macro show(url, message, id, class) %}
+    {% import _self as buttons %}
+
+    {% if message is empty %}
+        {% set message = 'toro.ui.show'|trans %}
+    {% endif %}
+
+    {{ buttons.default(url, message, id, 'search') }}
+{% endmacro %}
+
+{% macro create(url, message, id) %}
+    {% import _self as buttons %}
+
+    {% if message is empty %}
+        {% set message = 'toro.ui.create'|trans %}
+    {% endif %}
+
+    {{ buttons.default(url, message, id, 'plus', 'primary') }}
+{% endmacro %}
+
+{% macro edit(url, message, id) %}
+    {% import _self as buttons %}
+
+    {% if message is empty %}
+        {% set message = 'toro.ui.edit'|trans %}
+    {% endif %}
+
+    {{ buttons.default(url, message, id, 'pencil') }}
+{% endmacro %}
+
+{% macro filter(message) %}
+    <button class="ui blue labeled icon button" type="submit">
+        <i class="icon search"></i> {{ message is empty ? 'toro.ui.filter'|trans : message }}
+    </button>
+{% endmacro %}
+
+{% macro resetFilters(url, message) %}
+    <a class="ui labeled icon button" href="{{ url }}">
+        <i class="icon remove"></i> {{ message is empty ? 'toro.ui.clear_filters'|trans : message }}
+    </a>
+{% endmacro %}
+
+{% macro delete(url, message) %}
+    <form action="{{ url }}" method="post">
+        <input type="hidden" name="_method" value="DELETE">
+        <button class="btn btn-danger" type="submit" data-requires-confirmation>
+            <i class="ti-trash"></i> {{ message is empty ? 'toro.ui.delete'|trans : message }}
+        </button>
+    </form>
+{% endmacro %}
+
+{% macro submit(message) %}
+    <button class="btn btn-success" type="submit">
+        <i class="ti-check"></i> {{ message is empty ? 'toro.ui.create'|trans : message }}
+    </button>
+{% endmacro %}
+
+{% macro settings(actions) %}
+    <div class="dropdown">
+        <button class="btn btn-default btn-icon dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <i class="ti-settings"></i>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-right">
+            {% for action in actions %}
+                {#{% if syli us_is_granted(grid.metadata.applicationName ~ '.'~ grid.metadata.name ~'.'~action.name) %}#}
+                <li>{{ action|raw }}</li>
+                {#{% endif %}#}
+            {% endfor %}
+        </ul>
+    </div>
+{% endmacro %}

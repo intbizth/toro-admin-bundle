@@ -1,0 +1,75 @@
+{% extends 'ToroAdminBundle::layout.html.twig' %}
+{% form_theme form 'ToroAdminBundle:Form:theme.html.twig' %}
+
+{% set header = configuration.vars.header|default(metadata.applicationName~'.ui.edit_'~metadata.name) %}
+
+{% block title %}{{ parent() }} {{ header|trans }}{% endblock %}
+
+{% block crud_update_header_text %}
+    {{ include('ToroAdminBundle:Crud/Update:_headerText.html.twig') }}
+{% endblock %}
+
+{% block crud_update_header_action %}
+    {{ include('ToroAdminBundle:Crud/Update:_headerAction.html.twig') }}
+{% endblock %}
+
+{% block crud_update_header %}
+    <div class="row crud-update-header">
+        <div class="col-sm-8 crud-update-header-text">
+            {{ block('crud_update_header_text') }}
+            {{ block('crud_update_breadcrumb') }}
+        </div>
+        <div class="col-sm-4 hidden-xs crud-update-header-action">
+            {{ block('crud_update_header_action') }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block crud_update_breadcrumb %}
+    <div class="ui basic segment crud-update-breadcrumb">
+        {% include configuration.vars.templates.breadcrumb|default('ToroAdminBundle:Crud/Breadcrumb:_update.html.twig') %}
+    </div>
+{% endblock %}
+
+{% block crud_update_form_start %}
+    {{ form_start(form, {'action': path(configuration.getRouteName('update'), configuration.vars.route.parameters|default({ 'id': resource.id })), 'attr': {'class': 'ui loadable form', 'novalidate': 'novalidate'}}) }}
+{% endblock %}
+
+{% block crud_update_form_end %}
+    {{ form_row(form._token) }}
+    {{ form_end(form, {'render_rest': false}) }}
+{% endblock %}
+
+{% block crud_update_form_method %}
+    <input type="hidden" name="_method" value="PUT"/>
+{% endblock %}
+
+{% block crud_update_form_action %}{# Using header action #}{% endblock %}
+
+{% block crud_update_content %}
+    {% if configuration.vars.templates.form is defined %}
+        {% include configuration.vars.templates.form %}
+    {% else %}
+        {{ form_widget(form) }}
+    {% endif %}
+{% endblock %}
+
+{% block header %}
+    {{ block('crud_update_header') }}
+{% endblock %}
+
+{% block breadcrumb %}{% endblock %}
+
+{% block box_form_start %}
+    {{ block('crud_update_form_start') }}
+{% endblock %}
+
+{% block box_form_end %}
+    {{ block('crud_update_form_end') }}
+{% endblock %}
+
+{% block content %}
+    {{ block('crud_update_form_method') }}
+    {{ block('crud_update_content') }}
+    {{ block('crud_update_form_action') }}
+{% endblock %}

@@ -1,0 +1,10 @@
+.fixed-fluid > .fluid {
+  // prevent dropdown invisible by overflow: hidden
+  padding-bottom: 200px;
+}
+
+.container-flash {
+  .alert {
+    border-radius: 0;
+  }
+}

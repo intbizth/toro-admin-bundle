@@ -1,0 +1,25 @@
+{% macro default(message, icon, type) %}
+    <div class="alert alert-{{ type }}">
+        {% set header = 'toro.ui.'~type %}
+        <strong>
+            <i class="{{ icon }} icon"></i> {{ header|trans }}
+        </strong>
+        <p>{{ message }}</p>
+    </div>
+{% endmacro %}
+
+{% macro info(message) %}
+    {% import _self as messages %}
+    {{ messages.default(message, 'ti-info-alt', 'info') }}
+{% endmacro %}
+
+{% macro success(message) %}
+    {% import _self as messages %}
+    {{ messages.default(message, 'ti-check', 'success') }}
+{% endmacro %}
+
+{% macro error(message) %}
+    {% import _self as messages %}
+    {{ messages.default(message, 'ti-alert', 'danger') }}
+{% endmacro %}
+

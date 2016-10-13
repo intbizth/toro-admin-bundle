@@ -1,0 +1,146 @@
+$field_width: 350px;
+$field_height: 520px;
+$player_size: 34px;
+
+.field-container {
+  perspective: 600px;
+
+
+  .field {
+    transition: all 0.3s ease;
+    margin: auto;
+    perspective-origin: center ;
+    perspective: 7em;
+    ul {
+      padding: 0;
+    }
+    //below is overide when li in here
+    .over {
+      -webkit-transform: translate(-50%, -50%) scale3d(1.2, 1.2, 1.2) !important;
+      transform: translate(-50%, -50%) scale3d(1.2, 1.2, 1.2) !important;
+    }
+    li {
+      width:100%;
+      height: 100%;
+      padding:0;
+      span {
+        color: white;
+        position: absolute;
+        top: 2em;
+        width: 100px;
+        left: -50%;
+        text-align: center;
+        width: 135px;
+        transform: translateX(-40%);
+        pointer-events:none;
+      }
+    }
+  }
+  .player {
+    position: absolute;
+    background: url('../images/formation/player.png');
+    background-size: cover;
+    transition: all 0.3s ease;
+    display: block;
+    width: $player_size;
+    height: $player_size;
+    transform: translate(-50%, -50%); //make privot go center
+    //border-radius: 50px;
+    text-align: center;
+    //cursor: pointer;
+    &__name {
+      position: relative;
+      color: white;
+      top: 30px;
+    }
+    &__highlight {
+      -webkit-filter: drop-shadow(2px 10px 2px rgba(0,0,0,0.3));
+      -ms-filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=2, OffY=2, Color='#444')";
+      filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=2, OffY=2, Color='#444')";
+      border: 1px dashed red;
+      width: 4em;
+      height: 4em;
+    }
+  }
+
+  .field {
+    position: relative;
+    background: url('../images/formation/soccer_field.png');
+    background-size: cover;
+    width: $field_width;
+    height: $field_height;
+  }
+}
+
+.player-avatar {
+  position: relative;
+  display: flex;
+  text-align: center;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+  &__block {
+    width: 4em;
+    height: 5em;
+    margin: 6px;
+    cursor: pointer;
+    transition: all .3s ease;
+    // width: 64px;
+    // height: 64px;
+    // border-radius: 0%;
+    padding: 5px;
+    &:hover {
+      -webkit-transform: scale3d(1.1, 1.1, 1.1);
+      transform: scale3d(1.1, 1.1, 1.1);
+      // border-radius: 50%;
+    }
+    &:active {
+      -webkit-transform: scale3d(0.8, 0.8, 0.8);
+      transform: scale3d(0.8, 0.8, 0.8);
+    }
+
+    span {
+      cursor: pointer;
+      display: block;
+      position: relative;
+      top: 5em;
+    }
+  }
+}
+
+
+
+.player {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  height: 30px;
+  display: inline-block;
+  vertical-align: top;
+  &-drag {
+    cursor: move;
+  }
+}
+
+.player-box {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  width: 100%;
+  li {
+    margin: 1.4em 1.2em;
+  }
+  span {
+    white-space: nowrap;
+    text-align: center;
+  }
+}
+.playercon {
+  list-style: none;
+  padding: 5px;
+  border: 1px solid gray;
+  background: #f5f5f5;
+  background-size: cover !important;
+  background-position: center center !important;
+  border-radius: 5px;
+  margin: 0 0 5px;
+}
