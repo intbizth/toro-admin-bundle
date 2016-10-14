@@ -79,7 +79,7 @@ class CreateAdminUserCommand extends ContainerAwareCommand
 
     protected function createUser($email, $password, array $securityRoles = ['ROLE_ADMINISTRATION_ACCESS'])
     {
-        $canonicalizer = $this->getContainer()->get('sylius.user.canonicalizer');
+        $canonicalizer = $this->getContainer()->get('sylius.canonicalizer');
 
         $user = $this->getUserFactory()->createNew();
         $user->setUsername($email);
