@@ -9,12 +9,14 @@ var debug = require('gulp-debug');
 var order = require('gulp-order');
 var merge = require('merge-stream');
 var gutil = require('gulp-util');
+
 var env = gutil.env.env;
+var stage = gutil.env.stage;
 
 var rootPath = '../../../web/assets/admin/';
 var nodePath = '../../../node_modules/';
 
-if ('dev' === env) {
+if ('dev' === stage) {
     rootPath = "../" + rootPath;
     nodePath = "../" + nodePath;
 }
