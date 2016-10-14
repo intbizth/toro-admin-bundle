@@ -14,6 +14,11 @@ var env = gutil.env.env;
 var rootPath = '../../../web/assets/admin/';
 var nodePath = '../../../node_modules/';
 
+if ('dev' === env) {
+    rootPath = "../" + rootPath;
+    nodePath = "../" + nodePath;
+}
+
 var paths = {
     js: [
         'Resources/private/boot.js',
