@@ -1,3 +1,21 @@
 sylius_resource:
     translation:
         locale_provider: sylius.locale_provider.admin
+
+    resources:
+        toro.menu:
+            driver: doctrine/orm
+            classes:
+                model: Toro\Bundle\AdminBundle\Model\Menu
+                interface: Toro\Bundle\AdminBundle\Model\MenuInterface
+                repository: Toro\Bundle\AdminBundle\Doctrine\ORM\MenuRepository
+            translation:
+                classes:
+                    model: Toro\Bundle\AdminBundle\Model\MenuTranslation
+                    interface: Toro\Bundle\AdminBundle\Model\MenuTranslationInterface
+                validation_groups:
+                    default:
+                        - toro
+            validation_groups:
+                default:
+                    - toro

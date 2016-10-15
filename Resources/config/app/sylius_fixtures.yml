@@ -1,0 +1,3 @@
+imports:
+    - { resource: fixtures/admin_user.yml }
+    - { resource: fixtures/admin_menu.yml }

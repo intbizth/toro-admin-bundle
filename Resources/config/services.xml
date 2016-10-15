@@ -8,6 +8,7 @@
         <import resource="twigs.xml" />
         <import resource="forms.xml" />
         <import resource="sylius.xml" />
+        <import resource="fixtures.xml" />
     </imports>
 
     <services>
@@ -33,6 +34,22 @@
                 </service>
             </argument>
             <tag name="pagerfanta.view" alias="dropdown" />
+        </service>
+
+        <service id="toro.menu_builder" abstract="true">
+            <argument type="service" id="knp_menu.factory" />
+            <argument type="service" id="event_dispatcher" />
+            <argument type="service" id="sylius.resource_controller.authorization_checker" />
+            <argument type="service" id="toro.repository.menu" />
+        </service>
+
+        <service id="toro.menu_builder.admin.main" class="Toro\Bundle\AdminBundle\Menu\MenuBuilder" parent="toro.menu_builder">
+            <argument type="string">admin_main</argument>
+        </service>
+
+        <service id="toro.menu.admin.main" class="Knp\Menu\MenuItem" factory-service="toro.menu_builder.admin.main" factory-method="createMenu" scope="request">
+            <argument type="service" id="request" />
+            <tag name="knp_menu.menu" alias="toro.admin.main" />
         </service>
     </services>
 </container>

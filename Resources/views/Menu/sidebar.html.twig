@@ -1,0 +1,76 @@
+{% extends 'knp_menu.html.twig' %}
+
+{% block root %}
+    {% do item.setChildrenAttribute('id', 'mainnav-menu') %}
+    {% do item.setChildrenAttribute('class', 'list-group') %}
+    {% set listAttributes = item.childrenAttributes %}
+
+    <ul id="mainnav-menu" class="list-group">
+        {{ block('list') -}}
+    </ul>
+{% endblock %}
+
+{% block item %}
+    {% if item.level is same as(1) %}
+        <li class="list-divider"></li>
+        <li class="list-header">{{ item.label|trans }}</li>
+        <li>{{ block('list') }}</li>
+    {% else %}
+        {% if item.hasChildren and item.displayChildren %}
+            <a href="#">
+                <i class="ti-shield"></i>
+                <span class="menu-title">{{ item.label|trans }}</span>
+                <i class="arrow"></i>
+            </a>
+            <ul class="collapse" aria-expanded="false">
+                {{ block('list') }}
+            </ul>
+        {% else %}
+            <li>
+                <a href="{{ item.uri }}">
+                    <i class="ti-user"></i>
+                    <span class="menu-title">{{ item.label|trans }}</span>
+                </a>
+            </li>
+        {% endif %}
+    {% endif %}
+{% endblock %}
+
+{% block list %}
+    {% for item in item.children %}
+        {{ block('item') }}
+    {% endfor %}
+{% endblock %}
+
+{% block icon %}
+    {% set icon = item.labelAttribute('icon') %}
+    {% if icon %}<i class="icon {{ icon }}"></i> {% endif %}
+{% endblock %}
+
+{#
+{% block list %}
+    {% for item in item.children %}
+        {{ block('item') }}
+    {% endfor %}
+{% endblock %}
+
+{% block item %}
+    {% if item.level is same as(1) %}
+        <ul class="item">
+            <li class="header">{{ item.label|trans }}</li>
+            <li class="menu">
+                {{ block('list') }}
+            </li>
+        </ul>
+    {% else %}
+        <a class="item" href="{{ item.uri }}">
+            {{ block('icon') }} xxx {{ item.label|trans }}
+        </a>
+    {% endif %}
+{% endblock %}
+
+{% block icon %}
+    {% set icon = item.labelAttribute('icon') %}
+    {% if icon %}<i class="icon {{ icon }}"></i> {% endif %}
+{% endblock %}
+#}

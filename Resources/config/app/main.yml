@@ -13,3 +13,4 @@ imports:
     - { resource: sylius_resource.yml }
     - { resource: sylius_user.yml }
     - { resource: sylius_grid.yml }
+    - { resource: sylius_fixtures.yml }

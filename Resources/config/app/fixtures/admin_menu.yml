@@ -1,0 +1,57 @@
+sylius_fixtures:
+    suites:
+        default:
+            fixtures:
+                admin_menu:
+                    priority: -1
+                    options:
+                        custom:
+                            -
+                                code: admin_main
+                                name:
+                                    th_TH: "Admin Menu"
+                                    en_US: "Admin Menu"
+
+                                children:
+                                    -
+                                        code: admin_main.root
+                                        name:
+                                            th_TH: "Root Management"
+                                            en_US: "Root Management"
+
+                                        children:
+                                            -
+                                                code: admin_main.root.configuration
+                                                name:
+                                                    th_TH: "Configuration"
+                                                    en_US: "Configuration"
+
+                                                children:
+                                                    -
+                                                        code: admin_main.root.configuration.channels
+                                                        name:
+                                                            th_TH: "Channels"
+                                                            en_US: "Channels"
+                                                        options:
+                                                            route: sylius_admin_channel_index
+                                                    -
+                                                        code: admin_main.root.configuration.countries
+                                                        name:
+                                                            th_TH: "Countries"
+                                                            en_US: "Countries"
+                                                        options:
+                                                            route: sylius_admin_country_index
+                                                    -
+                                                        code: admin_main.root.configuration.zones
+                                                        name:
+                                                            th_TH: "Zones"
+                                                            en_US: "Zones"
+                                                        options:
+                                                            route: sylius_admin_zone_index
+                                                    -
+                                                        code: admin_main.root.configuration.locales
+                                                        name:
+                                                            th_TH: "Locales"
+                                                            en_US: "Locales"
+                                                        options:
+                                                            route: sylius_admin_locale_index

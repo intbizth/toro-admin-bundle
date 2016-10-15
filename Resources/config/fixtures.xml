@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services
+                               http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="toro.fixture.factory.admin_user" class="Toro\Bundle\AdminBundle\DataFixture\AdminUserFactory">
+            <argument type="service" id="sylius.factory.admin_user"/>
+        </service>
+
+        <service id="toro.fixture.factory.menu" class="Toro\Bundle\AdminBundle\DataFixture\AdminMenuFactory" parent="toro.fixture.example_factory.locale_ware">
+            <argument type="service" id="toro.factory.menu"/>
+            <argument type="service" id="toro.repository.menu"/>
+        </service>
+
+        <service id="toro.fixture.admin_user" class="Toro\Bundle\AdminBundle\DataFixture\AdminUserFixture">
+            <argument type="service" id="sylius.manager.admin_user"/>
+            <argument type="service" id="toro.fixture.factory.admin_user"/>
+            <tag name="sylius_fixtures.fixture"/>
+        </service>
+
+        <service id="toro.fixture.menu" class="Toro\Bundle\AdminBundle\DataFixture\AdminMenuFixture">
+            <argument type="service" id="toro.manager.menu"/>
+            <argument type="service" id="toro.fixture.factory.menu"/>
+            <tag name="sylius_fixtures.fixture"/>
+        </service>
+    </services>
+</container>
