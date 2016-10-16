@@ -51,7 +51,7 @@ class LocaleType extends BaseLocaleType
         $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
             // Adding dynamically created code field
             $nameOptions = [
-                'label' => 'sylius.form.locale.name',
+                'label' => 'toro.form.locale.name',
             ];
 
             $locale = $event->getData();

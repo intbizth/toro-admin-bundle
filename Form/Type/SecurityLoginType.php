@@ -17,13 +17,13 @@ class SecurityLoginType extends AbstractType
     {
         $builder
             ->add('_username', 'text', [
-                'label' => 'sylius.form.login.username',
+                'label' => 'toro.form.login.username',
             ])
             ->add('_password', 'password', [
-                'label' => 'sylius.form.login.password',
+                'label' => 'toro.form.login.password',
             ])
             ->add('_remember_me', 'checkbox', [
-                'label' => 'sylius.form.login.remember_me',
+                'label' => 'toro.form.login.remember_me',
                 'required' => false,
             ])
         ;

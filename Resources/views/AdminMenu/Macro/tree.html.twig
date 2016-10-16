@@ -1,0 +1,25 @@
+{% macro render(menus) %}
+    <div class="list-group">
+        {{ _self.renderLeaf(menus) }}
+    </div>
+{% endmacro %}
+
+{% macro renderLeaf(menus) %}
+    {% import 'ToroAdminBundle:Macro:buttons.html.twig' as buttons %}
+
+    {% for menu in menus %}
+        <div class="list-group-item">
+            <i class="folder icon"></i>
+            <div class="content">
+                <div class="header">{{ menu.name }}</div>
+                <div class="ui mini buttons">
+                    {{ buttons.edit(path('toro_admin_menu_update', { 'id': menu.id })) }}
+                    {{ buttons.delete(path('toro_admin_menu_delete', { 'id': menu.id }), 'toro.ui.delete'|trans) }}
+                </div>
+                <div class="list">
+                    {{ _self.renderLeaf(menu.children) }}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endmacro %}

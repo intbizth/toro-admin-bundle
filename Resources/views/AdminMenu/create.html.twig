@@ -1,0 +1,12 @@
+{% extends 'ToroAdminBundle:Crud:create.html.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-4 col-xs-12">
+            {{ render(path('toro_admin_partial_menu_tree')) }}
+        </div>
+        <div class="col-md-8 col-xs-12">
+            {{ parent() }}
+        </div>
+    </div>
+{% endblock %}

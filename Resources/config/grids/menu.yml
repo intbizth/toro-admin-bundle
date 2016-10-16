@@ -1,0 +1,14 @@
+sylius_grid:
+    grids:
+        sylius_admin_menu:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: %toro.model.menu.class%
+                    repository:
+                        method: createListQueryBuilder
+            filters:
+                name:
+                    type: string
+                    options:
+                        fields: [translation.name]

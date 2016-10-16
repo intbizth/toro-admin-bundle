@@ -73,8 +73,16 @@ final class MenuBuilder
                 $level++;
             }
 
+            $options = $item->getOptions();
+
+            if ($item->getPermalink()) {
+                unset($options['route']);
+
+                $options['uri'] = $item->getPermalink();
+            }
+
             $last = $menu
-                ->addChild($item->getCode(), $item->getOptions())
+                ->addChild($item->getCode(), $options)
                 ->setLabel($item->getName())
             ;
         }

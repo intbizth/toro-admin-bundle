@@ -4,7 +4,7 @@ namespace Toro\Bundle\AdminBundle\Model;
 
 use Sylius\Component\Resource\Model\AbstractTranslation;
 
-class MenuTranslation extends AbstractTranslation  implements MenuTranslationInterface
+class MenuTranslation extends AbstractTranslation implements MenuTranslationInterface
 {
     /**
      * @var mixed
@@ -15,11 +15,6 @@ class MenuTranslation extends AbstractTranslation  implements MenuTranslationInt
      * @var string
      */
     protected $name;
-
-    /**
-     * @var string
-     */
-    protected $slug;
 
     /**
      * @var string
@@ -61,22 +56,6 @@ class MenuTranslation extends AbstractTranslation  implements MenuTranslationInt
     public function setName($name)
     {
         $this->name = $name;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getSlug()
-    {
-        return $this->slug;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setSlug($slug = null)
-    {
-        $this->slug = $slug;
     }
 
     /**

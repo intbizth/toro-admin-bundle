@@ -1,0 +1,8 @@
+{% import 'ToroAdminBundle:AdminMenu/Macro:tree.html.twig' as tree %}
+{% import 'ToroAdminBundle:Macro:buttons.html.twig' as buttons %}
+
+{{ buttons.create(path('toro_admin_menu_create')) }}
+
+<div class="ui segment">
+    {{ tree.render(menus) }}
+</div>

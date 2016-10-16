@@ -3,9 +3,8 @@
 namespace Toro\Bundle\AdminBundle\Model;
 
 use Sylius\Component\Resource\Model\ResourceInterface;
-use Sylius\Component\Resource\Model\SlugAwareInterface;
 
-interface MenuTranslationInterface extends SlugAwareInterface, ResourceInterface
+interface MenuTranslationInterface extends ResourceInterface
 {
     /**
      * @return string

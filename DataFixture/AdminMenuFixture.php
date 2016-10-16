@@ -25,6 +25,7 @@ final class AdminMenuFixture extends AbstractResourceFixture
                 ->scalarNode('code')->cannotBeEmpty()->end()
                 ->variableNode('name')->cannotBeEmpty()->end()
                 ->variableNode('description')->cannotBeEmpty()->end()
+                ->variableNode('permalink')->end()
                 ->variableNode('children')->end()
                 ->variableNode('options')->end()
                 ->variableNode('display')->defaultTrue()->end()

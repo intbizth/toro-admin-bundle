@@ -1,152 +1,46 @@
-toro:
-    ui:
-        of: Of
-        are_you_sure_to_delete: Are you sure to delete?
-
-sylius:
-    form:
-        channel:
-            hostname: Hostname
-        login:
-            username: Username
-            password: Password
-            remember_me: Remember me
-        option:
-            presentation: Presentation
-        locale:
-            select: Choose default locale
-    ui:
-        about: About
-        account_credentials: Account credentials
-        actions: Actions
-        add_coupon: Add coupon
-        add_to_cart: Add to cart
-        addressing: Addressing
-        administration: Administration
-        administration_panel_login: Administration panel login
-
-        locale: ภาษา
-
-        all: All
-        an_error_occurred: An error occurred
-        are_your_sure_you_want_to_perform_this_action: Are you sure you want to perform this action?
-        available_for_channels: Available for channels
-        code: Code
-        complete: Complete
-        cancel: Cancel
-        cancelled: Cancelled
-        change_address: Change address
-        change_password: Change password
-        change_your_password: Change your password
-        have_an_account_already: Have an account already
-        sign_in_here: Sign in here
-        forgot_password: Forgot password
-        clear_filters: Clear filters
-        enter_your_code: Enter your code
-        filters: Filters
-        image: Image
-        create_an_account: Create an account
-        summary: Summary
-        create_a_new_customer_account: Create a new customer account
-        if_you_have_an_account_sign_in_with_your_email_address: If you have an account, sign in with your e-mail address
-        access_your_store_account_or_create_a_new_one: Access your store account or create a new one
-        color: Color
-        confirm_your_action: Confirm your action
-        contact_us: Contact us
-        contains: Contains
-        countries: Countries
-        create: Create
-        set_a_new_password_for_your_account: Set a new password for your account
-        my_account: My account
-        home: Home
-        customer_login: Customer login
-        dashboard: Dashboard
-        date: Date
-        default_locale: Default locale
-        delete: Delete
-        description: Description
-        disabled: Disabled
-        edit: Edit
-        channels: Channels
-        edit_channel: Edit channel
-        edit_country: Edit country
-        taxons: Taxons
-        edit_taxon: Edit taxon
-        empty: Empty
-        enabled: Enabled
-        ends_with: Ends with
-        equal: Equal
-        exclusive: Exclusive
-        expires_at: Expires at
-        extra_information: Extra information
-        faqs: FAQs
-        filter: Filter
-        go: Go
-        hello: Hello
-        manage_your_personal_information_and_preferences: Manage your personal information and preferences
-        latest_products: Latest products
-        in: In
-        info: Info
-        item: Item
-        jump_to_page: Jump to page
-        last_updated: Last updated
-        locales: Locales
-        new_locale: New locale
-        edit_locale: Edit locale
-        manage_languages_available_in_the_store: Manage languages available in the store
-        media: Media
-        members: Members
-        new: New
-        new_channel: New channel
-        new_country: New country
-        new_locale: New locale
-        no: No
-        no_account: no account
-        no_results_to_display: There are no results to display
-        no_theme: No theme
-        not_contains: Not contains
-        not_empty: Not empty
-        not_in: Not in
-        or: or
-        powered_by: Powered by
-        privacy_policy: Privacy Policy
-        personal_information: Personal information
-        quantity: Qty
-        repeat_new_password: Repeat new password
-        save_changes: Save changes
-        select_taxon: Select taxon
-        show: Show
-        sign_in: Sign in
-        sign_out: Sign out
-        starts_with: Starts with
-        status: Status
-        subtotal: Subtotal
-        success: Success
-        taxonomy: Taxonomy
-        terms_and_conditions: Terms and Conditions
-        total_records: Total records
-        unlimited: Unlimited
-        values: Values
-        yes: Yes
-        your_profile: Your profile
-        zones: Zones
-        new_zone: New zone
-        edit_zone: Edit zone
-
-
-        registered_customers: Registered customers
-        new_customer: New customer
-        customer_can_login: Allow user to login?
-        new_customers: New customers
-        manage_your_customers: Manage your customers
-        edit_customer: Edit customer
-        customers: Customers
-        customer_details: Details
-        first_name: First name
-        last_name: Last name
-        email: Email
-        registration_date: Register date
-        confirmed: Confirmed
-
-        admin_users: Admin Users
-        edit_admin_user: Edit Admin Users
+toro.ui.delete: Delete
+toro.ui.info: Info
+toro.ui.detail: Detail
+toro.ui.config: Config
+toro.ui.provinces: Provinces
+toro.ui.actions: Actions
+toro.ui.no_results_to_display: "No results to display"
+toro.ui.administration: Administration
+toro.ui.new: New
+toro.ui.show: Show
+toro.ui.edit: Edit
+toro.ui.are_you_sure_to_delete: "Are you sure to delete"
+toro.ui.of: Of
+toro.ui.back: Back
+toro.ui.customer_details: "Customer details"
+toro.ui.account_credentials: "Account credentials"
+toro.ui.customer_can_login: "Customer can login"
+toro.ui.yes: Yes
+toro.ui.no: No
+toro.ui.no_account: "No account"
+toro.ui.email.password_reset.name: __toro.ui.email.password_reset.name
+toro.ui.email.password_reset.content: __toro.ui.email.password_reset.content
+toro.ui.email.user_confirmation.subject: __toro.ui.email.user_confirmation.subject
+toro.ui.email.user_confirmation.content: __toro.ui.email.user_confirmation.content
+toro.ui.cancel: Cancel
+toro.ui.create: Create
+toro.ui.save_changes: "Save changes"
+toro.ui.enabled: Enabled
+toro.ui.disabled: Disabled
+toro.ui.filter: Filter
+toro.ui.clear_filters: "Clear filters"
+toro.ui.active: Active
+toro.ui.inactive: Inactive
+toro.ui.jump_to_page: "Jump to page"
+toro.ui.go: Go
+toro.ui.total_records: "Total records"
+toro.ui.channel: Channel
+toro.ui.taxonomy: Taxonomy
+toro.ui.locale: Locale
+toro.ui.zone: Zone
+toro.ui.pages: Pages
+toro.ui.administration_panel_login: "Administration panel login"
+toro.ui.no_results: "No results"
+toro.ui.members: Members
+toro.ui.countries: Countries
+toro.ui.other_zones: "Other zones"

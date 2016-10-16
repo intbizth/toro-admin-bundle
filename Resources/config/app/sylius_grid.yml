@@ -6,6 +6,7 @@ imports:
     - { resource: "@ToroAdminBundle/Resources/config/grids/taxon.yml" }
     - { resource: "@ToroAdminBundle/Resources/config/grids/page.yml" }
     - { resource: "@ToroAdminBundle/Resources/config/grids/admin_user.yml" }
+    - { resource: "@ToroAdminBundle/Resources/config/grids/menu.yml" }
 
 sylius_grid:
     templates:

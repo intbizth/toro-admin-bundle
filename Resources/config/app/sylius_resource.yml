@@ -9,10 +9,14 @@ sylius_resource:
                 model: Toro\Bundle\AdminBundle\Model\Menu
                 interface: Toro\Bundle\AdminBundle\Model\MenuInterface
                 repository: Toro\Bundle\AdminBundle\Doctrine\ORM\MenuRepository
+                form:
+                    default: Toro\Bundle\AdminBundle\Form\Type\MenuType
             translation:
                 classes:
                     model: Toro\Bundle\AdminBundle\Model\MenuTranslation
                     interface: Toro\Bundle\AdminBundle\Model\MenuTranslationInterface
+                    form:
+                        default: Toro\Bundle\AdminBundle\Form\Type\MenuTranslationType
                 validation_groups:
                     default:
                         - toro

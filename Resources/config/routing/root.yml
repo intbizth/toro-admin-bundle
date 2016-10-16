@@ -15,3 +15,6 @@ sylius_admin_locale:
 
 sylius_admin_user:
     resource: "@ToroAdminBundle/Resources/config/routing/admin_user.yml"
+
+sylius_admin_menu:
+    resource: "@ToroAdminBundle/Resources/config/routing/menu.yml"

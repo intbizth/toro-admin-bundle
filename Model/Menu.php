@@ -215,37 +215,9 @@ class Menu implements MenuInterface
     /**
      * {@inheritdoc}
      */
-    public function getSlug()
-    {
-        return $this->translate()->getSlug();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setSlug($slug = null)
-    {
-        $this->translate()->setSlug($slug);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function getPermalink()
     {
-        $permalink = $this->translate()->getPermalink();
-
-        if (null !== $permalink) {
-            return $permalink;
-        }
-
-        if (null === $this->parent) {
-            return $this->getSlug();
-        }
-
-        $this->setPermalink($permalink = $this->parent->getPermalink().'/'.$this->getSlug());
-
-        return $permalink;
+        return $this->translate()->getPermalink();
     }
 
     /**

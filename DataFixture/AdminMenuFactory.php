@@ -55,6 +55,8 @@ final class AdminMenuFactory extends AbstractLocaleAwareFactory
                 ->setDefault('description', function (Options $options) {
                     return $this->faker->paragraph;
                 })
+                ->setDefault('permalink', null)
+
                 ->setDefault('children', [])
                 ->setAllowedTypes('children', ['array'])
 
@@ -88,7 +90,7 @@ final class AdminMenuFactory extends AbstractLocaleAwareFactory
         $menu->setDisplay($options['display']);
         $menu->setDisplayChildren($options['display_children']);
 
-        $this->setLocalizedData($menu, ['name', 'description'], $options);
+        $this->setLocalizedData($menu, ['name', 'description', 'permalink'], $options);
 
         foreach ($options['children'] as $key => $childOptions) {
             $menu->addChild($this->create($key, $childOptions));

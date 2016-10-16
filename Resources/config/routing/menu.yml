@@ -1,0 +1,30 @@
+toro_admin_menu:
+    resource: |
+        alias: toro.menu
+        section: admin
+        templates: ToroAdminBundle:AdminMenu
+        except: ['show', 'index']
+        redirect: update
+        permission: true
+        vars:
+            all:
+                templates:
+                    form: ToroAdminBundle:AdminMenu:_form.html.twig
+    type: sylius.resource
+
+toro_admin_menu_index:
+    path: /menus/
+    defaults:
+        _controller: FrameworkBundle:Redirect:redirect
+        route: toro_admin_menu_create
+        permanent: true
+
+toro_admin_partial_menu_tree:
+    path: /menus/tree
+    methods: [GET]
+    defaults:
+        _controller: toro.controller.menu:indexAction
+        _sylius:
+            template: ToroAdminBundle:AdminMenu:index.html.twig
+            repository:
+                method: findRootNodes

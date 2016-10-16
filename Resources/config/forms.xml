@@ -6,7 +6,7 @@
                                http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="sylius.form.type.country" class="%sylius.form.type.country.class%">
+        <service id="toro.form.type.country" class="%sylius.form.type.country.class%">
             <argument>%sylius.model.country.class%</argument>
             <argument type="collection">
                 <argument>sylius</argument>
@@ -15,21 +15,26 @@
             <tag name="form.type" alias="sylius_country" />
         </service>
 
-        <service id="sylius.form.type.security_login" class="Toro\Bundle\AdminBundle\Form\Type\SecurityLoginType">
+        <service id="toro.form.type.security_login" class="Toro\Bundle\AdminBundle\Form\Type\SecurityLoginType">
             <tag name="form.type" alias="sylius_security_login" />
         </service>
 
-        <service id="sylius.form.type.locale_code_choice" class="Toro\Bundle\AdminBundle\Form\Type\LocaleCodeChoiceType">
+        <service id="toro.form.type.locale_code_choice" class="Toro\Bundle\AdminBundle\Form\Type\LocaleCodeChoiceType">
             <argument type="service" id="sylius.repository.locale"/>
             <tag name="form.type" alias="sylius_locale_code_choice"/>
         </service>
 
-        <service id="sylius.form.type.locale" class="Toro\Bundle\AdminBundle\Form\Type\LocaleType">
+        <service id="toro.form.type.locale" class="Toro\Bundle\AdminBundle\Form\Type\LocaleType">
             <argument>%sylius.model.locale.class%</argument>
             <argument>%sylius.validation_groups.locale%</argument>
             <argument>%locale%</argument>
             <argument type="service" id="sylius.repository.locale" />
             <tag name="form.type" alias="sylius_locale" />
+        </service>
+
+        <service id="toro.form.type.menu_choice" class="Toro\Bundle\AdminBundle\Form\Type\MenuChoiceType">
+            <argument type="service" id="toro.repository.menu" />
+            <tag name="form.type" alias="toro_menu_choice" />
         </service>
     </services>
 </container>

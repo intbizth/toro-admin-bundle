@@ -26,9 +26,9 @@ class CustomerFilterType extends AbstractType
     {
         $builder
             ->add('query', 'text', [
-                'label' => 'sylius.form.customer_filter.query',
+                'label' => 'toro.form.customer_filter.query',
                 'attr' => [
-                    'placeholder' => 'sylius.form.customer_filter.query',
+                    'placeholder' => 'toro.form.customer_filter.query',
                 ],
             ])
         ;

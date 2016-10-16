@@ -55,3 +55,11 @@ sylius_fixtures:
                                                             en_US: "Locales"
                                                         options:
                                                             route: sylius_admin_locale_index
+                                                    -
+                                                        code: admin_main.root.configuration.menus
+                                                        name:
+                                                            th_TH: "Menus"
+                                                            en_US: "Menus"
+                                                        permalink:
+                                                            th_TH: "/menus"
+                                                            en_US: "/menus"
