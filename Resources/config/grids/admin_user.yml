@@ -13,6 +13,7 @@ sylius_grid:
                 username:
                     type: string
                     label: "Username"
+                    sortable: ~
                 email:
                     type: string
                     label: toro.ui.email
