@@ -6,9 +6,7 @@ sylius_grid:
                 options:
                     class: %toro.model.page.class%
             sorting:
-                createdAt:
-                    path: createdAt
-                    direction: desc
+                createdAt: desc
             filters:
                 title:
                     type: string

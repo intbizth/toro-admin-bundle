@@ -8,9 +8,7 @@ sylius_grid:
                     repository:
                         method: createNoneRootQueryBuilder
             sorting:
-                username:
-                    path: username
-                    direction: asc
+                username: asc
             fields:
                 username:
                     type: string

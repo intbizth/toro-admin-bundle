@@ -6,9 +6,7 @@ sylius_grid:
                 options:
                     class: %sylius.model.customer.class%
             sorting:
-                createdAt:
-                    path: createdAt
-                    direction: desc
+                createdAt: desc
             fields:
                 first_name:
                     type: string
