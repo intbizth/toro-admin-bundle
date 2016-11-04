@@ -7,7 +7,10 @@ toro_admin_cms_page:
         redirect: update
         grid: toro_admin_page
         vars:
-          all:
+          create:
+            templates:
+                form: ToroCmsBundle:Admin/Page:_form_bs4_create.html.twig
+          update:
             templates:
                 form: ToroCmsBundle:Admin/Page:_form_bs4.html.twig
           index:

@@ -64,7 +64,13 @@
                     {% set active = loop.index0 ? '' : 'active' %}
                     <div class="tab-pane {{ active }}" id="{{ translation.vars.id }}">
                         {% for field in translation %}
-                            {{ form_row(field) }}
+                            {% if exclude is defined %}
+                                {% if field.vars.name not in exclude %}
+                                    {{ form_row(field) }}
+                                {% endif %}
+                            {% else %}
+                                {{ form_row(field) }}
+                            {% endif %}
                         {% endfor %}
                     </div>
                 {% endfor %}
