@@ -8,3 +8,6 @@ sylius_admin_security:
 
 sylius_admin_page:
     resource: "@ToroAdminBundle/Resources/config/routing/page.yml"
+
+sylius_admin_post:
+    resource: "@ToroAdminBundle/Resources/config/routing/post.yml"
