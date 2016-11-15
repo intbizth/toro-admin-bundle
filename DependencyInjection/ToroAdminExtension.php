@@ -17,7 +17,6 @@ class ToroAdminExtension extends AbstractResourceExtension implements PrependExt
         'sylius_api',
         'sylius_channel',
         'sylius_locale',
-        'sylius_mailer',
         'sylius_taxonomy',
         'sylius_user',
         'sylius_rbac',
