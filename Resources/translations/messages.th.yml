@@ -44,4 +44,6 @@ toro.ui.no_results: "No results"
 toro.ui.members: Members
 toro.ui.countries: Countries
 toro.ui.other_zones: "Other zones"
+
+sylius.ui.code: Code
 sylius.ui.taxons: Taxons
