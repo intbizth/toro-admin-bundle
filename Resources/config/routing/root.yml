@@ -1,6 +1,3 @@
-sylius_admin_taxon:
-    resource: "@ToroAdminBundle/Resources/config/routing/taxon.yml"
-
 sylius_admin_channel:
     resource: "@ToroAdminBundle/Resources/config/routing/channel.yml"
 
