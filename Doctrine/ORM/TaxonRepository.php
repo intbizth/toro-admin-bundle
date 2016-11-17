@@ -3,6 +3,7 @@
 namespace Toro\Bundle\AdminBundle\Doctrine\ORM;
 
 use Sylius\Bundle\TaxonomyBundle\Doctrine\ORM\TaxonRepository as BaseTaxonRepository;
+use Sylius\Component\Taxonomy\Model\TaxonInterface;
 
 class TaxonRepository extends BaseTaxonRepository
 {
