@@ -14,3 +14,4 @@ imports:
     - { resource: "@ToroAdminBundle/Resources/config/app/sylius_user.yml" }
     - { resource: "@ToroAdminBundle/Resources/config/app/sylius_grid.yml" }
     - { resource: "@ToroAdminBundle/Resources/config/app/sylius_fixtures.yml" }
+    - { resource: "@ToroAdminBundle/Resources/config/app/sylius_taxonomy.yml" }

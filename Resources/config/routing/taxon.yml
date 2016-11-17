@@ -50,9 +50,8 @@ sylius_admin_taxon_children:
         _sylius:
             template: ToroAdminBundle:Taxon:_children.html.twig
             repository:
-                method: findChildrenAsTreeByRootCode
+                method: findChildrenByRootCode
                 arguments: [$code]
-    host: "localhost"
 
 sylius_admin_taxon_show_bycode:
     path: /taxons/show/{code}
@@ -64,4 +63,3 @@ sylius_admin_taxon_show_bycode:
             repository:
                 method: findOneByCode
                 arguments: [$code]
-    host: "localhost"
