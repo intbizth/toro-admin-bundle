@@ -1,16 +1,6 @@
 <li>
-    <a href="#">
-        <i class="fa fa-file"></i>
-        <span class="menu-title">Pages</span>
-        <i class="arrow"></i>
+    <a href="{{ path('toro_admin_page_index') }}">
+        <i class="ti-layout"></i>
+        <span class="menu-title">{{ 'toro.ui.pages'|trans }}</span>
     </a>
-
-    <ul class="collapse">
-        <li>
-            <a href="{{ path('toro_admin_page_index') }}">
-                <i class="ti-timer"></i>
-                <span class="menu-title">{{ 'toro.ui.pages'|trans }}</span>
-            </a>
-        </li>
-    </ul>
 </li>
