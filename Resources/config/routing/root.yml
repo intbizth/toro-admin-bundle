@@ -4,9 +4,6 @@ sylius_admin_channel:
 sylius_admin_zone:
     resource: "@ToroAdminBundle/Resources/config/routing/zone.yml"
 
-sylius_admin_country:
-    resource: "@ToroAdminBundle/Resources/config/routing/country.yml"
-
 sylius_admin_locale:
     resource: "@ToroAdminBundle/Resources/config/routing/locale.yml"
 

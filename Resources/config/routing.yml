@@ -14,3 +14,6 @@ sylius_admin_post:
 
 sylius_admin_taxon:
     resource: "@ToroAdminBundle/Resources/config/routing/taxon.yml"
+
+sylius_admin_country:
+    resource: "@ToroAdminBundle/Resources/config/routing/country.yml"
