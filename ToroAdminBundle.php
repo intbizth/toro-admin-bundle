@@ -5,6 +5,7 @@ namespace Toro\Bundle\AdminBundle;
 use Sylius\Bundle\ResourceBundle\AbstractResourceBundle;
 use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Toro\Bundle\AdminBundle\DependencyInjection\Compiler\ProvinceTranslationResourcePass;
 use Toro\Bundle\AdminBundle\Sylius\Compiler\LazyCacheWarmupPass;
 use Toro\Bundle\AdminBundle\Sylius\Compiler\SitemapProviderPass;
 
@@ -29,6 +30,7 @@ class ToroAdminBundle extends AbstractResourceBundle
 
         $container->addCompilerPass(new LazyCacheWarmupPass());
         $container->addCompilerPass(new SitemapProviderPass());
+        $container->addCompilerPass(new ProvinceTranslationResourcePass());
     }
 
     /**

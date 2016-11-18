@@ -1,15 +1,15 @@
-sylius_admin_country:
+sylius_admin_province:
     resource: |
-        alias: sylius.country
+        alias: sylius.province
         section: admin
         templates: ToroAdminBundle:Crud
-        except: ['show', 'delete']
+        except: ['show']
         redirect: update
-        grid: sylius_admin_country
+        grid: sylius_admin_province
         vars:
             all:
                 templates:
-                    form: ToroAdminBundle:Country:_form.html.twig
+                    form: ToroAdminBundle:Province:_form.html.twig
             index:
                 icon: flag
     type: sylius.resource

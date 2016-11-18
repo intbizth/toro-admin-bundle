@@ -2,6 +2,7 @@ imports:
     - { resource: "@ToroAdminBundle/Resources/config/grids/channel.yml" }
     - { resource: "@ToroAdminBundle/Resources/config/grids/zone.yml" }
     - { resource: "@ToroAdminBundle/Resources/config/grids/country.yml" }
+    - { resource: "@ToroAdminBundle/Resources/config/grids/province.yml" }
     - { resource: "@ToroAdminBundle/Resources/config/grids/locale.yml" }
     - { resource: "@ToroAdminBundle/Resources/config/grids/taxon.yml" }
     - { resource: "@ToroAdminBundle/Resources/config/grids/page.yml" }

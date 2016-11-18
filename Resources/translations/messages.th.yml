@@ -47,3 +47,5 @@ toro.ui.other_zones: "Other zones"
 
 sylius.ui.code: Code
 sylius.ui.taxons: Taxons
+sylius.ui.countries: Countries
+sylius.ui.provinces: Provinces
