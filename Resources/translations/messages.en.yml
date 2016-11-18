@@ -49,3 +49,7 @@ sylius.ui.code: Code
 sylius.ui.taxons: Taxons
 sylius.ui.countries: Countries
 sylius.ui.provinces: Provinces
+sylius.ui.new_province: New Province
+sylius.ui.new_country: New Country
+sylius.ui.edit_province: Edit Province
+sylius.ui.edit_country: Edit Country
