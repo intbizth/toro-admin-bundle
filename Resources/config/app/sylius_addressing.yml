@@ -4,6 +4,11 @@ sylius_addressing:
             classes:
                 model: Toro\Bundle\AdminBundle\Model\Province
                 repository: Toro\Bundle\AdminBundle\Doctrine\ORM\ProvinceRepository
+                form:
+                    default: Toro\Bundle\AdminBundle\Form\Type\ProvinceType
+            validation_groups:
+                default:
+                    - toro
         country:
             classes:
                 model: Toro\Bundle\AdminBundle\Model\Country
@@ -23,3 +28,8 @@ sylius_resource:
             classes:
                 model: Toro\Bundle\AdminBundle\Model\ProvinceTranslation
                 interface: Toro\Bundle\AdminBundle\Model\ProvinceTranslationInterface
+                form:
+                    default: Toro\Bundle\AdminBundle\Form\Type\ProvinceTranslationType
+            validation_groups:
+                default:
+                    - toro

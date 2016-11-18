@@ -20,6 +20,12 @@ sylius_grid:
             sorting:
                 code: asc
             fields:
+                country:
+                    type: twig
+                    label: Country
+                    path: .
+                    options:
+                        template: ToroAdminBundle:Province/Field:country.html.twig
                 code:
                     type: string
                     label: Code

@@ -1,1 +1,2 @@
-<i class="{{ data.code|lower }} flag"></i> {{ data.code|sylius_country_name }}
+{% set code = data.code|split('_')[0]|lower %}
+<i class="flag-icon flag-icon-{{ code }}"></i> {{ data.code|sylius_country_name }}
