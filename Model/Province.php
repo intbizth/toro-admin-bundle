@@ -5,6 +5,9 @@ namespace Toro\Bundle\AdminBundle\Model;
 use Sylius\Component\Addressing\Model\Province as BaseProvince;
 use Sylius\Component\Resource\Model\TranslatableTrait;
 
+/**
+ * @method ProvinceTranslation getTranslation($local = null)
+ */
 class Province extends BaseProvince implements ProvinceInterface
 {
     use TranslatableTrait {
@@ -16,7 +19,7 @@ class Province extends BaseProvince implements ProvinceInterface
      */
     public function getName()
     {
-        return $this->translate()->getName();
+        return $this->getTranslation()->getName();
     }
 
     /**
@@ -24,7 +27,7 @@ class Province extends BaseProvince implements ProvinceInterface
      */
     public function setName($name)
     {
-        $this->translate()->setName($name);
+        $this->getTranslation()->setName($name);
     }
 
     /**
@@ -32,7 +35,7 @@ class Province extends BaseProvince implements ProvinceInterface
      */
     public function getAbbreviation()
     {
-        return $this->translate()->getAbbreviation();
+        return $this->getTranslation()->getAbbreviation();
     }
 
     /**
@@ -40,6 +43,14 @@ class Province extends BaseProvince implements ProvinceInterface
      */
     public function setAbbreviation($abbreviation)
     {
-        $this->translate()->setAbbreviation($abbreviation);
+        $this->getTranslation()->setAbbreviation($abbreviation);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function createTranslation()
+    {
+        return new ProvinceTranslation();
     }
 }

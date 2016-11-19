@@ -6,6 +6,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Sylius\Component\Resource\Model\TranslatableTrait;
 
+/**
+ * @method MenuTranslation getTranslation($local = null)
+ */
 class Menu implements MenuInterface
 {
     use TranslatableTrait {
@@ -79,7 +82,7 @@ class Menu implements MenuInterface
      */
     public function __toString()
     {
-        return (string) $this->translate()->__toString();
+        return (string) $this->getTranslation()->__toString();
     }
 
     /**
@@ -201,7 +204,7 @@ class Menu implements MenuInterface
      */
     public function getName()
     {
-        return $this->translate()->getName();
+        return $this->getTranslation()->getName();
     }
 
     /**
@@ -209,7 +212,7 @@ class Menu implements MenuInterface
      */
     public function setName($name)
     {
-        $this->translate()->setName($name);
+        $this->getTranslation()->setName($name);
     }
 
     /**
@@ -217,7 +220,7 @@ class Menu implements MenuInterface
      */
     public function getPermalink()
     {
-        return $this->translate()->getPermalink();
+        return $this->getTranslation()->getPermalink();
     }
 
     /**
@@ -225,7 +228,7 @@ class Menu implements MenuInterface
      */
     public function setPermalink($permalink)
     {
-        $this->translate()->setPermalink($permalink);
+        $this->getTranslation()->setPermalink($permalink);
     }
 
     /**
@@ -233,7 +236,7 @@ class Menu implements MenuInterface
      */
     public function getDescription()
     {
-        return $this->translate()->getDescription();
+        return $this->getTranslation()->getDescription();
     }
 
     /**
@@ -241,7 +244,7 @@ class Menu implements MenuInterface
      */
     public function setDescription($description)
     {
-        $this->translate()->setDescription($description);
+        $this->getTranslation()->setDescription($description);
     }
 
     /**
@@ -338,5 +341,13 @@ class Menu implements MenuInterface
     public function setDisplayChildren($displayChildren)
     {
         $this->displayChildren = $displayChildren;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function createTranslation()
+    {
+        return new MenuTranslation();
     }
 }
