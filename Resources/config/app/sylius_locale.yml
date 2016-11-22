@@ -3,4 +3,3 @@ sylius_locale:
         locale:
             classes:
                 model: Toro\Bundle\AdminBundle\Model\Locale
-                controller: Toro\Bundle\AdminBundle\Sylius\Controller\LocaleController

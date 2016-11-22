@@ -52,53 +52,9 @@
             <tag name="validator.constraint_validator" alias="sylius_has_enabled_entity"/>
         </service>
 
-        <service id="sylius.locale_provider.channel_based"
-                 class="Toro\Bundle\AdminBundle\Sylius\Provider\ChannelBasedLocaleProvider"
-                 decorates="sylius.locale_provider">
-            <argument type="service" id="sylius.context.channel"/>
-            <argument>%locale%</argument>
-        </service>
-
-        <service id="sylius.handler.locale_change"
-                 class="Toro\Bundle\AdminBundle\Sylius\Locale\Handler\CompositeLocaleChangeHandler"/>
-
-        <service id="sylius.storage.locale" class="Toro\Bundle\AdminBundle\Sylius\Locale\SessionBasedLocaleStorage">
-            <argument type="service" id="session"/>
-        </service>
-
-        <service id="sylius.context.locale.core" class="Sylius\Component\Locale\Context\CompositeLocaleContext"
-                 decorates="sylius.context.locale">
-            <call method="addContext">
-                <argument type="service">
-                    <service class="Toro\Bundle\AdminBundle\Sylius\Context\AdminBasedLocaleContext">
-                        <argument type="service" id="security.token_storage"/>
-                    </service>
-                </argument>
-            </call>
-            <call method="addContext">
-                <argument type="service">
-                    <service class="Sylius\Bundle\LocaleBundle\Context\RequestBasedLocaleContext">
-                        <argument type="service" id="request_stack"/>
-                        <argument type="service" id="sylius.locale_provider"/>
-                    </service>
-                </argument>
-            </call>
-            <call method="addContext">
-                <argument type="service">
-                    <service class="Toro\Bundle\AdminBundle\Sylius\Context\StorageBasedLocaleContext">
-                        <argument type="service" id="sylius.context.channel"/>
-                        <argument type="service" id="sylius.storage.locale"/>
-                        <argument type="service" id="sylius.locale_provider"/>
-                    </service>
-                </argument>
-            </call>
-            <call method="addContext">
-                <argument type="service">
-                    <service class="Sylius\Component\Locale\Context\ProviderBasedLocaleContext">
-                        <argument type="service" id="sylius.locale_provider"/>
-                    </service>
-                </argument>
-            </call>
+        <service id="sylius.context.locale.admin_based" class="Toro\Bundle\AdminBundle\Sylius\Context\AdminBasedLocaleContext">
+            <argument type="service" id="security.token_storage" />
+            <tag name="sylius.context.locale" />
         </service>
     </services>
 </container>
