@@ -1,3 +1,5 @@
-<a href="{{ path(grid.requestConfiguration.getRouteName('create')) }}" class="btn btn-purple btn-lg btn-action-create">
-    <i class="ti-plus"></i> {{ 'toro.ui.create'|trans }}
+{% set path = options.link.url|default(path(options.link.route|default(grid.requestConfiguration.getRouteName('create')), options.link.parameters|default([]))) %}
+
+<a href="{{ path }}" class="{{ options.class|default('btn btn-purple btn-lg btn-action-create') }}">
+    <i class="{{ action.icon|default('ti-plus') }}"></i> {{ (action.label|trans)|default('toro.ui.create'|trans) }}
 </a>

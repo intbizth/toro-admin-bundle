@@ -1,3 +1,5 @@
-{% from 'ToroAdminBundle:Crud/Macro:menus.html.twig' import edit %}
+{% set path = options.link.url|default(path(options.link.route|default(grid.requestConfiguration.getRouteName('update')), options.link.parameters|default({'id': data.id}))) %}
 
-{{ edit(path(grid.requestConfiguration.getRouteName('update'), {'id': data.id})) }}
+<a href="{{ path }}" class="{{ options.class|default('btn btn-action-update') }}">
+    <i class="{{ action.icon|default('ti-pencil') }}"></i> {{ (action.label|trans)|default('toro.ui.edit'|trans) }}
+</a>
