@@ -26,4 +26,21 @@ class TaxonRepository extends BaseTaxonRepository
 
         return $queryBuilder->getQuery()->getResult();
     }
+
+    /**
+     * {@override}
+     */
+    public function findNodesTreeSorted()
+    {
+        $taxons = [];
+        $roots = $this->findRootNodes();
+
+        foreach ($this->findRootNodes() as $root) {
+            $taxons[] = $root;
+
+            $taxons = array_merge($taxons, $this->findChildren($root));
+        }
+
+        return $taxons;
+    }
 }
