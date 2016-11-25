@@ -42,4 +42,14 @@ interface AdminUserInterface extends BaseUserInterface
      * @param string $code
      */
     public function setLocaleCode($code);
+
+    /**
+     * @return string
+     */
+    public function getDisplayName();
+
+    /**
+     * @param string $displayName
+     */
+    public function setDisplayName($displayName);
 }

@@ -22,6 +22,11 @@ class AdminUser extends User implements AdminUserInterface
     protected $localeCode;
 
     /**
+     * @var string
+     */
+    protected $displayName;
+
+    /**
      * @var array
      */
     protected $roles = [AdminUserInterface::DEFAULT_ADMIN_ROLE];
@@ -80,5 +85,21 @@ class AdminUser extends User implements AdminUserInterface
     public function setLocaleCode($code)
     {
         $this->localeCode = $code;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getDisplayName()
+    {
+        return $this->displayName ?: $this->getFullName();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setDisplayName($displayName)
+    {
+        $this->displayName = $displayName;
     }
 }
