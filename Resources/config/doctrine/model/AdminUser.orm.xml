@@ -9,7 +9,7 @@
         <field name="firstName" type="string" nullable="true" />
         <field name="lastName" type="string" nullable="true" />
         <field name="localeCode" type="string" length="12" />
-        <field name="displayName" type="string" />
+        <field name="displayName" type="string" nullable="true" />
     </mapped-superclass>
 
 </doctrine-mapping>
