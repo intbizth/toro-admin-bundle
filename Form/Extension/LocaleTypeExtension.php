@@ -92,11 +92,14 @@ class LocaleTypeExtension extends AbstractTypeExtension
     private function getAvailableLocales()
     {
         $availableLocales = Intl::getLocaleBundle()->getLocaleNames();
+
         /** @var LocaleInterface[] $definedLocales */
         $definedLocales = $this->localeRepository->findAll();
+
         foreach ($definedLocales as $locale) {
             unset($availableLocales[$locale->getCode()]);
         }
+
         return $availableLocales;
     }
 }

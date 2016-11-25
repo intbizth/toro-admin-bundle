@@ -3,5 +3,4 @@ sylius_channel:
         channel:
             classes:
                 model: Toro\Bundle\AdminBundle\Model\Channel
-                form:
-                  default: Toro\Bundle\AdminBundle\Form\Type\ChannelType
+                form: Toro\Bundle\AdminBundle\Form\Type\ChannelType

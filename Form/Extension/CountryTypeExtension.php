@@ -1,16 +1,17 @@
 <?php
 
-namespace Toro\Bundle\AdminBundle\Form\Type;
+namespace Toro\Bundle\AdminBundle\Form\Extension;
 
-use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
+use Sylius\Bundle\AddressingBundle\Form\Type\CountryType;
 use Sylius\Component\Addressing\Model\CountryInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
+use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Intl\Intl;
 
-class CountryType extends AbstractResourceType
+class CountryTypeExtension extends AbstractTypeExtension
 {
     /**
      * @var RepositoryInterface
@@ -18,15 +19,11 @@ class CountryType extends AbstractResourceType
     private $countryRepository;
 
     /**
-     * {@inheritdoc}
-     *
      * @param RepositoryInterface $countryRepository
      */
-    public function __construct($dataClass, array $validationGroups = [], RepositoryInterface $countryRepository)
+    public function __construct(RepositoryInterface $countryRepository)
     {
         $this->countryRepository = $countryRepository;
-
-        parent::__construct($dataClass, $validationGroups);
     }
 
     /**
@@ -41,6 +38,7 @@ class CountryType extends AbstractResourceType
             ];
 
             $country = $event->getData();
+
             if ($country instanceof CountryInterface && null !== $country->getCode()) {
                 $nameOptions['disabled'] = true;
                 $nameOptions['choices'] = [
@@ -73,9 +71,9 @@ class CountryType extends AbstractResourceType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getExtendedType()
     {
-        return 'sylius_country';
+        return CountryType::class;
     }
 
     /**

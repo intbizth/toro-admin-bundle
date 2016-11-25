@@ -6,8 +6,7 @@ sylius_user:
                     model: Toro\Bundle\AdminBundle\Model\AdminUser
                     interface: Toro\Bundle\AdminBundle\Model\AdminUserInterface
                     repository: Toro\Bundle\AdminBundle\Doctrine\ORM\AdminUserRepository
-                    form:
-                        default: Toro\Bundle\AdminBundle\Form\Type\AdminUserType
+                    form: Toro\Bundle\AdminBundle\Form\Type\AdminUserType
         admin_oauth:
             user:
                 classes:
