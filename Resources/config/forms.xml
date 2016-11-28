@@ -30,5 +30,11 @@
             <argument type="service" id="toro.repository.menu" />
             <tag name="form.type" alias="toro_menu_choice" />
         </service>
+
+        <service id="toro.form.type.admin_user" class="Toro\Bundle\AdminBundle\Form\Type\AdminUserType">
+            <argument>%sylius.model.admin_user.class%</argument>
+            <argument type="collection"><argument>sylius</argument></argument>
+            <tag name="form.type" />
+        </service>
     </services>
 </container>

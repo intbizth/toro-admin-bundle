@@ -17,6 +17,7 @@ class AdminUserType extends BaseUserType
         $builder
             ->add('firstName')
             ->add('lastName')
+            ->add('displayName')
             ->add('localeCode', 'sylius_locale_code_choice', [
                 'label' => 'toro.ui.locale',
             ])
