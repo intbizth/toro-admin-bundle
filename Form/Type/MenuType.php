@@ -17,7 +17,7 @@ class MenuType extends AbstractResourceType
     {
         $builder
             ->add('translations', ResourceTranslationsType::class, [
-                'type' => 'toro_menu_translation',
+                'entry_type' => MenuTranslationType::class,
                 'label' => 'toro.form.menu.name',
             ])
             ->addEventSubscriber(new AddCodeFormSubscriber())
@@ -28,7 +28,7 @@ class MenuType extends AbstractResourceType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'toro_menu';
     }

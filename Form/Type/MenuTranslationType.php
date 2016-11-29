@@ -30,7 +30,7 @@ class MenuTranslationType extends AbstractResourceType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'toro_menu_translation';
     }

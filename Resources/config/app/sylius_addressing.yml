@@ -22,8 +22,4 @@ sylius_resource:
             classes:
                 model: Toro\Bundle\AdminBundle\Model\ProvinceTranslation
                 interface: Toro\Bundle\AdminBundle\Model\ProvinceTranslationInterface
-                form:
-                    default: Toro\Bundle\AdminBundle\Form\Type\ProvinceTranslationType
-            validation_groups:
-                default:
-                    - toro
+                form: Toro\Bundle\AdminBundle\Form\Type\ProvinceTranslationType

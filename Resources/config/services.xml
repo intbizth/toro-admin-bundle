@@ -47,8 +47,8 @@
             <argument type="string">admin_main</argument>
         </service>
 
-        <service id="toro.menu.admin.main" class="Knp\Menu\MenuItem" factory-service="toro.menu_builder.admin.main" factory-method="createMenu" scope="request">
-            <argument type="service" id="request" />
+        <service id="toro.menu.admin.main" class="Knp\Menu\MenuItem">
+            <factory service="toro.menu_builder.admin.main" method="createMenu" />
             <tag name="knp_menu.menu" alias="toro.admin.main" />
         </service>
     </services>

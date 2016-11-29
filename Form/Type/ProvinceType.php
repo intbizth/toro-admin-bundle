@@ -27,7 +27,7 @@ class ProvinceType extends BaseProvinceType
             ])
             ->add('translations', ResourceTranslationsType::class, [
                 'label' => 'Translation',
-                'type' => ProvinceTranslationType::class,
+                'entry_type' => ProvinceTranslationType::class,
             ])
         ;
     }
