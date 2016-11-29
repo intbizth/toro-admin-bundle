@@ -13,6 +13,7 @@ namespace Toro\Bundle\AdminBundle\Form\Type;
 
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class ImageType extends AbstractResourceType
 {
@@ -21,7 +22,7 @@ class ImageType extends AbstractResourceType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('file', 'file', [
+        $builder->add('file', FileType::class, [
             'label' => 'File',
         ]);
     }
@@ -29,7 +30,7 @@ class ImageType extends AbstractResourceType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'sylius_image';
     }

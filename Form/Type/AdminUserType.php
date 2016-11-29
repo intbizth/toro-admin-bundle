@@ -3,6 +3,7 @@
 namespace Toro\Bundle\AdminBundle\Form\Type;
 
 use Sylius\Bundle\UserBundle\Form\Type\UserType as BaseUserType;
+use Symfony\Component\Form\Extension\Core\Type\LocaleType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class AdminUserType extends BaseUserType
@@ -18,9 +19,18 @@ class AdminUserType extends BaseUserType
             ->add('firstName')
             ->add('lastName')
             ->add('displayName')
-            ->add('localeCode', 'sylius_locale_code_choice', [
+            ->add('localeCode', LocaleType::class, [
                 'label' => 'toro.ui.locale',
+                'placeholder' => null,
             ])
         ;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getBlockPrefix()
+    {
+        return 'sylius_admin_user';
     }
 }
