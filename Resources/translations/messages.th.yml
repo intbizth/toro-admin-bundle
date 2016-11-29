@@ -47,12 +47,26 @@ toro.ui.other_zones: "Other zones"
 
 sylius.ui.code: Code
 sylius.ui.taxons: Taxons
-sylius.ui.channels: Channels
+sylius.ui.edit_taxon: Edit Taxon
+
 sylius.ui.countries: Countries
+sylius.ui.new_country: New Country
+sylius.ui.edit_country: Edit Country
+
 sylius.ui.provinces: Provinces
 sylius.ui.new_province: New Province
-sylius.ui.new_country: New Country
 sylius.ui.edit_province: Edit Province
-sylius.ui.edit_country: Edit Country
+
+sylius.ui.channels: Channels
+sylius.ui.new_channel: New Channel
 sylius.ui.edit_channel: Edit Channel
+
+sylius.ui.zones: Zones
+sylius.ui.new_zone: New Zone
+sylius.ui.edit_zone: Edit Zone
+
+sylius.ui.admin_users: Admins
+sylius.ui.new_admin_user: New
+sylius.ui.edit_admin_user: Edit
+
 sylius.form.channel.hostname: Hostname
