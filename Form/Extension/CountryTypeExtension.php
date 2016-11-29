@@ -3,9 +3,12 @@
 namespace Toro\Bundle\AdminBundle\Form\Extension;
 
 use Sylius\Bundle\AddressingBundle\Form\Type\CountryType;
+use Sylius\Bundle\AddressingBundle\Form\Type\ProvinceType;
 use Sylius\Component\Addressing\Model\CountryInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Symfony\Component\Form\AbstractTypeExtension;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -38,31 +41,26 @@ class CountryTypeExtension extends AbstractTypeExtension
             ];
 
             $country = $event->getData();
-
             if ($country instanceof CountryInterface && null !== $country->getCode()) {
-                $nameOptions['disabled'] = true;
-                $nameOptions['choices'] = [
-                    $country->getCode() => $this->getCountryName($country->getCode())
-                ];
+                $options['disabled'] = true;
+                $options['choices'] = [$this->getCountryName($country->getCode()) => $country->getCode()];
             } else {
-                $nameOptions['choices'] = $this->getAvailableCountries();
+                $options['choices'] = array_flip($this->getAvailableCountries());
             }
 
-            $nameOptions['choices_as_values'] = false;
-
             $form = $event->getForm();
-            $form->add('code', 'country', $nameOptions);
+            $form->add('code', \Symfony\Component\Form\Extension\Core\Type\CountryType::class, $nameOptions);
         });
 
         $builder
-            ->add('provinces', 'collection', [
-                'type' => 'sylius_province',
+            ->add('provinces', CollectionType::class, [
+                'entry_type' => ProvinceType::class,
                 'allow_add' => true,
                 'allow_delete' => true,
                 'by_reference' => false,
                 'button_add_label' => 'sylius.form.country.add_province',
             ])
-            ->add('enabled', 'checkbox', [
+            ->add('enabled', CheckboxType::class, [
                 'label' => 'Enabled',
             ])
         ;

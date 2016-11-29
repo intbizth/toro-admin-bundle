@@ -7,7 +7,6 @@
 
     <imports>
         <import resource="controller.xml"/>
-        <import resource="sitemap.xml"/>
     </imports>
 
     <services>
@@ -17,32 +16,6 @@
             <argument type="service" id="sylius.resource_registry"/>
             <argument type="service" id="service_container"/>
             <tag name="doctrine.event_subscriber" connection="default" priority="99"/>
-        </service>
-
-        <service id="sylius.context.channel.cached"
-                 class="Sylius\Component\Channel\Context\CachedPerRequestChannelContext"
-                 decorates="sylius.context.channel" public="false">
-            <argument type="service" id="sylius.context.channel.cached.inner"/>
-            <argument type="service" id="request_stack"/>
-        </service>
-
-        <service id="sylius.theme.context.channel_based"
-                 class="Toro\Bundle\AdminBundle\Sylius\Theme\ChannelBasedThemeContext"
-                 public="false">
-            <argument type="service" id="sylius.context.channel"/>
-            <argument type="service" id="sylius.repository.theme"/>
-        </service>
-
-        <service id="sylius.locale_provider.admin" class="Sylius\Component\Locale\Provider\LocaleProvider"
-                 public="false">
-            <argument type="service" id="sylius.repository.locale"/>
-            <argument>%locale%</argument>
-        </service>
-
-        <service id="sylius.listener.channel"
-                 class="Toro\Bundle\AdminBundle\Sylius\EventListener\ChannelDeletionListener">
-            <argument type="service" id="sylius.repository.channel"/>
-            <tag name="kernel.event_listener" event="sylius.channel.pre_delete" method="onChannelPreDelete"/>
         </service>
 
         <service id="sylius.validator.has_enabled_entity"

@@ -1,26 +1,13 @@
 <?php
 
-/*
- * This file is part of the Sylius package.
- *
- * (c) Paweł Jędrzejewski
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace Toro\Bundle\AdminBundle\Form\Type;
 
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Toro\Bundle\AdminBundle\Form\DataTransformer\ArrayToStringTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-/**
- * List type.
- *
- * @author Paweł Jędrzejewski <pawel@sylius.org>
- */
 class ListType extends AbstractType
 {
     /**
@@ -44,13 +31,13 @@ class ListType extends AbstractType
      */
     public function getParent()
     {
-        return 'text';
+        return TextType::class;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'list';
     }

@@ -1,16 +1,18 @@
 <?php
 
-namespace Toro\Bundle\AdminBundle\Form\Type;
+namespace Toro\Bundle\AdminBundle\Form\Extension;
 
 use Sylius\Bundle\AddressingBundle\Form\Type\CountryChoiceType;
-use Sylius\Bundle\AddressingBundle\Form\Type\ProvinceType as BaseProvinceType;
+use Sylius\Bundle\AddressingBundle\Form\Type\ProvinceType;
 use Sylius\Bundle\ResourceBundle\Form\EventSubscriber\AddCodeFormSubscriber;
 use Sylius\Bundle\ResourceBundle\Form\Type\ResourceTranslationsType;
 use Sylius\Component\Addressing\Model\CountryInterface;
+use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Intl\Intl;
+use Toro\Bundle\AdminBundle\Form\Type\ProvinceTranslationType;
 
-class ProvinceType extends BaseProvinceType
+class ProvinceTypeExtension extends AbstractTypeExtension
 {
     /**
      * {@inheritdoc}
@@ -18,7 +20,6 @@ class ProvinceType extends BaseProvinceType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->addEventSubscriber(new AddCodeFormSubscriber())
             ->add('country', CountryChoiceType::class, [
                 'required' => true,
                 'choice_label' => function (CountryInterface $country) {
@@ -29,6 +30,15 @@ class ProvinceType extends BaseProvinceType
                 'label' => 'Translation',
                 'entry_type' => ProvinceTranslationType::class,
             ])
+            ->addEventSubscriber(new AddCodeFormSubscriber())
         ;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getExtendedType()
+    {
+        return ProvinceType::class;
     }
 }

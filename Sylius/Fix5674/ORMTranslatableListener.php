@@ -1,14 +1,5 @@
 <?php
 
-/*
- * This file is part of the Sylius package.
- *
- * (c) Paweł Jędrzejewski
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace Toro\Bundle\AdminBundle\Sylius\Fix5674;
 
 use Doctrine\Common\EventSubscriber;
@@ -17,13 +8,11 @@ use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
 use Doctrine\ORM\Events;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
-use Sylius\Component\Locale\Context\LocaleContextInterface;
-use Sylius\Component\Locale\Context\LocaleNotFoundException;
-use Sylius\Component\Locale\Provider\LocaleProviderInterface;
 use Sylius\Component\Resource\Metadata\MetadataInterface;
 use Sylius\Component\Resource\Metadata\RegistryInterface;
 use Sylius\Component\Resource\Model\TranslatableInterface;
 use Sylius\Component\Resource\Model\TranslationInterface;
+use Sylius\Component\Resource\Provider\TranslationLocaleProviderInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -31,7 +20,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * @author Prezent Internet B.V. <info@prezent.nl>
  * @author Paweł Jędrzejewski <pawel@sylius.org>
  */
-class ORMTranslatableListener implements EventSubscriber
+final class ORMTranslatableListener implements EventSubscriber
 {
     /**
      * @var RegistryInterface
@@ -50,7 +39,8 @@ class ORMTranslatableListener implements EventSubscriber
     public function __construct(
         RegistryInterface $resourceMetadataRegistry,
         ContainerInterface $container
-    ) {
+    )
+    {
         $this->resourceMetadataRegistry = $resourceMetadataRegistry;
         $this->container = $container;
     }
@@ -100,18 +90,11 @@ class ORMTranslatableListener implements EventSubscriber
             return;
         }
 
-        /** @var LocaleContextInterface $localeContext */
-        $localeContext = $this->container->get('sylius_resource.translation.locale_context');
+        /** @var TranslationLocaleProviderInterface $translationLocaleProvider */
+        $translationLocaleProvider = $this->container->get('sylius.translation_locale_provider');
 
-        /** @var LocaleProviderInterface $localeProvider */
-        $localeProvider = $this->container->get('sylius_resource.translation.locale_provider');
-
-        try {
-            $entity->setCurrentLocale($localeContext->getLocaleCode());
-        } catch (LocaleNotFoundException $exception) {
-            $entity->setCurrentLocale($localeProvider->getDefaultLocaleCode());
-        }
-        $entity->setFallbackLocale($localeProvider->getDefaultLocaleCode());
+        $entity->setCurrentLocale($translationLocaleProvider->getDefaultLocaleCode());
+        $entity->setFallbackLocale($translationLocaleProvider->getDefaultLocaleCode());
     }
 
     /**
@@ -134,7 +117,7 @@ class ORMTranslatableListener implements EventSubscriber
         }
 
         /** @var MetadataInterface $translationResourceMetadata */
-        $translationResourceMetadata = $this->resourceMetadataRegistry->get($resourceMetadata->getAlias().'_translation');
+        $translationResourceMetadata = $this->resourceMetadataRegistry->get($resourceMetadata->getAlias() . '_translation');
 
         $metadata->mapOneToMany([
             'fieldName' => 'translations',
@@ -195,7 +178,7 @@ class ORMTranslatableListener implements EventSubscriber
         if (!$this->hasUniqueConstraint($metadata, $columns)) {
             $constraints = isset($metadata->table['uniqueConstraints']) ? $metadata->table['uniqueConstraints'] : [];
 
-            $constraints[$metadata->getTableName().'_uniq_trans'] = [
+            $constraints[$metadata->getTableName() . '_uniq_trans'] = [
                 'columns' => $columns,
             ];
 
@@ -209,7 +192,7 @@ class ORMTranslatableListener implements EventSubscriber
      * Check if a unique constraint has been defined.
      *
      * @param ClassMetadata $metadata
-     * @param array         $columns
+     * @param array $columns
      *
      * @return bool
      */

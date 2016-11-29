@@ -1,20 +1,8 @@
 {{ form_errors(form) }}
 
-<div class="row">
-    <div class="col-md-4">
-        <div class="panel">
-            <div class="panel-body">
-                {{ form_row(form.code) }}
-                {{ form_row(form.enabled) }}
-            </div>
-        </div>
-    </div>
-    <div class="col-md-8">
-        <div class="panel">
-            <div class="panel-title">Provinces</div>
-            <div class="panel-body">
-                {{ form_row(form.provinces, {'label': false}) }}
-            </div>
-        </div>
+<div class="panel">
+    <div class="panel-body">
+        {{ form_row(form.code) }}
+        {{ form_row(form.enabled) }}
     </div>
 </div>

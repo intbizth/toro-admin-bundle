@@ -4,8 +4,8 @@ namespace Toro\Bundle\AdminBundle\Form\Type;
 
 use Symfony\Bridge\Doctrine\Form\DataTransformer\CollectionToArrayTransformer;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\ChoiceList\ArrayChoiceList;
 use Symfony\Component\Form\ChoiceList\View\ChoiceView;
-use Symfony\Component\Form\Extension\Core\ChoiceList\ObjectChoiceList;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
@@ -105,7 +105,7 @@ class MenuChoiceType extends AbstractType
                 $menus = array_filter($menus, $options['filter']);
             }
 
-            return new ObjectChoiceList($menus, null, [], null, 'id');
+            return new ArrayChoiceList($menus, null, [], null, 'id');
         };
 
         $resolver
@@ -123,7 +123,7 @@ class MenuChoiceType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'toro_menu_choice';
     }

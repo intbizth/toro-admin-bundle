@@ -7,8 +7,6 @@ imports:
     - { resource: "@ToroAdminBundle/Resources/config/app/jms_serializer.yml" }
     - { resource: "@ToroAdminBundle/Resources/config/app/liip_imagine.yml" }
     - { resource: "@ToroAdminBundle/Resources/config/app/stof_doctrine_extensions.yml" }
-    - { resource: "@ToroAdminBundle/Resources/config/app/sylius_channel.yml" }
-    - { resource: "@ToroAdminBundle/Resources/config/app/sylius_locale.yml" }
     - { resource: "@ToroAdminBundle/Resources/config/app/sylius_mailer.yml" }
     - { resource: "@ToroAdminBundle/Resources/config/app/sylius_resource.yml" }
     - { resource: "@ToroAdminBundle/Resources/config/app/sylius_user.yml" }

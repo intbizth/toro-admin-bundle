@@ -11,19 +11,12 @@
             <tag name="form.type_extension" extended-type="Sylius\Bundle\AddressingBundle\Form\Type\CountryType" />
         </service>
 
+        <service id="toro.form.extension.type.province" class="Toro\Bundle\AdminBundle\Form\Extension\ProvinceTypeExtension">
+            <tag name="form.type_extension" extended-type="Sylius\Bundle\AddressingBundle\Form\Type\ProvinceType" />
+        </service>
+
         <service id="toro.form.type.security_login" class="Toro\Bundle\AdminBundle\Form\Type\SecurityLoginType">
             <tag name="form.type" />
-        </service>
-
-        <service id="toro.form.type.locale_code_choice" class="Toro\Bundle\AdminBundle\Form\Type\LocaleCodeChoiceType">
-            <argument type="service" id="sylius.repository.locale"/>
-            <tag name="form.type" alias="sylius_locale_code_choice"/>
-        </service>
-
-        <service id="toro.form.type.locale" class="Toro\Bundle\AdminBundle\Form\Extension\LocaleTypeExtension">
-            <argument>%locale%</argument>
-            <argument type="service" id="sylius.repository.locale" />
-            <tag name="form.type_extension" extended-type="Sylius\Bundle\LocaleBundle\Form\Type\LocaleType" />
         </service>
 
         <service id="toro.form.type.menu_choice" class="Toro\Bundle\AdminBundle\Form\Type\MenuChoiceType">
@@ -37,9 +30,10 @@
             <tag name="form.type" />
         </service>
 
-        <service id="toro.form.type.channel" class="Toro\Bundle\AdminBundle\Form\Type\ChannelTypeExtension">
-            <argument type="service" id="sylius.repository.channel" />
-            <tag name="form.type_extension" extended-type="Sylius\Bundle\ChannelBundle\Form\Type\ChannelType" />
+        <service id="toro.form.type.province_translation" class="Toro\Bundle\AdminBundle\Form\Type\ProvinceTranslationType">
+            <argument>%sylius.model.province_translation.class%</argument>
+            <argument type="collection"><argument>sylius</argument></argument>
+            <tag name="form.type" />
         </service>
     </services>
 </container>

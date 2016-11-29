@@ -4,7 +4,6 @@ sylius_addressing:
             classes:
                 model: Toro\Bundle\AdminBundle\Model\Province
                 repository: Toro\Bundle\AdminBundle\Doctrine\ORM\ProvinceRepository
-                form: Toro\Bundle\AdminBundle\Form\Type\ProvinceType
         country:
             classes:
                 model: Toro\Bundle\AdminBundle\Model\Country

@@ -1,7 +1,4 @@
 sylius_resource:
-    translation:
-        locale_provider: sylius.locale_provider.admin
-
     resources:
         toro.menu:
             driver: doctrine/orm

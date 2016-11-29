@@ -6,6 +6,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormFactoryInterface;
+use Toro\Bundle\AdminBundle\Form\Type\MenuChoiceType;
 use Toro\Bundle\AdminBundle\Model\MenuInterface;
 
 final class BuildMenuFormSubscriber implements EventSubscriberInterface
@@ -47,12 +48,12 @@ final class BuildMenuFormSubscriber implements EventSubscriberInterface
         $event
             ->getForm()
             ->add(
-                $this->factory->createNamed('parent', 'toro_menu_choice', $menu->getParent(),
+                $this->factory->createNamed('parent', MenuChoiceType::class, $menu->getParent(),
                     [
                         'filter' => $this->getFilterTaxonOption($menu),
                         'required' => false,
                         'label' => 'toro.form.menu.parent',
-                        'empty_value' => '---',
+                        'placeholder' => '---',
                         'auto_initialize' => false,
                     ]
                 ))
