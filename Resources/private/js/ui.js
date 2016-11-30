@@ -146,7 +146,7 @@
                 }
 
                 $.ajax({
-                    url: url + urlsep + '_format=json',
+                    url: url + urlsep,
                     type: medthod,
                     error: function () {
                         $.notifier.alert({type: 'error', message: 'Something gone wrong! Can not apply transition.'})
