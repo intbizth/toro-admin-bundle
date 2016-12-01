@@ -1,14 +1,15 @@
 sylius_admin_login:
     path: /login
     defaults:
-        _controller: sylius.controller.security:loginAction
+        _controller: sylius.controller.user_security:loginAction
         _sylius:
             template: ToroAdminBundle:Security:login.html.twig
+            form: Toro\Bundle\AdminBundle\Form\Type\SecurityLoginType
 
 sylius_admin_login_check:
     path: /login-check
     defaults:
-        _controller: sylius.controller.security:checkAction
+        _controller: sylius.controller.user_security:checkAction
 
 sylius_admin_logout:
     path: /logout
