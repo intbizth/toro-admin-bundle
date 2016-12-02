@@ -28,10 +28,12 @@
                 </h3>
             </div>
             <div class="panel-body">
-                <div class="checkbox">
-                    <input type="checkbox" id="ui_customer_create_user" data-toggle-change="#ui_user_form">
-                    <label for="ui_customer_create_user">{{ 'toro.ui.customer_can_login'|trans }}</label>
-                </div>
+                {% if customer.user is empty or customer.user.id is null %}
+                    <div class="checkbox">
+                        <input type="checkbox" id="sylius_customer_createUser" name="sylius_customer[createUser]" value="1" data-toggle-change="#ui_user_form">
+                        <label for="sylius_customer_createUser">{{ 'thsgg.ui.customer_can_login'|trans }}</label>
+                    </div>
+                {% endif %}
 
                 {% if form.user is defined %}
                     <div id="ui_user_form" {% if form.user.vars.data.id is not defined %} style="display: none" {% endif %}>
