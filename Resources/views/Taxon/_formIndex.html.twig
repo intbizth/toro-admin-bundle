@@ -12,10 +12,11 @@
         <div class="panel-body">
             {{ form_row(form.code) }}
             {{ form_row(form.parent) }}
+            {{ form_row(form.options) }}
         </div>
     </div>
 
-    {{ form_row(form.translations) }}
+    {{ form_row(form.translations, { exclude: ['slug'] }) }}
 
     <div class="pull-right btn-group-lg">
         {{ btn.submit() }}
