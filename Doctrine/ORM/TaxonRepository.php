@@ -10,22 +10,24 @@ class TaxonRepository extends BaseTaxonRepository
     /**
      * {@override}
      */
-    public function findChildren(TaxonInterface $taxon)
+    public function findChildren($parentCode)
     {
-        $root = $taxon->isRoot() ? $taxon : $taxon->getRoot();
-
         $queryBuilder = $this->createQueryBuilder('o');
+
         $queryBuilder
-            ->andWhere($queryBuilder->expr()->eq('o.root', ':root'))
-            ->andWhere($queryBuilder->expr()->lt('o.right', ':right'))
-            ->andWhere($queryBuilder->expr()->gt('o.left', ':left'))
-            ->setParameter('root', $root)
-            ->setParameter('left', $taxon->getLeft())
-            ->setParameter('right', $taxon->getRight())
-            ->orderBy('o.left', 'ASC');
+            ->addSelect('translation')
+            ->leftJoin('o.translations', 'translation')
+            ->addSelect('child')
+            ->leftJoin('o.children', 'child')
+            ->leftJoin('o.parent', 'parent')
+            ->andWhere('parent.code = :parentCode')
+            ->addOrderBy('o.left', 'ASC')
+            ->setParameter('parentCode', $parentCode)
+        ;
 
         return $queryBuilder->getQuery()->getResult();
     }
+
 
     /**
      * {@override}
@@ -38,7 +40,7 @@ class TaxonRepository extends BaseTaxonRepository
         foreach ($this->findRootNodes() as $root) {
             $taxons[] = $root;
 
-            $taxons = array_merge($taxons, $this->findChildren($root));
+            $taxons = array_merge($taxons, $this->findChildren($root->getCode()));
         }
 
         return $taxons;
