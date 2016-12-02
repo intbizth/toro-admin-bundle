@@ -21,7 +21,7 @@ sylius_admin_taxon_index:
             template: ToroAdminBundle:Taxon:index.html.twig
             repository:
                 # find nothing
-                method: findChildrenAsTreeByRootCode
+                method: findChildren
                 arguments: ["."]
 
 sylius_admin_taxon_index_create:
@@ -50,7 +50,7 @@ sylius_admin_taxon_children:
         _sylius:
             template: ToroAdminBundle:Taxon:_children.html.twig
             repository:
-                method: findChildrenByRootCode
+                method: findChildren
                 arguments: [$code]
 
 sylius_admin_taxon_show_bycode:
