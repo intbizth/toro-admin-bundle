@@ -50,7 +50,7 @@
 {% endmacro %}
 
 {# sylius has labeled config : {% macro delete(url, message, labeled = true, resourceId = null) %} #}
-{% macro delete(url, message) %}
+{% macro delete(url, message, resourceId = null) %}
     <form action="{{ url }}" method="post">
         <input type="hidden" name="_method" value="DELETE">
         <button class="btn btn-danger" type="submit" data-requires-confirmation>
