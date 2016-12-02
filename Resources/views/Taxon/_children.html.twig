@@ -23,7 +23,7 @@
                     <td class="actions">
                         {{ btn.settings([
                         btn.edit(path('sylius_admin_taxon_update', {id: taxon.id})),
-                        btn.delete(path('sylius_admin_taxon_delete', {id: taxon.id}))
+                        btn.delete(path('sylius_admin_taxon_delete', {id: taxon.id}), 'toro.ui.delete'|trans, taxon.id)
                         ]) }}
                     </td>
                 </tr>

@@ -14,7 +14,7 @@
                 <div class="header">{{ menu.name }}</div>
                 <div class="ui mini buttons">
                     {{ buttons.edit(path('toro_admin_menu_update', { 'id': menu.id })) }}
-                    {{ buttons.delete(path('toro_admin_menu_delete', { 'id': menu.id }), 'toro.ui.delete'|trans) }}
+                    {{ buttons.delete(path('toro_admin_menu_delete', { 'id': menu.id }), 'toro.ui.delete'|trans, menu.id) }}
                 </div>
                 <div class="list">
                     {{ _self.renderLeaf(menu.children) }}

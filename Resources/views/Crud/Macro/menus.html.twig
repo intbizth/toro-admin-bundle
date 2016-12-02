@@ -28,12 +28,13 @@
     {{ buttons.default(url, message, id, 'ti-pencil') }}
 {% endmacro %}
 
-{% macro delete(url, message) %}
+{% macro delete(url, message, resourceId = null) %}
     <form action="{{ url }}" method="post" class="delete negative item">
         <input type="hidden" name="_method" value="DELETE">
         <button class="btn" type="submit" data-requires-confirmation data-message="{{ 'toro.ui.are_you_sure_to_delete'|trans }}">
             <i class="ti-trash"></i> {{ message is empty ? 'toro.ui.delete'|trans : message }}
         </button>
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token(resourceId) }}" />
     </form>
 {% endmacro %}
 

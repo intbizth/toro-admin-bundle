@@ -14,7 +14,7 @@
                 <div class="header">{{ taxon.name }}</div>
                 <div class="ui mini buttons">
                     {{ buttons.edit(path('sylius_admin_taxon_update', { 'id': taxon.id })) }}
-                    {{ buttons.delete(path('sylius_admin_taxon_delete', { 'id': taxon.id }), 'toro.ui.delete'|trans) }}
+                    {{ buttons.delete(path('sylius_admin_taxon_delete', { 'id': taxon.id }), 'toro.ui.delete'|trans, taxon.id) }}
                 </div>
                 <div class="list">
                     {{ _self.renderLeaf(taxon.children) }}
