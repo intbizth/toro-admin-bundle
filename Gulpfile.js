@@ -72,7 +72,8 @@ var paths = {
         ['css/fonts', 'Resources/private/icons/themify-icons/fonts/**'],
         ['css/fonts', 'Resources/private/icons/solid-icons/fonts/**'],
         ['css/fonts', 'Resources/private/icons/line-icons/fonts/**'],
-        ['handlebars', nodePath + 'handlebars/dist/**']
+        ['handlebars', nodePath + 'handlebars/dist/**'],
+        ['handlebars-intl', nodePath + 'handlebars-intl/dist/**']
     ]
 };
 

@@ -73,6 +73,10 @@ $(function () {
     if ($('[type="text/x-handlebars-template"]').length) {
         $.getScript('/assets/admin/handlebars/handlebars.min.js', function () {
             console.log('Handlebars was loaded!');
+            $.getScript('/assets/admin/handlebars-intl/handlebars-intl-with-locales.min.js', function () {
+                HandlebarsIntl.registerWith(Handlebars);
+                console.log('Handlebars-intl was loaded!');
+            });
         });
     }
 
