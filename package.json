@@ -9,6 +9,7 @@
     "bootstrap": "^3.3.7",
     "bootstrap-validator": "^0.11.5",
     "codemirror": "^5.19.0",
+    "dragula": "^3.7.2",
     "dropzone": "^4.3.0",
     "eonasdan-bootstrap-datetimepicker": "^4.17.42",
     "flag-icon-css": "^2.4.0",
