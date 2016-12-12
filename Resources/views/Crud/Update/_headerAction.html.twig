@@ -1,4 +1,4 @@
 {% include 'ToroAdminBundle:Form:_saveChange.html.twig' with {
-    'cancel_path': path(configuration.getRouteName('index'),
+    'cancel_path': path(configuration.vars.route.name|default(configuration.getRouteName('index')),
     configuration.vars.route.parameters|default({}))
 } %}

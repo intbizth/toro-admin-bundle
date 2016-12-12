@@ -28,7 +28,7 @@
 
 <body>
 {% block body %}
-    <div id="container" class="effect mainnav-lg aside-bright navbar-fixed mainnav-{{ var_nav_scale|default('lg') }}">
+    <div id="container" class="effect mainnav-lg aside-bright navbar-fixed mainnav-{{ configuration.vars.nav_scale|default(var_nav_scale|default('lg')) }}">
         {{ include('ToroAdminBundle:Nav:top.html.twig') }}
 
         <div class="boxed">

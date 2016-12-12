@@ -67,7 +67,7 @@ var paths = {
     copy: [
         ['images', 'Resources/private/images/**'],
         ['fonts', nodePath + 'font-awesome/fonts/**'],
-        ['fonts', 'Resources/private/bootstrap/fonts/**'],
+        ['fonts', 'Resources/private/bootstrap/dist/fonts/**'],
         ['flags', nodePath + 'flag-icon-css/flags/**'],
         ['css/fonts', 'Resources/private/icons/themify-icons/fonts/**'],
         ['css/fonts', 'Resources/private/icons/solid-icons/fonts/**'],
