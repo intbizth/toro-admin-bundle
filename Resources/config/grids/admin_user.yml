@@ -8,15 +8,22 @@ sylius_grid:
                     repository:
                         method: createNoneRootQueryBuilder
             sorting:
-                username: asc
+                firstName: asc
+                lastName: asc
+                email: asc
             fields:
-                username:
+                firstName:
                     type: string
-                    label: "Username"
+                    label: "First Name"
+                    sortable: ~
+                lastName:
+                    type: string
+                    label: "Last Name"
                     sortable: ~
                 email:
                     type: string
-                    label: toro.ui.email
+                    label: "Email"
+                    sortable: ~
                 created_at:
                     type: datetime
                     label: "Created Date"
