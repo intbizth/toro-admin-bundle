@@ -5,6 +5,14 @@
   }
 
   .adder-entry-item {
+    .media-left {
+      vertical-align: middle;
+
+      img {
+        width: 50px;
+        height: auto;
+      }
+    }
     td {
       vertical-align: middle;
     }
@@ -16,6 +24,10 @@
       .adder-actions {
       }
     }
+  }
+
+  .adder-entry-item + .adder-entry-item {
+    border-top: 1px solid #eeeeee !important;
   }
 
   .adder-update-form {
