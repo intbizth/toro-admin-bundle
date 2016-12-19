@@ -84,7 +84,7 @@ final class ORMTranslatableListener implements EventSubscriber
     public function postLoad(LifecycleEventArgs $args)
     {
         $entity = $args->getEntity();
-        dump($entity);
+
         if (!$entity instanceof TranslatableInterface) {
             return;
         }
