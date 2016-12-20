@@ -2,7 +2,7 @@
 {% set var_user_avatar = avatar() %}
 {% set var_user_fullname = app.user ? (app.user.fullname|default(app.user.email)) : "" %}
 {% set var_user_email = app.user ? app.user.email : "" %}
-{% set var_options = channel_context.channel.options %}
+{% set var_settings = channel_context.channel.settings %}
 {% set var_customer = customer_context.getCustomer() %}
 {% set var_user = user_context.user|default([]) %}
 <!DOCTYPE html>
