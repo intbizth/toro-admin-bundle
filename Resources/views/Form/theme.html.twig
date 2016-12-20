@@ -128,7 +128,7 @@
                     {% if not form.children|length %}
                         {{ form_widget(form) }}
                     {% else %}
-                        {% set _block = block(form.vars.block_prefixes[1] ~ '_collection_widget') %}
+                        {% set _block = block(form.vars.block_prefixes[1] ~ '_collection_widget')|default(block(form.vars.block_prefixes[1] ~ '_widget')) %}
                         {% if _block is not empty %}
                             {{ _block|raw }}
                         {% else %}
