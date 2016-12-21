@@ -37,11 +37,6 @@
             '[data-form-prototype="update"]',
             $.proxy(this.updatePrototype, this)
         );
-
-        $(document).on('collection-form-add', function(e, addedElement) {
-            $(addedElement).find('[data-form-type="collection"]').CollectionForm();
-            $(document).trigger('dom-node-inserted', [$(addedElement)]);
-        });
     }
     CollectionForm.prototype = {
         constructor : CollectionForm,
@@ -152,4 +147,16 @@
 
     $.fn.CollectionForm.Constructor = CollectionForm;
 
+    /*
+     * Apply to standard CollectionForm elements
+     */
+
+    $(document).on('collection-form-add', function(e, addedElement) {
+        $(addedElement).find('[data-form-type="collection"]').CollectionForm();
+        $(document).trigger('dom-node-inserted', [$(addedElement)]);
+    });
 }(jQuery);
+
+jQuery(function () {
+    jQuery('[data-form-type="collection"]').CollectionForm();
+});
