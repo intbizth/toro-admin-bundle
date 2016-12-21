@@ -40,7 +40,6 @@ var paths = {
         nodePath + 'switchery/standalone/switchery.js',
         nodePath + 'noty/js/noty/packaged/jquery.noty.packaged.min.js',
         nodePath + 'dragula/dist/dragula.min.js',
-        '../../../vendor/sylius/resource-bundle/Resources/public/js/form-collection.js',
         'Resources/private/nifty.js',
         'Resources/private/js/**',
         'Resources/private/start.js'
@@ -60,7 +59,6 @@ var paths = {
         nodePath + 'animate.css/animate.min.css',
         nodePath + 'flag-icon-css/css/flag-icon.min.css',
         nodePath + 'dragula/dist/dragula.min.css',
-        '../../../vendor/sylius/resource-bundle/Resources/public/css/form-collection.css',
         'Resources/private/icons/themify-icons/themify-icons.css',
         'Resources/private/icons/solid-icons/premium-solid-icons.css',
         'Resources/private/icons/line-icons/premium-line-icons.css',
