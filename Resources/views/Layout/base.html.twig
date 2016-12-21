@@ -5,6 +5,7 @@
 {% set var_settings = channel_context.channel.settings %}
 {% set var_customer = customer_context.getCustomer() %}
 {% set var_user = user_context.user|default([]) %}
+{% set var_timestamp = date().timestamp %}
 <!DOCTYPE html>
 <html lang="{{ (current_locale|split('_'))[0] }}">
 
@@ -21,11 +22,11 @@
     {% endblock %}
 
     {% block stylesheets %}
-        <link rel="stylesheet" href="{{ asset('assets/admin/css/style.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('assets/admin/css/style.css') }}?{{ var_timestamp }}"/>
     {% endblock %}
 
     {% block javascripts %}
-        <script src="{{ asset('assets/admin/js/app.js') }}"></script>
+        <script src="{{ asset('assets/admin/js/app.js') }}?{{ var_timestamp }}"></script>
     {% endblock %}
 </head>
 
