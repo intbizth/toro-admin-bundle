@@ -159,4 +159,8 @@
 
 jQuery(function () {
     jQuery('[data-form-type="collection"]').CollectionForm();
+
+    jQuery(document).on('dom-node-inserted', function (e, scope) {
+        jQuery('[data-form-type="collection"]', scope).CollectionForm();
+    })
 });
