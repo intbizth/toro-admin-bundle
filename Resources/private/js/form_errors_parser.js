@@ -3,6 +3,25 @@ var ajax_form_errors_parser = function (response, form) {
     var json = response["responseJSON"];
     var status = response["status"];
     var messages = [];
+    var flattenObject = function(ob) {
+        var toReturn = {};
+
+        for (var i in ob) {
+            if (!ob.hasOwnProperty(i)) continue;
+
+            if ((typeof ob[i]) == 'object') {
+                var flatObject = flattenObject(ob[i]);
+                for (var x in flatObject) {
+                    if (!flatObject.hasOwnProperty(x)) continue;
+
+                    toReturn[i + '.' + x] = flatObject[x];
+                }
+            } else {
+                toReturn[i] = ob[i];
+            }
+        }
+        return toReturn;
+    };
 
     if (400 >= status && status < 500) {
         title = json.message;
@@ -11,16 +30,26 @@ var ajax_form_errors_parser = function (response, form) {
             messages.push(error);
         });
 
-        $.each(json.errors.children, function (i, children) {
-            if (children.errors) {
-                if (form) {
-                    $('#' + form + '_' + i).closest('.form-group').addClass('has-error');
-                }
+        $.each(flattenObject(json.errors), function (k, v) {
+            k = k.replace('.errors.0', '');
+            k = k.replace(/\.children\./g, '_');
+            k = k.replace('children.', form + '_');
 
-                $.each(children.errors, function (i, error) {
-                    messages.push(error);
-                });
+            var $childEl = $('#' + k);
+            var $container = $childEl.closest('.form-group').addClass('has-error');
+
+            // addon
+            $childEl.next('.selectize-control').addClass('has-error');
+
+            var childName = $container.find('.control-label').text();
+
+            if (!childName.trim()) {
+                var ks = k.split('_');
+                // TODO: humanize
+                childName = ks[ks.length-1];
             }
+
+            messages.push(childName + ' - ' + v);
         });
 
         var source = $("#form-errors").html();
