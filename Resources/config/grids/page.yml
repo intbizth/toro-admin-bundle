@@ -19,6 +19,16 @@ sylius_grid:
                     label: Published
                     options:
                         template: ToroAdminBundle:Grid/Field:yesNo.html.twig
+                partial:
+                    type: twig
+                    label: Partial
+                    options:
+                        template: ToroAdminBundle:Grid/Field:yesNo.html.twig
+                deletable:
+                    type: twig
+                    label: Deletable
+                    options:
+                        template: ToroAdminBundle:Grid/Field:yesNo.html.twig
                 title:
                     type: string
                     label: Title
