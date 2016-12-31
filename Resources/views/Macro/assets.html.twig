@@ -2,5 +2,5 @@
 
 {%- macro cmf_image(image, sizing = '100x100') -%}
     {% from _self import avatar %}
-    {{ image ? path('liip_imagine_filter', {filter: 'cmf_' ~ sizing, path: image.id}) : avatar() }}
+    {{ image ? cmf_media_display_url(image, { imagine_filter : 'cmf_' ~ sizing }) : avatar() }}
 {%- endmacro -%}
