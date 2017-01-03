@@ -135,16 +135,22 @@ $(function () {
             $item = $el.closest('.adder-entry-item'),
             id = $item.data('id'),
             action = $el.closest('.adder-panel').data('update-action').replace(/:id/, id),
-            $element = $('<div class="adder-update-form"/>').appendTo($item)
+            $appendTarget = $item.find('.adder-entry-item-edit-target'),
+            $element = $('<div class="adder-update-form"/>')
         ;
 
-        $element.html('Loading ..');
+        if ($appendTarget.length) {
+            $appendTarget.html($element);
+        } else {
+            $item.append($element);
+        }
+
+        $element.html('<span class="loading">Loading ..</span>');
 
         $.ajax({
             url: action,
             success: function (response) {
-                $item.append($element.html(response).fadeIn('fast'));
-
+                $element.html(response).fadeIn('fast');
                 $(document).trigger('dom-node-inserted', [$element]);
             }
         })
