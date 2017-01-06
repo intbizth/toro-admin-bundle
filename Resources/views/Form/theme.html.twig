@@ -163,7 +163,7 @@
                 {% endfor %}
             {% endif %}
 
-            <div data-form-collection="list" class="row collection-list">
+            <div data-form-collection="list" class="collection-list">
                 {% for child in form %}
                     {% set index = loop.index0 %}
                     {{ block('collection_item_widget') }}

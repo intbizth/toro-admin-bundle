@@ -1,5 +1,8 @@
 div.collection-item .collection-box {
     position: relative;
+    .panel {
+        margin-bottom: 0;
+    }
 }
 
 .form-inline div.collection-item .collection-box,
@@ -19,4 +22,10 @@ div.collection-item .collection-box.unique-field,
 .form-inline div.collection-item [data-form-collection="remove"]
 div.collection-item .unique-field [data-form-collection="remove"] {
     top: 6px;
+}
+
+div.collection-list {
+    .collection-item:last-child {
+        margin-bottom: 1rem;
+    }
 }
