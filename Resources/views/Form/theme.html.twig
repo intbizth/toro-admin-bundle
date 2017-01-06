@@ -37,6 +37,12 @@
         {%- endfor -%}
     </ul>
         {% if form.parent %}</span>{% else %}</div>{% endif %}
+    {%- else %}
+        {% if not form.parent and not form.vars.valid %}
+            <div class="alert alert-danger">
+                {{ "Some field on your form has no valid!" }}
+            </div>
+        {% endif %}
     {%- endif %}
 {%- endblock form_errors %}
 
