@@ -98,7 +98,11 @@
     <div class="panel">
         <div class="panel-body">
             {{ block('crud_index_content_toolbar') }}
-            {{ sylius_grid_render(resources, 'ToroAdminBundle:Crud:_grid.html.twig') }}
+            {% if configuration.vars.templates.grid is defined %}
+                {{ sylius_grid_render(resources, configuration.vars.templates.grid) }}
+            {% else %}
+                {{ sylius_grid_render(resources, 'ToroAdminBundle:Crud:_grid.html.twig') }}
+            {% endif %}
         </div>
     </div>
 {% endblock %}
