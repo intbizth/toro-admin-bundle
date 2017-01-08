@@ -32,6 +32,9 @@
 {% block crud_show_content %}
     <div class="panel">
         <div class="panel-body">
+            {% if configuration.vars.templates.show %}
+                {{ include(configuration.vars.templates.show) }}
+            {% endif %}
         </div>
     </div>
 {% endblock %}
