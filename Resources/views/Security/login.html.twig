@@ -13,9 +13,9 @@
                             <h3 class="h4 mar-no">Admin Login</h3>
                         </div>
                         <form action="{{ path('sylius_admin_login_check') }}" method="post" novalidate>
-                            {% if last_error %}
+                            {% if error|default %}
                                 <div class="alert alert-block alert-danger">
-                                    {{ last_error.message }}
+                                    {{ error.message }}
                                 </div>
                             {% endif %}
 

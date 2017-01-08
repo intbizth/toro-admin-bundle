@@ -4,10 +4,14 @@ namespace Toro\Bundle\AdminBundle\Command;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
+use Sylius\Component\Resource\Repository\RepositoryInterface;
+use Sylius\Component\User\Model\UserInterface;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Question\Question;
+use Toro\Bundle\AdminBundle\Model\AdminUserInterface;
 
 class CreateAdminUserCommand extends ContainerAwareCommand
 {
@@ -34,7 +38,7 @@ class CreateAdminUserCommand extends ContainerAwareCommand
         $email = $input->getArgument('email');
         $password = $input->getArgument('password');
 
-        $user = $this->createUser($email, $password, ['ROLE_ADMINISTRATION_ACCESS']);
+        $user = $this->createUser($email, $password);
 
         $this->getEntityManager()->persist($user);
         $this->getEntityManager()->flush();
@@ -47,50 +51,55 @@ class CreateAdminUserCommand extends ContainerAwareCommand
      */
     protected function interact(InputInterface $input, OutputInterface $output)
     {
+        $helper = $this->getHelper('question');
+
         if (!$input->getArgument('email')) {
-            $email = $this->getHelper('dialog')->askAndValidate(
-                $output,
-                'Please enter an email:',
-                function ($username) {
-                    if (empty($username)) {
-                        throw new \Exception('Email can not be empty');
-                    }
-                    return $username;
+            $question = new Question('Please enter an email:', false);
+            $question->setNormalizer(function ($value) {
+                if (empty($value)) {
+                    throw new \Exception('Email can not be empty');
                 }
-            );
+
+                return $value;
+            });
+
+            $email = $helper->ask($input, $output, $question);
             $input->setArgument('email', $email);
         }
 
-        if (!$input->getArgument('password')) {
-            $password = $this->getHelper('dialog')->askHiddenResponseAndValidate(
-                $output,
-                'Please choose a password:',
-                function ($password) {
-                    if (empty($password)) {
-                        throw new \Exception('Password can not be empty');
-                    }
-                    return $password;
-                }
-            );
+        if ($this->getUserRepository()->findOneBy(['email' => $input->getArgument('email')])) {
+            throw new \Exception('This email already exist.');
+        }
 
+        if (!$input->getArgument('password')) {
+            $question = new Question('Please enter password:', false);
+            $question->setHidden(true);
+            $question->setHiddenFallback(false);
+            $question->setNormalizer(function ($value) {
+                if (empty($value)) {
+                    throw new \Exception('password can not be empty');
+                }
+
+                return $value;
+            });
+
+            $password = $helper->ask($input, $output, $question);
             $input->setArgument('password', $password);
         }
     }
 
-    protected function createUser($email, $password, array $securityRoles = ['ROLE_ADMINISTRATION_ACCESS'])
+    protected function createUser($email, $password, array $securityRoles = [ AdminUserInterface::DEFAULT_ADMIN_ROLE ])
     {
-        $canonicalizer = $this->getContainer()->get('sylius.canonicalizer');
-
+        /** @var UserInterface $user */
         $user = $this->getUserFactory()->createNew();
         $user->setUsername($email);
         $user->setEmail($email);
-        $user->setUsernameCanonical($canonicalizer->canonicalize($user->getUsername()));
-        $user->setEmailCanonical($canonicalizer->canonicalize($user->getEmail()));
         $user->setPlainPassword($password);
-        $user->setRoles($securityRoles);
         $user->enable();
 
-        $this->getContainer()->get('sylius.user.password_updater')->updatePassword($user);
+        foreach ($securityRoles as $role) {
+            $user->addRole($role);
+        }
 
         return $user;
     }
@@ -109,5 +118,13 @@ class CreateAdminUserCommand extends ContainerAwareCommand
     protected function getUserFactory()
     {
         return $this->getContainer()->get('sylius.factory.admin_user');
+    }
+
+    /**
+     * @return RepositoryInterface
+     */
+    protected function getUserRepository()
+    {
+        return $this->getContainer()->get('sylius.repository.admin_user');
     }
 }

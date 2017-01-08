@@ -4,10 +4,12 @@ namespace Toro\Bundle\AdminBundle\Command;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Sylius\Bundle\UserBundle\Provider\UserProviderInterface;
+use Sylius\Component\User\Model\UserInterface;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Question\Question;
 
 class DemoteAdminUserCommand extends ContainerAwareCommand
 {
@@ -34,6 +36,7 @@ class DemoteAdminUserCommand extends ContainerAwareCommand
         $identifier = trim($input->getArgument('identifier'));
         $manager = $this->getEntityManager();
 
+        /** @var UserInterface $user */
         $user = $this->getUserProvider()->loadUserByUsername($identifier);
 
         if (null === $user) {
@@ -43,16 +46,15 @@ class DemoteAdminUserCommand extends ContainerAwareCommand
         $roles = array_map('trim', $input->getArgument('roles'));
         $roles = array_unique($roles);
 
-        $olderRoles = $user->getRoles();
-        $newRoles = array_diff($olderRoles, $roles);
-
-        $user->setRoles($newRoles);
+        foreach ($roles as $role) {
+            $user->removeRole($role);
+        }
 
         $manager->flush();
 
         $this->getUserProvider()->refreshUser($user);
 
-        $nowRoles = empty($newRoles) ? 'Nothing' : implode(',', $newRoles);
+        $nowRoles = empty($user->getRoles()) ? 'Nothing' : implode(',', $user->getRoles());
 
         $output->writeln(sprintf('Demoted user <comment>%s</comment> to: %s', $identifier, $nowRoles));
     }
@@ -63,35 +65,34 @@ class DemoteAdminUserCommand extends ContainerAwareCommand
     protected function interact(InputInterface $input, OutputInterface $output)
     {
         if (!$input->getArgument('identifier')) {
-            $identifier = $this->getHelper('dialog')->askAndValidate(
-                $output,
-                'Please enter an username or email:',
-                function ($username) {
-                    if (empty($username)) {
-                        throw new \Exception('Identifier can not be empty');
-                    }
-                    return $username;
+            $helper = $this->getHelper('question');
+            $question = new Question('Please enter an identifier:', false);
+            $question->setNormalizer(function ($value) {
+                if (empty($value)) {
+                    throw new \Exception('Identifier can not be empty');
                 }
-            );
 
+                return $value;
+            });
+
+            $identifier = $helper->ask($input, $output, $question);
             $input->setArgument('identifier', $identifier);
         }
 
         if (!$input->getArgument('roles')) {
-            $roles = $this->getHelper('dialog')->askAndValidate(
-                $output,
-                'Please enter an roles (Separate by space for many) :',
-                function ($roles) {
-                    $roles = trim(preg_replace('!\s+!', ' ', $roles));
+            $helper = $this->getHelper('question');
+            $question = new Question('Please enter roles (separate by space for many):', false);
+            $question->setNormalizer(function ($value) {
+                $roles = trim(preg_replace('!\s+!', ' ', $value));
 
-                    if (empty($roles)) {
-                        throw new \Exception('Roles can not be empty');
-                    }
-
-                    return explode(' ', $roles);
+                if (empty($roles)) {
+                    throw new \Exception('Roles can not be empty');
                 }
-            );
 
+                return explode(' ', $roles);
+            });
+
+            $roles = $helper->ask($input, $output, $question);
             $input->setArgument('roles', $roles);
         }
     }

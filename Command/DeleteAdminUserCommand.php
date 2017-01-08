@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Question\Question;
 
 class DeleteAdminUserCommand extends ContainerAwareCommand
 {
@@ -51,17 +52,17 @@ class DeleteAdminUserCommand extends ContainerAwareCommand
     protected function interact(InputInterface $input, OutputInterface $output)
     {
         if (!$input->getArgument('identifier')) {
-            $identifier = $this->getHelper('dialog')->askAndValidate(
-                $output,
-                'Please enter an username or email:',
-                function ($username) {
-                    if (empty($username)) {
-                        throw new \Exception('Identifier can not be empty');
-                    }
-                    return $username;
+            $helper = $this->getHelper('question');
+            $question = new Question('Please enter an identifier:', false);
+            $question->setNormalizer(function ($value) {
+                if (empty($value)) {
+                    throw new \Exception('Identifier can not be empty');
                 }
-            );
 
+                return $value;
+            });
+
+            $identifier = $helper->ask($input, $output, $question);
             $input->setArgument('identifier', $identifier);
         }
     }
@@ -79,6 +80,6 @@ class DeleteAdminUserCommand extends ContainerAwareCommand
      */
     protected function getUserProvider()
     {
-        return $this->getContainer()->get('sylius.admin_user.provider.email_or_name_based');
+        return $this->getContainer()->get('sylius.admin_user_provider.email_or_name_based');
     }
 }

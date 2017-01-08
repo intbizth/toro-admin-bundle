@@ -4,12 +4,13 @@ namespace Toro\Bundle\AdminBundle\Command;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Sylius\Bundle\UserBundle\Provider\UserProviderInterface;
+use Sylius\Component\User\Model\UserInterface;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class PromoteAdminUserCommand extends ContainerAwareCommand
+class PromoteAdminUserCommand extends DemoteAdminUserCommand
 {
     /**
      * {@inheritdoc}
@@ -34,6 +35,7 @@ class PromoteAdminUserCommand extends ContainerAwareCommand
         $identifier = trim($input->getArgument('identifier'));
         $manager = $this->getEntityManager();
 
+        /** @var UserInterface $user */
         $user = $this->getUserProvider()->loadUserByUsername($identifier);
 
         if (null === $user) {
@@ -44,67 +46,14 @@ class PromoteAdminUserCommand extends ContainerAwareCommand
         $roles = array_merge($user->getRoles(), $roles);
         $roles = array_unique($roles);
 
-        $user->setRoles($roles);
+        foreach ($roles as $role) {
+            $user->addRole($roles);
+        }
 
         $manager->flush();
 
         $this->getUserProvider()->refreshUser($user);
 
         $output->writeln(sprintf('Promoted user <comment>%s</comment> to: %s', $identifier, implode(',', $roles)));
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function interact(InputInterface $input, OutputInterface $output)
-    {
-        if (!$input->getArgument('identifier')) {
-            $identifier = $this->getHelper('dialog')->askAndValidate(
-                $output,
-                'Please enter an username or email:',
-                function ($username) {
-                    if (empty($username)) {
-                        throw new \Exception('Identifier can not be empty');
-                    }
-                    return $username;
-                }
-            );
-
-            $input->setArgument('identifier', $identifier);
-        }
-
-        if (!$input->getArgument('roles')) {
-            $roles = $this->getHelper('dialog')->askAndValidate(
-                $output,
-                'Please enter an roles (Separate by space for many) :',
-                function ($roles) {
-                    $roles = trim(preg_replace('!\s+!', ' ', $roles));
-
-                    if (empty($roles)) {
-                        throw new \Exception('Roles can not be empty');
-                    }
-
-                    return explode(' ', $roles);
-                }
-            );
-
-            $input->setArgument('roles', $roles);
-        }
-    }
-
-    /**
-     * @return EntityManagerInterface
-     */
-    protected function getEntityManager()
-    {
-        return $this->getContainer()->get('sylius.manager.admin_user');
-    }
-
-    /**
-     * @return UserProviderInterface
-     */
-    protected function getUserProvider()
-    {
-        return $this->getContainer()->get('sylius.admin_user.provider.email_or_name_based');
     }
 }
