@@ -3,7 +3,8 @@ twig:
     strict_variables: "%kernel.debug%"
     exception_controller: "FOS\\RestBundle\\Controller\\ExceptionController::showAction"
     globals:
-        channel_context: "@sylius.context.channel"
+        cx_chanel: "@sylius.context.channel"
+        channel_context: "@sylius.context.channel" # @deprecated
         current_locale: "%locale%"
         branding:
             name: Inthriy
