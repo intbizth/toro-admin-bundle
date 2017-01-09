@@ -133,10 +133,11 @@ class ChoiceResizeListener
         }
 
         $type = isset($config['type']) ? $config['type'] : $config['entry_type'];
+        $choices = (array) $config['options']['choices']; // user defined choices
 
         $form->add($property, $type, array_merge($config['options'], array(
             'choices' => null,
-            'query_builder' => function(EntityRepository $er) use ($config, $event, $eventType, $property) {
+            'query_builder' => function(EntityRepository $er) use ($config, $event, $eventType, $property, $choices) {
                 $queryBuilder = $er
                     ->createQueryBuilder(isset($config['alias']) ? $config['alias'] : 'o')
                     // @see NOTE: 001
@@ -147,6 +148,13 @@ class ChoiceResizeListener
                 /** @var \Closure $customQueryBuilder */
                 $customQueryBuilder =  $config['query_builder'];
                 $customQueryBuilder->call($this, $queryBuilder, $event, $eventType, $property);
+
+                if (!empty($choices)) {
+                    $queryBuilder
+                        ->orWhere($queryBuilder->expr()->in('o.id', ':_choices'))
+                        ->setParameter('_choices', $choices)
+                    ;
+                }
 
                 return $queryBuilder;
             }
