@@ -71,17 +71,19 @@ class ChoiceResizeListener
             return;
         }
 
+        $choices = (array) $config['options']['choices']; // user defined choices
+
         // self resize
         if (is_string($config['query_builder'])) {
             $id = $config['query_builder'];
 
-            $config['query_builder'] = function(QueryBuilder $queryBuilder, FormEvent $event, $type) use ($property, $id) {
+            $config['query_builder'] = function(QueryBuilder $queryBuilder, FormEvent $event, $type) use ($property, $id, $choices) {
                 $data = $event->getData();
                 $value = null;
 
                 // pre submit
                 if (1 === $type && empty($value = $data[$property])) {
-                    $queryBuilder->setMaxResults(0);
+                    $queryBuilder->setMaxResults(count($choices));
                     return;
                 }
 
@@ -93,7 +95,7 @@ class ChoiceResizeListener
                     ;
 
                     if (!$value =$accessor->getValue($event->getData(), $property)) {
-                        $queryBuilder->setMaxResults(0);
+                        $queryBuilder->setMaxResults(count($choices));
                         return;
                     }
 
@@ -107,7 +109,7 @@ class ChoiceResizeListener
                 }
 
                 if (!$value) {
-                    $queryBuilder->setMaxResults(0);
+                    $queryBuilder->setMaxResults(count($choices));
                     return;
                 }
 
@@ -116,7 +118,7 @@ class ChoiceResizeListener
                 // NOTE: 001
                 // cannot set max result, case of impossible to determine translation left-join result
                 // this mean assume 4 languages in db
-                $max = 4;
+                $max = count($choices) + 4;
 
                 if (is_array($value)) {
                     $where = $queryBuilder->expr()->in($id, ':' . $token);
@@ -133,7 +135,6 @@ class ChoiceResizeListener
         }
 
         $type = isset($config['type']) ? $config['type'] : $config['entry_type'];
-        $choices = (array) $config['options']['choices']; // user defined choices
 
         $form->add($property, $type, array_merge($config['options'], array(
             'choices' => null,
