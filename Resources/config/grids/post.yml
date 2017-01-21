@@ -19,6 +19,9 @@ sylius_grid:
                     label: Published
                     options:
                         template: ToroAdminBundle:Grid/Field:yesNo.html.twig
+                type:
+                    type: string
+                    label: Type
                 title:
                     type: string
                     label: Title
