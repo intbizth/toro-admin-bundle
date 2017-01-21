@@ -2,10 +2,14 @@
 
 <div class="row">
     <div class="col-md-3">
-        {{ form_row(form.channel) }}
-        {{ form_row(form.published) }}
-        {{ form_row(form.partial) }}
-        {{ form_row(form.deletable) }}
+        <div class="panel">
+            <div class="panel-body">
+                {{ form_row(form.channel) }}
+                {{ form_row(form.published) }}
+                {{ form_row(form.partial) }}
+                {{ form_row(form.deletable) }}
+            </div>
+        </div>
     </div>
     <div class="col-md-9">
         <ul class="nav nav-tabs">
@@ -71,3 +75,9 @@
 </div>
 
 {{ toro_tinymce({mediaPath: 'page-' ~ page.id}) }}
+
+<style>
+    .panel-form-translations {
+        border-top: none;
+    }
+</style>
