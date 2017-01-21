@@ -8,6 +8,7 @@ imports:
     - { resource: "@ToroAdminBundle/Resources/config/grids/page.yml" }
     - { resource: "@ToroAdminBundle/Resources/config/grids/post.yml" }
     - { resource: "@ToroAdminBundle/Resources/config/grids/admin_user.yml" }
+    - { resource: "@ToroAdminBundle/Resources/config/grids/customer.yml" }
     - { resource: "@ToroAdminBundle/Resources/config/grids/menu.yml" }
 
 sylius_grid:

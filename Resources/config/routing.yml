@@ -6,6 +6,9 @@ sylius_admin_dashboard:
 sylius_admin_user:
     resource: "@ToroAdminBundle/Resources/config/routing/admin_user.yml"
 
+sylius_admin_customer:
+    resource: "@ToroAdminBundle/Resources/config/routing/customer.yml"
+
 sylius_admin_security:
     resource: "@ToroAdminBundle/Resources/config/routing/security.yml"
 

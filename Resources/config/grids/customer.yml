@@ -6,18 +6,23 @@ sylius_grid:
                 options:
                     class: %sylius.model.customer.class%
             sorting:
-                createdAt: desc
+                firstName: asc
+                lastName: asc
+                email: asc
             fields:
-                first_name:
+                firstName:
                     type: string
-                    label: Firstname
-                last_name:
+                    label: "First Name"
+                    sortable: ~
+                lastName:
                     type: string
-                    label: Lastname
+                    label: "Last Name"
+                    sortable: ~
                 email:
                     type: string
-                    label: Email
-                created_at:
+                    label: "Email"
+                    sortable: ~
+                createdAt:
                     type: datetime
                     label: Create at
                     sortable: ~
@@ -30,17 +35,18 @@ sylius_grid:
                     options:
                         template: ToroAdminBundle:Customer/Field:confirmed.html.twig
             filters:
+                name:
+                    type: string
+                    label: Name or Email
+                    options:
+                        default: true
+                        fields:
+                            - translation.firstName
+                            - translation.lastName
+                            - email
                 confirmed:
                     type: boolean
                     label: Confirmed
-                email:
-                    type: string
-                    label: Email
-                name:
-                    type: string
-                    label: Name
-                    options:
-                        fields: [firstName, lastName]
             actions:
                 main:
                     create:

@@ -35,12 +35,15 @@ sylius_grid:
                     options:
                         template: ToroAdminBundle:Grid/Field:yesNo.html.twig
             filters:
-                email:
+                name:
                     type: string
-                    label: toro.ui.email
-                username:
-                    type: string
-                    label: toro.ui.name
+                    label: Name or Email
+                    options:
+                        default: true
+                        fields:
+                            - translation.firstName
+                            - translation.lastName
+                            - email
             actions:
                 main:
                     create:
