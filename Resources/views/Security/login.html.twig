@@ -46,6 +46,7 @@
                                 }) }}
                                 <label for="demo-form-checkbox">Remember me</label>
                             </div>
+                            <input type="hidden" name="_csrf_admin_security_token" value="{{ csrf_token('admin_authenticate') }}">
                             <button class="btn btn-primary btn-lg btn-block" type="submit">Sign In</button>
                         </form>
                     </div>
