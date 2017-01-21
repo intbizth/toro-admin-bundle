@@ -9,6 +9,8 @@ sylius_grid:
                 firstName: asc
                 lastName: asc
                 email: asc
+                #enabled: asc
+                #verified: asc
             fields:
                 firstName:
                     type: string
@@ -28,12 +30,20 @@ sylius_grid:
                     sortable: ~
                     options:
                         format: d-m-Y H:i
-                confirmed:
+                enabled:
                     type: twig
-                    label: Confirmed
-                    path: .
+                    label: Enabled
+                    path: user.enabled
+                    #sortable: user.enabled
                     options:
-                        template: ToroAdminBundle:Customer/Field:confirmed.html.twig
+                        template: "@ToroAdmin/Grid/Field/yesNo.html.twig"
+                verified:
+                    type: twig
+                    label: Verified
+                    path: user.verified
+                    #sortable: user.verified
+                    options:
+                        template: "@ToroAdmin/Grid/Field/yesNo.html.twig"
             filters:
                 name:
                     type: string

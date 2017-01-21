@@ -33,7 +33,7 @@ sylius_grid:
                     type: twig
                     label: toro.ui.enabled
                     options:
-                        template: ToroAdminBundle:Grid/Field:yesNo.html.twig
+                        template: "@ToroAdmin/Grid/Field/yesNo.html.twig"
             filters:
                 name:
                     type: string
