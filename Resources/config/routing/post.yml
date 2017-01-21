@@ -9,10 +9,10 @@ toro_admin_cms_post:
         vars:
           create:
             templates:
-                form: ToroCmsBundle:Admin/Post:_form_bs4_create.html.twig
+                form: "@ToroAdmin/Post/_form_bs4_create.html.twig"
           update:
             templates:
-                form: ToroCmsBundle:Admin/Post:_form_bs4.html.twig
+                form: "@ToroAdmin/Post/_form_bs4.html.twig"
           index:
             icon: ti-book
     type: sylius.resource
