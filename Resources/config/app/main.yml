@@ -3,7 +3,6 @@ imports:
     - { resource: "@ToroAdminBundle/Resources/config/app/doctrine_cache.yml" }
     - { resource: "@ToroAdminBundle/Resources/config/app/doctrine.yml" }
     - { resource: "@ToroAdminBundle/Resources/config/app/twig.yml" }
-    - { resource: "@ToroAdminBundle/Resources/config/app/fos_rest.yml" }
     - { resource: "@ToroAdminBundle/Resources/config/app/jms_serializer.yml" }
     - { resource: "@ToroAdminBundle/Resources/config/app/liip_imagine.yml" }
     - { resource: "@ToroAdminBundle/Resources/config/app/stof_doctrine_extensions.yml" }
