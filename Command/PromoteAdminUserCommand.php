@@ -47,7 +47,7 @@ class PromoteAdminUserCommand extends DemoteAdminUserCommand
         $roles = array_unique($roles);
 
         foreach ($roles as $role) {
-            $user->addRole($roles);
+            $user->addRole($role);
         }
 
         $manager->flush();
