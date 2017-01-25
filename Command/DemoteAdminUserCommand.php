@@ -110,6 +110,6 @@ class DemoteAdminUserCommand extends ContainerAwareCommand
      */
     protected function getUserProvider()
     {
-        return $this->getContainer()->get('sylius.admin_user.provider.email_or_name_based');
+        return $this->getContainer()->get('sylius.admin_user_provider.email_or_name_based');
     }
 }
