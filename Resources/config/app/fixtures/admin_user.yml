@@ -10,7 +10,7 @@ sylius_fixtures:
                                 email: root@example.com
                                 first_name: Root
                                 last_name: System
-                                password: root8iy[
+                                password: root8iy[ruj
                                 enabled: true
                                 root: true
                                 locale_code: "%locale%"
@@ -18,27 +18,6 @@ sylius_fixtures:
                                 email: admin@example.com
                                 first_name: System
                                 last_name: Admin
-                                password: admin8iy[
-                                enabled: true
-                                locale_code: "%locale%"
-                            -
-                                email: staff@example.com
-                                first_name: Staff
-                                last_name: System
-                                password: staff8iy[
-                                enabled: true
-                                locale_code: "%locale%"
-                            -
-                                email: editor@example.com
-                                first_name: Editor
-                                last_name: System
-                                password: editor8iy[
-                                enabled: true
-                                locale_code: "%locale%"
-                            -
-                                email: author@example.com
-                                first_name: Author
-                                last_name: System
-                                password: author8iy[
+                                password: admin0hk
                                 enabled: true
                                 locale_code: "%locale%"
