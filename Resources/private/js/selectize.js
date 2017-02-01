@@ -55,6 +55,19 @@ window.SelectizeSetup = function (selector, scope) {
             };
         }
 
+        if ($target.data('tags')) {
+            options.create = function(input) {
+                if (input.length < 3) {
+                    return false;
+                }
+
+                return {
+                    value: input,
+                    text: input
+                }
+            };
+        }
+
         // vary short config
         if (options.url) {
             options.remote = {

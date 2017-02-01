@@ -1,7 +1,6 @@
 twig:
     debug: "%kernel.debug%"
     strict_variables: "%kernel.debug%"
-    exception_controller: "FOS\\RestBundle\\Controller\\ExceptionController::showAction"
     globals:
         cx_chanel: "@sylius.context.channel"
         channel_context: "@sylius.context.channel" # @deprecated
