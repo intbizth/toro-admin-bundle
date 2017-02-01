@@ -71,7 +71,11 @@ class ChoiceResizeListener
             return;
         }
 
-        $choices = (array) $config['options']['choices']; // user defined choices
+        $choices = [];
+
+        if (array_key_exists('choices', $config['options'])) {
+            $choices = (array) $config['options']['choices']; // user defined choices
+        }
 
         // self resize
         if (is_string($config['query_builder'])) {
