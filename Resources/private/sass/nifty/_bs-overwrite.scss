@@ -1700,7 +1700,7 @@ blockquote{
 @mixin text-color-variant($color){
     @at-root {
         &, a#{&}:hover, a#{&}:focus{
-            color : darken($color,20%)
+            color : darken($color, 10%)
         }
     }
 }
