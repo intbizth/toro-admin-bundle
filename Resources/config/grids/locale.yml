@@ -18,11 +18,6 @@ sylius_grid:
                     path: .
                     options:
                         template: ToroAdminBundle:Locale/Field:name.html.twig
-                enabled:
-                    type: twig
-                    label: Enabled
-                    options:
-                        template: ToroAdminBundle:Grid/Field:enabled.html.twig
             filters:
                 code:
                     type: string
