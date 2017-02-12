@@ -68,6 +68,16 @@ window.SelectizeSetup = function (selector, scope) {
             };
         }
 
+        // render option
+        if (options.render && typeof options.render.option === 'string') {
+            options.render.option = window[options.render.option];
+        }
+
+        // render items
+        if (options.render && typeof options.render.item === 'string') {
+            options.render.item = window[options.render.item];
+        }
+
         // vary short config
         if (options.url) {
             options.remote = {
