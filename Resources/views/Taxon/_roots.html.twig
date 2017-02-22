@@ -5,20 +5,25 @@
         <h3 class="panel-title">{{ 'toro.ui.taxonomy'|trans }}</h3>
     </div>
     <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>{{ "Name" }}</th>
+            <th>{{ "Code" }}</th>
+            <th>{{ "Slug" }}</th>
+            <th></th>
+        </tr>
+        </thead>
         <tbody>
         {% for taxon in taxons %}
             <tr>
-                <td>
-                    <a href="{{ path('sylius_admin_taxon_index', {code: taxon.code}) }}">
-                        {{ taxon.name }}
-                    </a>
-                </td>
+                <td><a href="{{ path('sylius_admin_taxon_index', {code: taxon.code}) }}">{{ taxon.name }}</a></td>
                 <td class="muted">{{ taxon.code }}</td>
+                <td class="muted">{{ taxon.slug }}</td>
                 {% if app.request.get('actions') %}
                     <td class="actions">
                         {{ btn.settings([
-                        btn.edit(path('sylius_admin_taxon_update', {id: taxon.id})),
-                        btn.delete(path('sylius_admin_taxon_delete', {id: taxon.id}), 'toro.ui.delete'|trans, taxon.id)
+                            btn.edit(path('sylius_admin_taxon_update', {id: taxon.id})),
+                            btn.delete(path('sylius_admin_taxon_delete', {id: taxon.id}), 'toro.ui.delete'|trans, taxon.id)
                         ]) }}
                     </td>
                 {% endif %}

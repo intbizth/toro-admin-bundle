@@ -13,6 +13,14 @@
 
     {% if taxons|length %}
         <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>{{ "Name" }}</th>
+                <th>{{ "Code" }}</th>
+                <th>{{ "Slug" }}</th>
+                <th></th>
+            </tr>
+            </thead>
             <tbody>
             {% for taxon in taxons %}
                 <tr>
@@ -20,10 +28,11 @@
                         {{ taxon.name }}
                     </td>
                     <td class="muted">{{ taxon.code }}</td>
+                    <td class="muted">{{ taxon.slug }}</td>
                     <td class="actions">
                         {{ btn.settings([
-                        btn.edit(path('sylius_admin_taxon_update', {id: taxon.id})),
-                        btn.delete(path('sylius_admin_taxon_delete', {id: taxon.id}), 'toro.ui.delete'|trans, taxon.id)
+                            btn.edit(path('sylius_admin_taxon_update', {id: taxon.id})),
+                            btn.delete(path('sylius_admin_taxon_delete', {id: taxon.id}), 'toro.ui.delete'|trans, taxon.id)
                         ]) }}
                     </td>
                 </tr>
