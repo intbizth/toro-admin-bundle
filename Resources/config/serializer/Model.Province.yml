@@ -1,0 +1,10 @@
+Toro\Bundle\AdminBundle\Model\Province:
+    exclusion_policy: ALL
+    xml_root_name: province
+    virtual_properties:
+        getName:
+            serialized_name: name
+            groups: [Default, Detailed]
+        getAbbreviation:
+            serialized_name: abbreviation
+            groups: [Default, Detailed]
