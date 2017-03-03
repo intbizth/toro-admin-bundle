@@ -6,15 +6,6 @@
                                http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="toro.form.extension.type.country" class="Toro\Bundle\AdminBundle\Form\Extension\CountryTypeExtension">
-            <argument type="service" id="sylius.repository.country" />
-            <tag name="form.type_extension" extended-type="Sylius\Bundle\AddressingBundle\Form\Type\CountryType" />
-        </service>
-
-        <service id="toro.form.extension.type.province" class="Toro\Bundle\AdminBundle\Form\Extension\ProvinceTypeExtension">
-            <tag name="form.type_extension" extended-type="Sylius\Bundle\AddressingBundle\Form\Type\ProvinceType" />
-        </service>
-
         <service id="toro.form.type.security_login" class="Toro\Bundle\AdminBundle\Form\Type\SecurityLoginType">
             <tag name="form.type" />
         </service>
@@ -26,12 +17,6 @@
 
         <service id="toro.form.type.admin_user" class="Toro\Bundle\AdminBundle\Form\Type\AdminUserType">
             <argument>%sylius.model.admin_user.class%</argument>
-            <argument type="collection"><argument>sylius</argument></argument>
-            <tag name="form.type" />
-        </service>
-
-        <service id="toro.form.type.province_translation" class="Toro\Bundle\AdminBundle\Form\Type\ProvinceTranslationType">
-            <argument>%sylius.model.province_translation.class%</argument>
             <argument type="collection"><argument>sylius</argument></argument>
             <tag name="form.type" />
         </service>

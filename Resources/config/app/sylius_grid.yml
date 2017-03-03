@@ -1,8 +1,5 @@
 imports:
     - { resource: "@ToroAdminBundle/Resources/config/grids/channel.yml" }
-    - { resource: "@ToroAdminBundle/Resources/config/grids/zone.yml" }
-    - { resource: "@ToroAdminBundle/Resources/config/grids/country.yml" }
-    - { resource: "@ToroAdminBundle/Resources/config/grids/province.yml" }
     - { resource: "@ToroAdminBundle/Resources/config/grids/locale.yml" }
     - { resource: "@ToroAdminBundle/Resources/config/grids/taxon.yml" }
     - { resource: "@ToroAdminBundle/Resources/config/grids/page.yml" }
@@ -14,7 +11,6 @@ imports:
 sylius_grid:
     templates:
         action:
-            create_zone: "ToroAdminBundle:Zone/Action:createZone.html.twig"
             apply_transition: "ToroAdminBundle:Grid/Action:applyTransition.html.twig"
             show: "ToroAdminBundle:Grid/Action:show.html.twig"
             create: "ToroAdminBundle:Grid/Action:create.html.twig"
