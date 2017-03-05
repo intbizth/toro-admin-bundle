@@ -1,22 +1,53 @@
-{% extends "ToroAdminBundle:Crud:index.html.twig" %}
+{% extends 'ToroAdminBundle::layout.html.twig' %}
 {% set taxonCode = app.request.get('code') %}
 
-{% block crud_index_header_action %}
-    {% if taxonCode %}
-        <div class="text-xs-center text-right">
-            <a class="btn btn-default btn-lg" href="{{ path('sylius_admin_taxon_index') }}">
-                <i class="ti-angle-left"></i> {{ 'toro.ui.back'|trans }}
-            </a>
+{% block header %}
+    <div class="row crud-index-header">
+        <div class="col-sm-8 crud-index-header-text">
+            <div id="page-title">
+                <h1 class="page-header text-overflow">
+                    <i class="ti-view-list"></i>
+                    {{ 'toro.ui.taxonomy'|trans }}
+                </h1>
+            </div>
+            <div class="ui basic segment crud-index-breadcrumb">
+                {% import 'ToroAdminBundle:Crud/Macro:breadcrumb.html.twig' as breadcrumb %}
+
+                {% if taxonCode %}
+                    {% set breadcrumbs = [
+                        { label: 'toro.ui.administration'|trans, url: path('sylius_admin_dashboard') },
+                        { label: 'toro.ui.taxonomy'|trans, url: path('sylius_admin_taxon_index') },
+                        { label: taxonCode },
+                    ] %}
+                {% else %}
+                    {% set breadcrumbs = [
+                        { label: 'toro.ui.administration'|trans, url: path('sylius_admin_dashboard') },
+                        { label: "Taxons" },
+                    ] %}
+                {% endif %}
+
+                {{ breadcrumb.crumble(breadcrumbs) }}
+            </div>
         </div>
-    {% endif %}
+        <div class="col-sm-4 hidden-xs crud-index-header-action">
+            {% if taxonCode %}
+                <div class="text-xs-center text-right">
+                    <a class="btn btn-default btn-lg" href="{{ path('sylius_admin_taxon_index') }}">
+                        <i class="ti-angle-left"></i> {{ 'toro.ui.back'|trans }}
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
 {% endblock %}
 
-{% block crud_index_content %}
+{% block breadcrumb %}{% endblock %}
+
+{% block content %}
     <div class="fixed-fluid">
         <div class="fixed-sm-250 fixed-md-350 pull-sm-left">
-            {{ render(path('sylius_admin_taxon_roots', {actions: true})) }}
+            {{ render(path('sylius_admin_taxon_roots', { actions: true })) }}
         </div>
-        {# padding-bottom: 100px prevent overflow hidden break dropdown showing #}
         <div class="fluid" style="padding-bottom: 100px">
             {% if taxonCode %}
                 {{ render(path('sylius_admin_taxon_children', {code: taxonCode})) }}

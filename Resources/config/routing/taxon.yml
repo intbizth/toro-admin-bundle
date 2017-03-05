@@ -16,13 +16,8 @@ sylius_admin_taxon_index:
     path: /taxons/
     methods: [GET]
     defaults:
-        _controller: sylius.controller.taxon:indexAction
-        _sylius:
-            template: ToroAdminBundle:Taxon:index.html.twig
-            repository:
-                # find nothing
-                method: findChildren
-                arguments: ["."]
+        _controller: FrameworkBundle:Template:template
+        template: ToroAdminBundle:Taxon:index.html.twig
 
 sylius_admin_taxon_index_create:
     path: /taxons/create
@@ -51,7 +46,7 @@ sylius_admin_taxon_children:
             template: ToroAdminBundle:Taxon:_children.html.twig
             repository:
                 method: findChildren
-                arguments: [$code]
+                arguments: [$code, "%locale%"]
 
 sylius_admin_taxon_show_bycode:
     path: /taxons/show/{code}
