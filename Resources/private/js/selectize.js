@@ -197,8 +197,23 @@ window.SelectizeSetup = function (selector, scope) {
                     return callback();
                 }
 
+                var grid_criteria_query = function (remote, query) {
+                    remote['data'] = {
+                        criteria: {
+                            search: {
+                                type: 'contains',
+                                value: query
+                            }
+                        }
+                    };
+                };
+
                 if (this.__remote__.query) {
-                    window[this.__remote__.query](this.__remote__, query);
+                    if ('grid_criteria_query' === this.__remote__.query) {
+                        grid_criteria_query(this.__remote__, query);
+                    } else {
+                        window[this.__remote__.query](this.__remote__, query);
+                    }
                 } else {
                     this.__remote__.data['keyword'] = query;
                 }
