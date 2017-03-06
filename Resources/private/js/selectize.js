@@ -21,6 +21,7 @@
  *         value: response_data_record_value_field              // Default `id`
  *         text: response_data_record_label_field               // Default `name`
  *         min_query: typing min query                          // Default `2`
+ *         query: global js fn                                  // Optional callback to prepare query string
  *     },
  *     listeners: {
  *         change: callbackName
@@ -196,7 +197,11 @@ window.SelectizeSetup = function (selector, scope) {
                     return callback();
                 }
 
-                this.__remote__.data['keyword'] = query;
+                if (this.__remote__.query) {
+                    window[this.__remote__.query](this.__remote__, query);
+                } else {
+                    this.__remote__.data['keyword'] = query;
+                }
 
                 return loader.call(this, callback);
             };
