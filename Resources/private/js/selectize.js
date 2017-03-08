@@ -201,11 +201,13 @@ window.SelectizeSetup = function (selector, scope) {
                 var searchKey = this.__remote__.query_search_key || 'keyword';
 
                 var grid_criteria_query = function (remote, query) {
-                    var criteria: {};
+                    var criteria = {};
+
                     criteria[searchKey] = {
                         type: 'contains',
                         value: query
-                    }
+                    };
+
                     remote['data'] = {
                         criteria: criteria
                     };
