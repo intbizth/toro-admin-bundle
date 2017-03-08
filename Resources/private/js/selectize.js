@@ -23,6 +23,7 @@
  *         min_query: typing min query                          // Default `2`
  *         query: global js fn                                  // Optional callback to prepare query string
  *         query_search_key: ?keyword=xx                        // Default `keyword`
+ *         grid: short hand for query = 'grid_criteria_query'   // Options string for `query_search_key` or just true
  *     },
  *     listeners: {
  *         change: callbackName
@@ -196,6 +197,14 @@ window.SelectizeSetup = function (selector, scope) {
             options.load = function (query, callback) {
                 if (query.length < (remote.min_query || 2)) {
                     return callback();
+                }
+
+                if (this.__remote__.grid) {
+                    this.__remote__.query = 'grid_criteria_query';
+
+                    if (typeof this.__remote__.grid === 'string') {
+                        this.__remote__.query_search_key = this.__remote__.grid;
+                    }
                 }
 
                 var searchKey = this.__remote__.query_search_key || 'keyword';
