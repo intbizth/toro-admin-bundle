@@ -22,6 +22,7 @@
  *         text: response_data_record_label_field               // Default `name`
  *         min_query: typing min query                          // Default `2`
  *         query: global js fn                                  // Optional callback to prepare query string
+ *         query_search_key: ?keyword=xx                        // Default `keyword`
  *     },
  *     listeners: {
  *         change: callbackName
@@ -197,14 +198,16 @@ window.SelectizeSetup = function (selector, scope) {
                     return callback();
                 }
 
+                var searchKey = this.__remote__.query_search_key || 'keyword';
+
                 var grid_criteria_query = function (remote, query) {
+                    var criteria: {};
+                    criteria[searchKey] = {
+                        type: 'contains',
+                        value: query
+                    }
                     remote['data'] = {
-                        criteria: {
-                            search: {
-                                type: 'contains',
-                                value: query
-                            }
-                        }
+                        criteria: criteria
                     };
                 };
 
@@ -215,7 +218,7 @@ window.SelectizeSetup = function (selector, scope) {
                         window[this.__remote__.query](this.__remote__, query);
                     }
                 } else {
-                    this.__remote__.data['keyword'] = query;
+                    this.__remote__.data[searchKey] = query;
                 }
 
                 return loader.call(this, callback);

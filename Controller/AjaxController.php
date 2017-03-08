@@ -13,7 +13,7 @@ class AjaxController extends Controller
     public function filterAction(Request $request, $_resource)
     {
         /** @var ResourceController $controller */
-        $controller = $this->get(preg_match('/\./)', $_resource) ? $_resource : ('toro.controller.' . $_resource));
+        $controller = $this->get(preg_match('/\./', $_resource) ? $_resource : ('toro.controller.' . $_resource));
 
         if ($sylius = $request->attributes->get('_sylius')) {
             $parameterParser = $this->get('sylius.resource_controller.parameters_parser');
