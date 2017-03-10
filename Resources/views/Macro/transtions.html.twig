@@ -4,7 +4,7 @@
     {% set color = ts_state_color(state) %}
 
     {% if transitions|length %}
-        {% set btn_css = "btn-ts-state btn-ts-state-" ~ state ~ " btn btn-" ~ color ~ " " ~ btn_css %}
+        {% set btn_css = "btn-ts-state btn-ts-state-" ~ state ~ " btn btn-sm btn-" ~ color ~ " " ~ btn_css %}
         <div class="dropdown box-inline">
             <button type="button" data-toggle="dropdown" class="dropdown-toggle {{ btn_css }}">
                 {{ ts_state_label(state) }} <i class="dropdown-caret"></i>
