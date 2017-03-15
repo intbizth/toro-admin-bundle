@@ -6,6 +6,9 @@
                                http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
+        <service id="toro.form.convert_rawdata_extension" class="Toro\Bundle\AdminBundle\Form\Extension\ConvertRawDataFormExtension">
+            <tag name="form.type_extension" extended-type="Symfony\Component\Form\Extension\Core\Type\FormType" />
+        </service>
         <service id="toro.form.type.security_login" class="Toro\Bundle\AdminBundle\Form\Type\SecurityLoginType">
             <tag name="form.type" />
         </service>

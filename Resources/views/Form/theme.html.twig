@@ -157,7 +157,7 @@
             {% set attr = attr|merge({'data-prototype': block('collection_item_widget') }) %}
         {%- endif -%}
 
-        <div data-form-type="collection" {{ block('widget_container_attributes') }}>
+        <div data-form-type="collection" data-name="{{ form.vars.full_name }}" {{ block('widget_container_attributes') }}>
             {{ form_errors(form) }}
 
             {% if prototypes|default is iterable %}

@@ -96,7 +96,15 @@
 
             $(event.currentTarget)
                 .closest('[data-form-collection="item"]')
-                .remove();
+                .remove()
+            ;
+
+            // empty array for patch collection submit
+            if (this.$element.data('name')) {
+                if (!this.$element.find('[data-form-collection="item"]').length) {
+                    this.$element.append('<input type="hidden" name="' + this.$element.data('name') + '" value="[]"/>')
+                }
+            }
 
             $(document).trigger('collection-form-delete', [$(event.currentTarget)]);
         },
