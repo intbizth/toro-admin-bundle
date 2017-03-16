@@ -5,6 +5,7 @@ sylius_admin_taxon:
         templates: ToroAdminBundle:Crud
         except: ['show', 'index']
         redirect: update
+        form: Toro\Bundle\CmsBundle\Form\Type\TaxonType
         vars:
             all:
                 subheader: toro.ui.manage_categorization_of_your_products
@@ -26,6 +27,7 @@ sylius_admin_taxon_index_create:
         _controller: sylius.controller.taxon:createAction
         _sylius:
             template: ToroAdminBundle:Taxon:_formIndex.html.twig
+            form: Toro\Bundle\CmsBundle\Form\Type\TaxonType
 
 sylius_admin_taxon_roots:
     path: /taxons/roots
