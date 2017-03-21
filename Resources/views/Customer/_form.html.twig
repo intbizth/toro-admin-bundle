@@ -1,7 +1,6 @@
 {{ form_errors(form) }}
 
 <div class="row">
-
     <div class="col-sm-6">
         <div class="panel">
             <div class="panel-heading">
@@ -29,13 +28,11 @@
                 </h3>
             </div>
             <div class="panel-body">
-                <div class="checkbox">
-                    <input type="checkbox" id="ui_customer_create_user" data-toggle-change="#ui_user_form">
-                    <label for="ui_customer_create_user">{{ 'toro.ui.customer_can_login'|trans }}</label>
-                </div>
-
+                {% if customer.user is empty or customer.user.id is null %}
+                    {{ form_row(form.createUser) }}
+                {% endif %}
                 {% if form.user is defined %}
-                    <div id="ui_user_form" {% if form.user.vars.data.id is not defined %} style="display: none" {% endif %}>
+                    <div id="user-form" {% if form.user.vars.data.id is not defined %} style="display: none" {% endif %}>
                         {{ form_row(form.user.plainPassword) }}
                         {{ form_row(form.user.enabled) }}
                     </div>
