@@ -1,1 +1,1 @@
-<div style="text-align: center">{% if data %}{{ data|length|number_format(0) }}{% else %}0{% endif %}</div>
+{{ data|length|localizednumber }}
