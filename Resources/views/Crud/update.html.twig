@@ -1,5 +1,5 @@
 {% extends 'ToroAdminBundle::layout.html.twig' %}
-{% form_theme form 'ToroAdminBundle:Form:theme.html.twig' %}
+{% form_theme form configuration.vars.templates.theme|default('ToroAdminBundle:Form:theme.html.twig') %}
 
 {% set header = configuration.vars.header|default(metadata.applicationName~'.ui.edit_'~metadata.name) %}
 
