@@ -1,6 +1,6 @@
 <div id="page-title">
     <h1 class="page-header text-overflow">
-        <i class="fa fa-{{ configuration.vars.icon|default('plus') }}"></i>
+        <i class="{{ configuration.vars.icon|default('plus') }}"></i>
         {{ header|trans }}
         {#<span>{{ configuration.vars.subheader|default(null)|trans }}</span>#}
     </h1>
