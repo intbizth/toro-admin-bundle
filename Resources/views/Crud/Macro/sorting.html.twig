@@ -3,13 +3,13 @@
     {% set order = grid.getSortingOrder(field.name) %}
 
     {% if grid.isSortedBy(field.name) %}
-        <th class="sortable sorted {{ order == 'desc' ? 'descending' : 'ascending' }} toro-table-column-{{ field.name }}">
+        <th class="sortable sorted {{ order == 'desc' ? 'descending' : 'ascending' }} toro-table-column-{{ field.name }} text-{{ field.options.vars.align|default('left') }} {{ field.options.vars.class|default }}">
             <a href="{{ link(field.name, attributes, (order == 'desc' ? 'asc' : 'desc'), grid.parameters.all) }}">
                 {{ field.label|trans }} <i class="fa fa-sort-{{ printif(['down', 'up'], order == 'desc') }}"></i>
             </a>
         </th>
     {% else %}
-        <th class="sortable toro-table-column-{{ field.name }}">
+        <th class="sortable toro-table-column-{{ field.name }} text-{{ field.options.vars.align|default('left') }} {{ field.options.vars.class|default }}">
             <a href="{{ link(field.name, attributes, order, grid.parameters.all) }}">
                 {{ field.label|trans }} <small style="opacity: .5"><i class="fa fa-unsorted"></i></small>
             </a>

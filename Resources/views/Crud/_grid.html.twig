@@ -16,7 +16,7 @@
                             {% if field.isSortable %}
                                 {{ sorting.tableHeader(grid, field, requestAttributes) }}
                             {% else %}
-                                <th class="toro-table-column-{{ field.name }}">{{ field.label|trans }}</th>
+                                <th class="toro-table-column-{{ field.name }} text-{{ field.options.vars.align|default('left') }} {{ field.options.vars.class|default }}">{{ field.label|trans }}</th>
                             {% endif %}
                         {% endif %}
                     {% endfor %}
@@ -30,7 +30,7 @@
                     <tr>
                         {% for field in definition.fields %}
                             {% if field.enabled %}
-                                <td>{{ sylius_grid_render_field(grid, field, row) }}</td>
+                                <td class="text-{{ field.options.vars.align|default('left') }}">{{ sylius_grid_render_field(grid, field, row) }}</td>
                             {% endif %}
                         {% endfor %}
                         {% if definition.actionGroups.item is defined and definition.getActions('item')|length > 0 %}
