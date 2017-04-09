@@ -1,12 +1,17 @@
-<div class="dropdown">
-    <button class="btn btn-default btn-icon dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-        <i class="ti-settings"></i>
-    </button>
-    <ul class="dropdown-menu dropdown-menu-right">
-        {% for action in definition.getActions('item') %}
-            {#{% if syli us_is_granted(grid.metadata.applicationName ~ '.'~ grid.metadata.name ~'.'~action.name) %}#}
-            <li>{{ sylius_grid_render_action(grid, action, row) }}</li>
-            {#{% endif %}#}
-        {% endfor %}
-    </ul>
-</div>
+{% set actions = definition.getActions('item') %}
+{% if actions|length > 1 %}
+    <div class="dropdown">
+        <button class="btn btn-default btn-icon dropdown-toggle" type="button" data-toggle="dropdown">
+            <i class="ti-settings"></i>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-right">
+            {% for action in actions %}
+                {#{% if syli us_is_granted(grid.metadata.applicationName ~ '.'~ grid.metadata.name ~'.'~action.name) %}#}
+                <li>{{ sylius_grid_render_action(grid, action, row) }}</li>
+                {#{% endif %}#}
+            {% endfor %}
+        </ul>
+    </div>
+{% else %}
+    {{ sylius_grid_render_action(grid, actions[(actions|keys)[0]], row) }}
+{% endif %}

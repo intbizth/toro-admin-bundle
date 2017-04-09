@@ -1,1 +1,1 @@
-{{ data|localizeddate(options.format|default('medium'), options.format|default('medium')) }}
+{{ data ? data|localizeddate(options.vars.format|default('medium'), options.vars.format|default('medium')) : '' }}

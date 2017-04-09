@@ -30,7 +30,7 @@
                     <tr>
                         {% for field in definition.fields %}
                             {% if field.enabled %}
-                                <td class="text-{{ field.options.vars.align|default('left') }}">{{ sylius_grid_render_field(grid, field, row) }}</td>
+                                <td class="toro-table-column-{{ field.name }} text-{{ field.options.vars.align|default('left') }}">{{ sylius_grid_render_field(grid, field, row) }}</td>
                             {% endif %}
                         {% endfor %}
                         {% if definition.actionGroups.item is defined and definition.getActions('item')|length > 0 %}

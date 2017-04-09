@@ -1,7 +1,15 @@
 $(function () {
     Dropzone.autoDiscover = false;
 
-    var initScripting = function (scope) {
+    var initScripting = function (scope)
+    {
+        $('i.readed', scope).each(function () {
+            $(this).closest('tr').addClass('readed');
+        });
+
+        $('i.unreaded', scope).each(function () {
+            $(this).closest('tr').addClass('unreaded');
+        });
 
         $('.switchery', scope).each(function (i, html) {
             new (require("switchery"))(html);
@@ -21,7 +29,7 @@ $(function () {
 
         $('[data-toggle=tooltip]', scope).tooltip();
 
-        SelectizeSetup('select', scope);
+        SelectizeSetup('select, [data-chooser]', scope);
 
         //$('[type=date]').datepicker();
         //$('.input-group.date').datepicker();
@@ -29,7 +37,7 @@ $(function () {
         $('script[type="text/x-dialog"]', scope).xdialog();
 
         $('.datetime, [type=datetime]', scope)
-            //.attr('readonly', true)
+        //.attr('readonly', true)
             .wrap('<div class="input-group date"/>')
             .closest('.input-group')
             // clear bug: https://github.com/smalot/bootstrap-datetimepicker/issues/522
@@ -67,6 +75,8 @@ $(function () {
     };
 
     $(document).on('dom-node-inserted', function (e, scope) {
+        $('.modal', scope).modal('show');
+
         initScripting(scope);
     });
 

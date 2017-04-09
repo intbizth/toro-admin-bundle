@@ -3,6 +3,16 @@ sylius_admin_dashboard:
     defaults:
         _controller: sylius.controller.admin.dashboard:indexAction
 
+toro_admin_reload:
+    path: /_reload
+    defaults:
+        _controller: ToroAdminBundle:Redirect:reload
+
+toro_admin_empty:
+    path: /_empty
+    defaults:
+        _controller: ToroAdminBundle:Empty:render
+
 sylius_admin_user:
     resource: "@ToroAdminBundle/Resources/config/routing/admin_user.yml"
 
