@@ -11,7 +11,7 @@
     {% else %}
         <th class="sortable toro-table-column-{{ field.name }} text-{{ field.options.vars.align|default('left') }} {{ field.options.vars.class|default }}">
             <a href="{{ link(field.name, attributes, order, grid.parameters.all) }}">
-                {{ field.label|trans }} <small style="opacity: .5"><i class="fa fa-unsorted"></i></small>
+                {{ field.label|trans }} {# <small style="opacity: .5"><i class="fa fa-unsorted"></i></small> #}
             </a>
         </th>
     {% endif %}

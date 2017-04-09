@@ -75,8 +75,6 @@ $(function () {
     };
 
     $(document).on('dom-node-inserted', function (e, scope) {
-        $('.modal', scope).modal('show');
-
         initScripting(scope);
     });
 
