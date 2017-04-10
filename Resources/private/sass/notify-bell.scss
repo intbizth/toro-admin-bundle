@@ -1,0 +1,15 @@
+.notify-bell {
+    .badge {
+        display: none;
+    }
+    &--danger {
+        .badge.badge-danger {
+            display: inline-block;
+        }
+    }
+    &--info {
+        .badge.badge-info {
+            display: inline-block;
+        }
+    }
+}
