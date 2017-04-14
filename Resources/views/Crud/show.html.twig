@@ -14,7 +14,9 @@
 {% endblock %}
 
 {% block crud_show_header_action %}
-    {{ include('ToroAdminBundle:Crud/Show:_headerAction.html.twig') }}
+    {% if true != configuration.vars.disable_header_action|default %}
+        {{ include('ToroAdminBundle:Crud/Show:_headerAction.html.twig') }}
+    {% endif %}
 {% endblock %}
 
 {% block crud_show_header %}
