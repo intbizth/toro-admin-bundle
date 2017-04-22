@@ -883,7 +883,6 @@ hr{
 /*======================================*/
 @if $badge == true {
     #container .badge{
-        color: #fff;
         font-size: .9em;
         font-weight: $font-semibold
     }
