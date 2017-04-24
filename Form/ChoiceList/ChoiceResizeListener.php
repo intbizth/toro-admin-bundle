@@ -98,7 +98,11 @@ class ChoiceResizeListener
                         ->getPropertyAccessor()
                     ;
 
-                    if (!$value =$accessor->getValue($event->getData(), $property)) {
+                    if (is_array($data)) {
+                        $data = (object) $data;
+                    }
+
+                    if (!$value =$accessor->getValue($data, $property)) {
                         $queryBuilder->setMaxResults(count($choices));
                         return;
                     }
