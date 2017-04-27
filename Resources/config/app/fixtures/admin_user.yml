@@ -15,9 +15,20 @@ sylius_fixtures:
                                 root: true
                                 locale_code: "%locale%"
                             -
+                                email: super@example.com
+                                first_name: Super
+                                last_name: Admin
+                                password: super0hk
+                                enabled: true
+                                locale_code: "%locale%"
+                                roles:
+                                    - ROLE_SUPER
+                            -
                                 email: admin@example.com
                                 first_name: System
                                 last_name: Admin
                                 password: admin0hk
                                 enabled: true
                                 locale_code: "%locale%"
+                                roles:
+                                    - ROLE_ADMIN

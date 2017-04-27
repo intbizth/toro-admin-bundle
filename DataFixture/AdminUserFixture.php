@@ -27,6 +27,7 @@ final class AdminUserFixture extends AbstractResourceFixture
                 ->booleanNode('enabled')->end()
                 ->booleanNode('api')->defaultFalse()->end()
                 ->booleanNode('root')->defaultFalse()->end()
+                ->variableNode('roles')->end()
                 ->scalarNode('password')->cannotBeEmpty()->end()
                 ->scalarNode('first_name')->cannotBeEmpty()->end()
                 ->scalarNode('last_name')->cannotBeEmpty()->end()

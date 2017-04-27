@@ -60,6 +60,7 @@ final class AdminUserFactory implements ExampleFactoryInterface
                 ->setDefault('api', false)
                 ->setDefault('root', false)
                 ->setDefault('locale_code', 'th_TH')
+                ->setDefault('roles', ['ROLE_ADMIN'])
         ;
     }
 
@@ -78,6 +79,10 @@ final class AdminUserFactory implements ExampleFactoryInterface
         $user->setFirstName($options['first_name']);
         $user->setLastName($options['last_name']);
         $user->setLocaleCode($options['locale_code']);
+
+        foreach ((array) $options['roles'] as $role) {
+            $user->addRole($role);
+        }
 
         $user->addRole('ROLE_ADMINISTRATION_ACCESS');
 
