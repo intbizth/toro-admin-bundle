@@ -77,12 +77,12 @@ final class AdminUserFixture extends AbstractResourceFixture
                 ->booleanNode('enabled')->end()
                 ->booleanNode('api')->defaultFalse()->end()
                 ->booleanNode('root')->defaultFalse()->end()
-                ->variableNode('roles')->end()
+                ->variableNode('roles')->defaultValue([])->end()
                 ->scalarNode('password')->cannotBeEmpty()->end()
                 ->scalarNode('first_name')->cannotBeEmpty()->end()
                 ->scalarNode('last_name')->cannotBeEmpty()->end()
                 ->scalarNode('locale_code')->defaultValue('th_TH')->cannotBeEmpty()->end()
-                ->scalarNode('profile_picture')->end()
+                ->scalarNode('profile_picture')->defaultNull()->end()
         ;
     }
 }
