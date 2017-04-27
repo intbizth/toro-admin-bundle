@@ -61,6 +61,7 @@ final class AdminUserFactory implements ExampleFactoryInterface
                 ->setDefault('root', false)
                 ->setDefault('locale_code', 'th_TH')
                 ->setDefault('roles', ['ROLE_ADMIN'])
+                ->setDefault('profile_picture', null)
         ;
     }
 

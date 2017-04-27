@@ -2,9 +2,12 @@
 
 namespace Toro\Bundle\AdminBundle\Model;
 
-use Sylius\Component\User\Model\UserInterface as BaseUserInterface;
+use Toro\Bundle\CoreBundle\Model\UserInterface;
 
-interface AdminUserInterface extends BaseUserInterface
+/**
+ * @deprecated TODO: move this class & interface to core-bundle
+ */
+interface AdminUserInterface extends UserInterface
 {
     const DEFAULT_ADMIN_ROLE = 'ROLE_ADMINISTRATION_ACCESS';
 

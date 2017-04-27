@@ -10,15 +10,18 @@
             <argument type="service" id="sylius.factory.admin_user"/>
         </service>
 
-        <service id="toro.fixture.factory.menu" class="Toro\Bundle\AdminBundle\DataFixture\AdminMenuFactory" parent="toro.fixture.example_factory.locale_ware">
-            <argument type="service" id="toro.factory.menu"/>
-            <argument type="service" id="toro.repository.menu"/>
-        </service>
-
         <service id="toro.fixture.admin_user" class="Toro\Bundle\AdminBundle\DataFixture\AdminUserFixture">
             <argument type="service" id="sylius.manager.admin_user"/>
             <argument type="service" id="toro.fixture.factory.admin_user"/>
+            <call method="setUploadFileHelper">
+                <argument type="service" id="toro.fixture_factory.image_upload_handler"/>
+            </call>
             <tag name="sylius_fixtures.fixture"/>
+        </service>
+
+        <service id="toro.fixture.factory.menu" class="Toro\Bundle\AdminBundle\DataFixture\AdminMenuFactory" parent="toro.fixture.example_factory.locale_ware">
+            <argument type="service" id="toro.factory.menu"/>
+            <argument type="service" id="toro.repository.menu"/>
         </service>
 
         <service id="toro.fixture.menu" class="Toro\Bundle\AdminBundle\DataFixture\AdminMenuFixture">
