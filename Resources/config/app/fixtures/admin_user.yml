@@ -1,6 +1,6 @@
 sylius_fixtures:
     suites:
-        default:
+        example:
             fixtures:
                 admin_user:
                     priority: -1
