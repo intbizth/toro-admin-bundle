@@ -41,8 +41,8 @@ sylius_grid:
                     options:
                         default: true
                         fields:
-                            - translation.firstName
-                            - translation.lastName
+                            - firstName
+                            - lastName
                             - email
             actions:
                 main:
