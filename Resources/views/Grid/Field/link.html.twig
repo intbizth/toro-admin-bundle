@@ -1,0 +1,6 @@
+{% set params = [] %}
+{% for k, v in options.vars.route.parameters|default([]) %}
+    {% set params = params|merge({(k) : attribute(data, v)}) %}
+{% endfor %}
+
+<a href="{{ path(options.vars.route.name, params) }}">{{ attribute(data, options.vars.label) }}</a>
