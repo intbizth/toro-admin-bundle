@@ -69,4 +69,9 @@ sylius.ui.admin_users: Admins
 sylius.ui.new_admin_user: New
 sylius.ui.edit_admin_user: Edit
 
+sylius.ui.customers: Customers
+sylius.ui.new_customer: New Customer
+sylius.ui.edit_customer: Edit Customer
+sylius.ui.customer_can_login_to_the_store: "Enable Customer Login"
+
 sylius.form.channel.hostname: Hostname
