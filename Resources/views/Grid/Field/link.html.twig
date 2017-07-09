@@ -3,4 +3,4 @@
     {% set params = params|merge({(k) : attribute(data, v)}) %}
 {% endfor %}
 
-<a href="{{ path(options.vars.route.name, params) }}">{{ attribute(data, options.vars.label) }}</a>
+<a href="{{ path(options.vars.route.name, params) }}">{{ attribute(data, options.vars.label)|nl2br }}</a>
