@@ -82,8 +82,9 @@ window.SelectizeSetup = function (selector, scope) {
         }
 
         // disable typing for filter
-        if (options.disabled_filter) {
+        if (options.filter_disabled) {
             options.score = function() { return function() { return 1; }; }; //https://stackoverflow.com/a/35920145
+            delete options.filter_disabled;
         }
 
         // vary short config
