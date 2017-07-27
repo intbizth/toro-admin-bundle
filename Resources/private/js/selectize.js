@@ -81,6 +81,12 @@ window.SelectizeSetup = function (selector, scope) {
             options.render.item = window[options.render.item];
         }
 
+        // disable typing for filter
+        if (options.filter_disabled) {
+            options.score = function() { return function() { return 1; }; }; //https://stackoverflow.com/a/35920145
+            delete options.filter_disabled;
+        }
+
         // vary short config
         if (options.url) {
             options.remote = {
