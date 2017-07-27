@@ -1,1 +1,6 @@
-{{ '—'|str_repeat(data.level - 1) }}{{ data.name }}
+{% set level = data.level - 1 %}
+{% if level %}
+    {{ '—'|str_repeat(level) }}{{ data.name }}
+{% else %}
+    <strong>{{ data.name }}</strong>
+{% endif %}

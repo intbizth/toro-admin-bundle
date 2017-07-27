@@ -8,7 +8,7 @@ sylius_grid:
                     repository:
                         method: createFilterQueryBuilder
                         arguments: [ "%locale%", $code ]
-            limits: [100]
+            limits: [1000]
             fields:
                 name:
                     type: twig
