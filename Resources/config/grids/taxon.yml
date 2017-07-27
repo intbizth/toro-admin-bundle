@@ -34,6 +34,22 @@ sylius_grid:
                     create:
                         type: create
                 item:
+                    move_up:
+                        type: link
+                        label: 'Move Up'
+                        options:
+                            icon: 'fa fa-chevron-up'
+                            class: 'btn'
+                            route: sylius_admin_taxon_move_up
+                            parameters: { id: resource.id }
+                    move_down:
+                        type: link
+                        label: 'Move Up'
+                        options:
+                            icon: 'fa fa-chevron-down'
+                            class: 'btn'
+                            route: sylius_admin_taxon_move_down
+                            parameters: { id: resource.id }
                     update:
                         type: update
                     delete:
