@@ -27,3 +27,7 @@ sylius_admin_page:
 
 sylius_admin_post:
     resource: "@ToroAdminBundle/Resources/config/routing/post.yml"
+
+sylius_admin_taxon:
+    resource: "@ToroAdminBundle/Resources/config/routing/taxon.yml"
+    prefix: /taxons

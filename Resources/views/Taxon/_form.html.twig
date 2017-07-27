@@ -1,10 +1,7 @@
-<div class="fixed-fluid">
-    <div class="fixed-sm-250 fixed-md-350 pull-sm-left">
-        {{ render(path('sylius_admin_taxon_roots')) }}
-    </div>
-    <div class="fluid">
-        {{ form_errors(form) }}
+{{ form_errors(form) }}
 
+<div class="row">
+    <div class="col-md-5">
         <div class="panel">
             <div class="panel-heading">
                 <h3 class="panel-title">{{ "toro.ui.edit"|trans }}</h3>
@@ -15,7 +12,8 @@
                 {{ form_row(form.options) }}
             </div>
         </div>
-
+    </div>
+    <div class="col-md-7">
         {{ form_row(form.translations) }}
     </div>
 </div>

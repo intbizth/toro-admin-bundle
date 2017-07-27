@@ -6,6 +6,3 @@ sylius_admin_locale:
 
 sylius_admin_menu:
     resource: "@ToroAdminBundle/Resources/config/routing/menu.yml"
-
-sylius_admin_taxon:
-    resource: "@ToroAdminBundle/Resources/config/routing/taxon.yml"
