@@ -48,12 +48,20 @@ sylius_grid:
                             parameters: { id: resource.id }
                     move_down:
                         type: link
-                        label: 'Move Up'
+                        label: 'Move Down'
                         options:
                             icon: 'fa fa-chevron-down'
                             class: 'btn'
                             route: sylius_admin_taxon_move_down
                             parameters: { id: resource.id }
+                    create_child:
+                        type: link
+                        label: 'Create Child'
+                        options:
+                            icon: 'fa fa-plus'
+                            class: 'btn'
+                            route: sylius_admin_taxon_create
+                            parameters: { code: resource.code }
                     update:
                         type: update
                     delete:
