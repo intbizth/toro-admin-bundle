@@ -33,6 +33,10 @@ sylius_grid:
                             route: sylius_admin_taxon_index
                     create:
                         type: create
+                        options:
+                            link:
+                                parameters:
+                                    code: $code
                 item:
                     move_up:
                         type: link
