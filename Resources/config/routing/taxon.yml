@@ -21,6 +21,9 @@ sylius_admin_taxon_create:
             section: admin
             template: ToroAdminBundle:Crud:create.html.twig
             form: Toro\Bundle\CmsBundle\Form\Type\TaxonType
+            factory:
+                method: createWithParent
+                arguments: [ "expr:service('sylius.repository.taxon').findOneByCode(defaultNull($code))" ]
             redirect:
                 route: sylius_admin_taxon_index
                 parameters: { code: resource.root.code }
