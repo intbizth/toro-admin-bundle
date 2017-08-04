@@ -4,6 +4,7 @@
 {% set data = resources.data is defined ? resources.data : resources %}
 {% set definition = resources.definition is defined ? resources.definition : null %}
 {% set header = configuration.vars.header|default(metadata.applicationName~'.ui.'~metadata.pluralName) %}
+{% set pagers = configuration.vars.pagers|default({ proximity: 10 }) %}
 
 {% block title %}{{ parent() }} {{ header|trans }}{% endblock %}
 
@@ -86,7 +87,7 @@
             </div>
             <div class="col-sm-6 table-toolbar-right">
                 {% if data.haveToPaginate %}
-                    {{ paginate.basic(data) }}
+                    {{ paginate.basic(data, pagers) }}
                 {% endif %}
             </div>
         </div>
