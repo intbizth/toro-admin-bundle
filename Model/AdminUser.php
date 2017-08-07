@@ -2,11 +2,8 @@
 
 namespace Toro\Bundle\AdminBundle\Model;
 
-use Toro\Bundle\CoreBundle\Model\User;
+use Sylius\Component\User\Model\User;
 
-/**
- * @deprecated TODO: move this class & interface to core-bundle
- */
 class AdminUser extends User implements AdminUserInterface
 {
     /**
