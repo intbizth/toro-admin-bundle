@@ -1,4 +1,4 @@
-{% macro basic(pager) %}
+{% macro basic(pager, options = {}) %}
     {% set start = pager.currentPageOffsetStart %}
     {% set to = pager.currentPageOffsetEnd %}
     {% set of = pager.nbResults %}
@@ -30,7 +30,7 @@
                     {{ pager.currentPage }}
                     <i class="dropdown-caret"></i>
                 </button>
-                {{ pagerfanta(pager, 'dropdown') }}
+                {{ pagerfanta(pager, 'dropdown', options) }}
             </div>
 
             {% if pager.hasNextPage %}
@@ -60,7 +60,7 @@
     </div>
 {% endmacro %}
 
-{% macro mini(pager) %}
+{% macro mini(pager, options = {}) %}
     {% set start = pager.currentPageOffsetStart %}
     {% set to = pager.currentPageOffsetEnd %}
     {% set of = pager.nbResults %}
@@ -81,7 +81,7 @@
                 <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                     {{ pager.currentPage }}
                 </button>
-                {{ pagerfanta(pager, 'dropdown') }}
+                {{ pagerfanta(pager, 'dropdown', options) }}
             </div>
 
             {% if pager.hasNextPage %}

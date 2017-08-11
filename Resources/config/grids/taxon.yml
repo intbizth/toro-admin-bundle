@@ -6,9 +6,63 @@ sylius_grid:
                 options:
                     class: "%sylius.model.taxon.class%"
                     repository:
-                        method: createListQueryBuilder
-            filters:
+                        method: createFilterQueryBuilder
+                        arguments: [ "%locale%", $code ]
+            limits: [1000]
+            fields:
                 name:
-                    type: string
+                    type: twig
+                    label: Name
+                    path: .
                     options:
-                        fields: [translation.name]
+                        template: "@ToroAdmin/Taxon/Grid/Field/taxonLevel.html.twig"
+                code:
+                    type: string
+                    label: Code
+                slug:
+                    type: string
+                    label: Slug
+            actions:
+                main:
+                    index:
+                        type: link
+                        label: Roots
+                        options:
+                            icon: 'fa fa-chevron-left'
+                            class: 'btn btn-lg btn-default btn-taxon-root-back'
+                            route: sylius_admin_taxon_index
+                    create:
+                        type: create
+                        options:
+                            link:
+                                parameters:
+                                    code: $code
+                item:
+                    move_up:
+                        type: link
+                        label: 'Move Up'
+                        options:
+                            icon: 'fa fa-chevron-up'
+                            class: 'btn'
+                            route: sylius_admin_taxon_move_up
+                            parameters: { id: resource.id }
+                    move_down:
+                        type: link
+                        label: 'Move Down'
+                        options:
+                            icon: 'fa fa-chevron-down'
+                            class: 'btn'
+                            route: sylius_admin_taxon_move_down
+                            parameters: { id: resource.id }
+                    create_child:
+                        type: link
+                        label: 'Create Child'
+                        options:
+                            icon: 'fa fa-plus'
+                            class: 'btn'
+                            route: sylius_admin_taxon_create
+                            parameters: { code: resource.code }
+                    update:
+                        type: update
+                    delete:
+                        type: delete

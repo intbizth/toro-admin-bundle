@@ -10,7 +10,7 @@ abstract class AbstractChannelTaxonBaseRepository extends BaseEntityRepository
     /**
      * {@inheritdoc}
      */
-    protected function applyCriteria(QueryBuilder $queryBuilder, array $criteria = null)
+    protected function applyCriteria(QueryBuilder $queryBuilder, array $criteria = [])
     {
         if (isset($criteria['channels'])) {
             $queryBuilder

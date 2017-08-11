@@ -59,5 +59,12 @@
             <argument type="service" id="fos_rest.view_handler" />
             <tag name="kernel.event_subscriber" event="kernel.exception" />
         </service>
+
+        <service id="toro.repository.taxon" decorates="sylius.repository.taxon" class="Toro\Bundle\AdminBundle\Doctrine\ORM\NestedTreeTaxonRepository">
+            <argument type="service" id="sylius.manager.taxon" />
+            <argument type="expression">service('sylius.manager.taxon').getClassMetadata(parameter('sylius.model.taxon.class'))</argument>
+        </service>
+
+        <service id="toro.controller.taxon" parent="sylius.controller.taxon" decorates="sylius.controller.taxon" class="Toro\Bundle\AdminBundle\Controller\TaxonController"/>
     </services>
 </container>

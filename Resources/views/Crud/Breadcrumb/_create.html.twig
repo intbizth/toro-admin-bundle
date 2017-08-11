@@ -2,7 +2,10 @@
 
 {% set breadcrumbs = [
         { label: 'toro.ui.administration'|trans, url: path('sylius_admin_dashboard') },
-        { label: (metadata.applicationName~'.ui.'~metadata.pluralName)|trans, url: path(configuration.getRouteName('index'), configuration.vars.route.parameters|default({})) },
+        { label: (metadata.applicationName~'.ui.'~metadata.pluralName)|trans, url: path(
+            configuration.vars.route.name|default(configuration.getRouteName('index')),
+            configuration.vars.route.parameters|default({})
+        ) },
         { label: 'toro.ui.new'|trans }
     ]
 %}

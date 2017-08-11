@@ -1,36 +1,86 @@
-sylius_admin_taxon:
-    resource: |
-        alias: sylius.taxon
-        section: admin
-        templates: ToroAdminBundle:Crud
-        except: ['show', 'index']
-        redirect: update
-        form: Toro\Bundle\CmsBundle\Form\Type\TaxonType
-        vars:
-            all:
-                subheader: toro.ui.manage_categorization_of_your_products
-                templates:
-                    form: ToroAdminBundle:Taxon:_form.html.twig
-    type: sylius.resource
-
 sylius_admin_taxon_index:
-    path: /taxons/
+    path: /
     methods: [GET]
     defaults:
-        _controller: FrameworkBundle:Template:template
-        template: ToroAdminBundle:Taxon:index.html.twig
+        _controller: sylius.controller.taxon:indexAction
+        _sylius:
+            section: admin
+            template: ToroAdminBundle:Crud:index.html.twig
+            grid: sylius_admin_taxon
+            vars:
+                root: "expr:service('sylius.repository.taxon').findOneByCode(defaultNull($code))"
+                templates:
+                    grid: ToroAdminBundle:Taxon:_grid.html.twig
 
-sylius_admin_taxon_index_create:
-    path: /taxons/create
-    methods: [GET]
+sylius_admin_taxon_create:
+    path: /create
+    methods: [GET, POST]
     defaults:
         _controller: sylius.controller.taxon:createAction
         _sylius:
-            template: ToroAdminBundle:Taxon:_formIndex.html.twig
+            section: admin
+            template: ToroAdminBundle:Crud:create.html.twig
             form: Toro\Bundle\CmsBundle\Form\Type\TaxonType
+            factory:
+                method: createWithParent
+                arguments: [ "expr:service('sylius.repository.taxon').findOneByCode(defaultNull($code))" ]
+            redirect:
+                route: sylius_admin_taxon_index
+                parameters: { code: resource.root.code }
+            vars:
+                templates:
+                    form: ToroAdminBundle:Taxon:_form.html.twig
 
-sylius_admin_taxon_roots:
-    path: /taxons/roots
+sylius_admin_taxon_update:
+    path: /{id}/update
+    methods: [GET, PUT, PATCH]
+    defaults:
+        _controller: sylius.controller.taxon:updateAction
+        _sylius:
+            section: admin
+            template: ToroAdminBundle:Crud:update.html.twig
+            form: Toro\Bundle\CmsBundle\Form\Type\TaxonType
+            redirect:
+                route: sylius_admin_taxon_index
+                parameters: { code: resource.root.code }
+            vars:
+                route:
+                    index: sylius_admin_taxon_index
+                templates:
+                    form: ToroAdminBundle:Taxon:_form.html.twig
+
+sylius_admin_taxon_delete:
+    path: /{id}/delete
+    methods: [DELETE]
+    defaults:
+        _controller: sylius.controller.taxon:deleteAction
+        _sylius:
+            section: admin
+
+sylius_admin_taxon_move_up:
+    path: /{id}/up
+    methods: [GET]
+    defaults:
+        _controller: sylius.controller.taxon:moveUpAction
+        _sylius:
+            section: admin
+            redirect:
+                route: sylius_admin_taxon_index
+                parameters: { code: resource.root.code }
+
+sylius_admin_taxon_move_down:
+    path: /{id}/down
+    methods: [GET]
+    defaults:
+        _controller: sylius.controller.taxon:moveDownAction
+        _sylius:
+            section: admin
+            redirect:
+                route: sylius_admin_taxon_index
+                parameters: { code: resource.root.code }
+
+_sylius_admin_taxon_roots:
+    path: /_roots
     methods: [GET]
     defaults:
         _controller: sylius.controller.taxon:indexAction
@@ -39,24 +89,11 @@ sylius_admin_taxon_roots:
             repository:
                 method: findRootNodes
 
-sylius_admin_taxon_children:
-    path: /taxons/children/{code}
+_sylius_admin_taxon_new_index:
+    path: /_create
     methods: [GET]
     defaults:
-        _controller: sylius.controller.taxon:indexAction
+        _controller: sylius.controller.taxon:createAction
         _sylius:
-            template: ToroAdminBundle:Taxon:_children.html.twig
-            repository:
-                method: findChildren
-                arguments: [$code, "%locale%"]
-
-sylius_admin_taxon_show_bycode:
-    path: /taxons/show/{code}
-    methods: [GET]
-    defaults:
-        _controller: sylius.controller.taxon:showAction
-        _sylius:
-            template: $template
-            repository:
-                method: findOneByCode
-                arguments: [$code]
+            template: ToroAdminBundle:Taxon:_formIndex.html.twig
+            form: Toro\Bundle\CmsBundle\Form\Type\TaxonType

@@ -1,8 +1,8 @@
 {% import "ToroAdminBundle:Macro:buttons.html.twig" as btn %}
-
+{% set taxonCode = app.request.get('code') %}
 <div class="panel">
     <div class="panel-heading">
-        <h3 class="panel-title">{{ 'toro.ui.taxonomy'|trans }}</h3>
+        <h3 class="panel-title">{{ "หมวดหมู่หลัก" }}</h3>
     </div>
     <table class="table table-hover">
         <thead>
@@ -15,7 +15,7 @@
         </thead>
         <tbody>
         {% for taxon in taxons %}
-            <tr>
+            <tr class="{{ css_if('active', taxon.code == taxonCode) }}">
                 <td><a href="{{ path('sylius_admin_taxon_index', {code: taxon.code}) }}">{{ taxon.name }}</a></td>
                 <td class="muted">{{ taxon.code }}</td>
                 <td class="muted">{{ taxon.slug }}</td>
@@ -32,3 +32,8 @@
         </tbody>
     </table>
 </div>
+<style>
+    tr.active {
+        font-weight: bold !important;
+    }
+</style>

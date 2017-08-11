@@ -1,0 +1,31 @@
+{% set taxonCode = app.request.get('code') %}
+{% set root = grid.requestConfiguration.vars.root %}
+
+<div class="row">
+    <div class="col-md-4">
+        {{ render(path('_sylius_admin_taxon_roots', { actions: true, code: taxonCode })) }}
+    </div>
+    <div class="col-md-8">
+        {% if taxonCode %}
+            <div class="panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{ root ? ('หมวด: ' ~ root.name) : "หมวดย่อย" }}</h3>
+                </div>
+                {{ include('ToroAdminBundle:Crud:_grid.html.twig') }}
+            </div>
+        {% else %}
+            {{ render(path('_sylius_admin_taxon_new_index')) }}
+        {% endif %}
+    </div>
+</div>
+<style>
+    .hr-sm {
+        display: none
+    }
+
+    {% if null == root %}
+    .btn-taxon-root-back {
+        display: none !important;
+    }
+    {% endif %}
+</style>
