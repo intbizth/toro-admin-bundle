@@ -32,7 +32,7 @@ final class ConfigureChannelContext implements ChannelContextInterface
     /**
      * {@inheritdoc}
      */
-    public function getChannel()
+    public function getChannel(): ChannelInterface
     {
         // no config
         if (!$this->channelCode) {
