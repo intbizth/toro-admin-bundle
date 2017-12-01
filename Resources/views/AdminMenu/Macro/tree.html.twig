@@ -1,10 +1,12 @@
 {% macro render(menus) %}
+    {% from _self import renderLeaf %}
     <div class="list-group">
-        {{ _self.renderLeaf(menus) }}
+        {{ renderLeaf(menus) }}
     </div>
 {% endmacro %}
 
 {% macro renderLeaf(menus) %}
+    {% from _self import renderLeaf %}
     {% import 'ToroAdminBundle:Macro:buttons.html.twig' as buttons %}
 
     {% for menu in menus %}
@@ -17,7 +19,7 @@
                     {{ buttons.delete(path('toro_admin_menu_delete', { 'id': menu.id }), 'toro.ui.delete'|trans, menu.id) }}
                 </div>
                 <div class="list">
-                    {{ _self.renderLeaf(menu.children) }}
+                    {{ renderLeaf(menu.children) }}
                 </div>
             </div>
         </div>

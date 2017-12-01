@@ -1,4 +1,5 @@
 {% macro basic(pager, options = {}) %}
+    {% from _self import href %}
     {% set start = pager.currentPageOffsetStart %}
     {% set to = pager.currentPageOffsetEnd %}
     {% set of = pager.nbResults %}
@@ -13,7 +14,7 @@
                 {#<a class="btn btn-default" href="{{ _self.href(1) }}">
                     <i class="ti-angle-double-left"></i>
                 </a>#}
-                <a class="btn btn-default" href="{{ _self.href(pager.previousPage) }}">
+                <a class="btn btn-default" href="{{ href(pager.previousPage) }}">
                     <i class="ti-angle-left"></i>
                 </a>
             {% else %}
@@ -34,7 +35,7 @@
             </div>
 
             {% if pager.hasNextPage %}
-                <a class="btn btn-default" href="{{ _self.href(pager.nextPage) }}">
+                <a class="btn btn-default" href="{{ href(pager.nextPage) }}">
                     <i class="ti-angle-right"></i>
                 </a>
                 {#<a class="btn btn-default" href="{{ _self.href(pager.nbPages) }}">
@@ -61,6 +62,7 @@
 {% endmacro %}
 
 {% macro mini(pager, options = {}) %}
+    {% from _self import href %}
     {% set start = pager.currentPageOffsetStart %}
     {% set to = pager.currentPageOffsetEnd %}
     {% set of = pager.nbResults %}
@@ -68,7 +70,7 @@
     <div class="input-group input-group-sm paginate">
         <span class="input-group-btn">
             {% if pager.hasPreviousPage %}
-                <a class="btn btn-default" href="{{ _self.href(pager.previousPage) }}">
+                <a class="btn btn-default" href="{{ href(pager.previousPage) }}">
                     <i class="ti-angle-left"></i>
                 </a>
             {% else %}
@@ -85,7 +87,7 @@
             </div>
 
             {% if pager.hasNextPage %}
-                <a class="btn btn-default" href="{{ _self.href(pager.nextPage) }}">
+                <a class="btn btn-default" href="{{ href(pager.nextPage) }}">
                     <i class="ti-angle-right"></i>
                 </a>
             {% else %}
@@ -99,7 +101,7 @@
 
 {%- macro href(number) -%}
     {{ path(
-        app.request.attributes.get('_route'),
-        app.request.attributes.get('_route_params')|merge(app.request.query.all)|merge({'page': number})
+    app.request.attributes.get('_route'),
+    app.request.attributes.get('_route_params')|merge(app.request.query.all)|merge({'page': number})
     ) }}
 {%- endmacro -%}
