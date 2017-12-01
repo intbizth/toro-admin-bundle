@@ -6,7 +6,6 @@ use Sylius\Component\User\Model\User;
 
 class AdminUser extends User implements AdminUserInterface
 {
-    
     /**
      * @var string
      */
