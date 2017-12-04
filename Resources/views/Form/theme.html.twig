@@ -116,10 +116,9 @@
 {% block collection_item_widget %}
     {% spaceless %}
         {% set form = child %}
-        {% set _block_item = block(form.vars.block_prefixes[1] ~ '_collection_item_widget') %}
 
-        {% if _block_item is not empty %}
-            {{ _block_item|raw }}
+        {% if block(form.vars.block_prefixes[1] ~ '_collection_item_widget') is defined %}
+            {{ block(form.vars.block_prefixes[1] ~ '_collection_item_widget') }}
         {% else %}
 
             <div data-form-collection="item" data-form-collection-index="{{ index }}" class="collection-item">
@@ -134,7 +133,15 @@
                     {% if not form.children|length %}
                         {{ form_widget(form) }}
                     {% else %}
-                        {% set _block = block(form.vars.block_prefixes[1] ~ '_collection_widget')|default(block(form.vars.block_prefixes[2] ~ '_widget')|default(block(form.vars.block_prefixes[1] ~ '_widget'))) %}
+                        {% set _block = null %}
+                        {% if block(form.vars.block_prefixes[1] ~ '_collection_widget') is defined %}
+                            {% set _block = block(form.vars.block_prefixes[1] ~ '_collection_widget') %}
+                        {% elseif block(form.vars.block_prefixes[2] ~ '_widget') is defined %}
+                            {% set _block = block(form.vars.block_prefixes[2] ~ '_widget') %}
+                        {% elseif block(form.vars.block_prefixes[1] ~ '_widget') is defined %}
+                            {% set _block = block(form.vars.block_prefixes[1] ~ '_widget') %}
+                        {% endif %}
+
                         {% if _block is not empty %}
                             {{ _block|raw }}
                         {% else %}
