@@ -4,6 +4,7 @@ sylius_admin_taxon_index:
     defaults:
         _controller: sylius.controller.taxon:indexAction
         _sylius:
+            permission: true
             section: admin
             template: ToroAdminBundle:Crud:index.html.twig
             grid: sylius_admin_taxon
@@ -18,6 +19,7 @@ sylius_admin_taxon_create:
     defaults:
         _controller: sylius.controller.taxon:createAction
         _sylius:
+            permission: true
             section: admin
             template: ToroAdminBundle:Crud:create.html.twig
             form: Toro\Bundle\CmsBundle\Form\Type\TaxonType
@@ -37,6 +39,7 @@ sylius_admin_taxon_update:
     defaults:
         _controller: sylius.controller.taxon:updateAction
         _sylius:
+            permission: true
             section: admin
             template: ToroAdminBundle:Crud:update.html.twig
             form: Toro\Bundle\CmsBundle\Form\Type\TaxonType
@@ -55,6 +58,7 @@ sylius_admin_taxon_delete:
     defaults:
         _controller: sylius.controller.taxon:deleteAction
         _sylius:
+            permission: true
             section: admin
 
 sylius_admin_taxon_move_up:
@@ -63,6 +67,7 @@ sylius_admin_taxon_move_up:
     defaults:
         _controller: sylius.controller.taxon:moveUpAction
         _sylius:
+            permission: true
             section: admin
             redirect:
                 route: sylius_admin_taxon_index
@@ -74,6 +79,7 @@ sylius_admin_taxon_move_down:
     defaults:
         _controller: sylius.controller.taxon:moveDownAction
         _sylius:
+            permission: true
             section: admin
             redirect:
                 route: sylius_admin_taxon_index

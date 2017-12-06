@@ -6,6 +6,7 @@ toro_admin_cms_post:
         except: ['show']
         redirect: update
         grid: toro_admin_post
+        permission: true
         vars:
           create:
             templates:
