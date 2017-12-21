@@ -84,6 +84,7 @@ final class ResourceDeleteSubscriber implements EventSubscriberInterface
     public function onResourceDelete(GetResponseForExceptionEvent $event)
     {
         $exception = $event->getException();
+
         if (!$exception instanceof ForeignKeyConstraintViolationException) {
             return;
         }
@@ -96,7 +97,7 @@ final class ResourceDeleteSubscriber implements EventSubscriberInterface
         $requestAttributes = $eventRequest->attributes;
         $originalRoute = $requestAttributes->get('_route');
 
-        if (!$this->isMethodDelete($eventRequest) ||
+        if (!$this->isDeleteOrUpdateMethod($eventRequest) ||
             !$this->isSyliusRoute($originalRoute) ||
             !$this->isAdminSection($requestAttributes->get('_sylius', []))
         ) {
@@ -178,9 +179,9 @@ final class ResourceDeleteSubscriber implements EventSubscriberInterface
      *
      * @return bool
      */
-    private function isMethodDelete(Request $request)
+    private function isDeleteOrUpdateMethod(Request $request)
     {
-        return Request::METHOD_DELETE === $request->getMethod();
+        return in_array($request->getMethod(), [Request::METHOD_DELETE, Request::METHOD_PATCH, Request::METHOD_PUT]);
     }
 
     /**
