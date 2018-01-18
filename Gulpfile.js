@@ -80,7 +80,10 @@ var paths = {
 gulp.task('script', function () {
     return gulp.src(paths.js)
         .pipe(concat('app.js'))
-        .pipe(gulpif(env === 'prod', uglify()))
+        .pipe(gulpif(env === 'prod', uglify().on('error', function(err) {
+            gutil.log(gutil.colors.red('[Error]'), err.toString());
+            this.emit('end');
+        })))
         .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest(rootPath + 'js/'));
 });
