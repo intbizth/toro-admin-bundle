@@ -104,7 +104,7 @@ class Menu implements MenuInterface
     /**
      * {@inheritdoc}
      */
-    public function setCode(?string $code)
+    public function setCode(?string $code): void
     {
         $this->code = $code;
     }
