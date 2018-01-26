@@ -18,7 +18,7 @@ final class AdminUserFixture extends AbstractResourceFixture
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getName(): string
     {
         return 'admin_user';
     }
@@ -46,7 +46,7 @@ final class AdminUserFixture extends AbstractResourceFixture
     /**
      * {@inheritdoc}
      */
-    public function load(array $options)
+    public function load(array $options): void
     {
         $options = $this->optionsResolver->resolve($options);
 
