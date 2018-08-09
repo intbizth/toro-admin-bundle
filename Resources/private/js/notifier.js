@@ -46,8 +46,18 @@ $(function () {
                         addClass: 'btn btn-primary', text: 'Ok', onClick: function($noty) {
                             $noty.close();
 
-                            if (config.callback) {
-                                config.callback.call(this, true, config.actionButton);
+                            var cb = config.callback;
+                            if (typeof cb !== 'undefined') {
+                                if (typeof cb !== 'function') {
+                                    cb = window[cb];
+                                }
+
+                                if (typeof cb !== 'function') {
+                                    return;
+                                }
+
+                                cb.call(this, true, config.actionButton);
+
                                 return;
                             }
 
