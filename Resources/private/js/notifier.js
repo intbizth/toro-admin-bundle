@@ -46,27 +46,9 @@ $(function () {
                         addClass: 'btn btn-primary', text: 'Ok', onClick: function($noty) {
                             $noty.close();
 
-                            var cb = config.callback;
-                            if (typeof cb !== 'undefined') {
-                                if (typeof cb !== 'function') {
-                                    cb = window[cb];
-                                }
-
-                                if (typeof cb !== 'function') {
-                                    return;
-                                }
-
-                                cb.call(this, true, config.actionButton);
-
+                            if (config.callback) {
+                                config.callback.call(this, true, config.actionButton);
                                 return;
-                            }
-
-                            if (config.actionButton.is('a')) {
-                                window.location.href = config.actionButton.attr('href');
-                            }
-
-                            if (config.actionButton.is('button')) {
-                                config.actionButton.closest('form').submit();
                             }
                         }
                     },
