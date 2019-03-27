@@ -189,7 +189,7 @@
         if (niftyScrollTop.length && !isMobile) {
             var isVisible = false;
             var offsetTop = 250;
-            function calcScroll(){
+            var calcScroll = function (){
                 if (niftyWindow.scrollTop() > offsetTop && !isVisible) {
                     niftyScrollTop.addClass('in').stop(true, true).css({'animation':'none'}).show(0).css({
                         "animation" : "jellyIn .8s"
