@@ -14,8 +14,381 @@
 * Made by Osman Nuri Okumuş <onokumus@gmail.com> (https://github.com/onokumus)
 * Under MIT License
 */
-!function(n,i){if("function"==typeof define&&define.amd)define(["jquery"],i);else if("undefined"!=typeof exports)i(require("jquery"));else{var e={exports:{}};i(n.jquery),n.metisMenu=e.exports}}(this,function(n){"use strict";function i(n){return n&&n.__esModule?n:{"default":n}}function e(n,i){if(!(n instanceof i))throw new TypeError("Cannot call a class as a function")}var t=(i(n),"function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(n){return typeof n}:function(n){return n&&"function"==typeof Symbol&&n.constructor===Symbol?"symbol":typeof n}),o=function(){function n(n,i){for(var e=0;e<i.length;e++){var t=i[e];t.enumerable=t.enumerable||!1,t.configurable=!0,"value"in t&&(t.writable=!0),Object.defineProperty(n,t.key,t)}}return function(i,e,t){return e&&n(i.prototype,e),t&&n(i,t),i}}();(function(n){function i(){return{bindType:_.end,delegateType:_.end,handle:function(i){return n(i.target).is(this)?i.handleObj.handler.apply(this,arguments):void 0}}}function s(){if(window.QUnit)return!1;var n=document.createElement("mm");for(var i in T)if(void 0!==n.style[i])return{end:T[i]};return!1}function a(i){var e=this,t=!1;n(this).one(v.TRANSITION_END,function(){t=!0}),setTimeout(function(){t||v.triggerTransitionEnd(e)},i)}function r(){_=s(),v.supportsTransitionEnd()&&(n.event.special[v.TRANSITION_END]=i())}var l="metisMenu",f="metisMenu",c="."+f,d=".data-api",u=n.fn[l],h=350,g={toggle:!0,doubleTapToGo:!1,preventDefault:!0,activeClass:"active",collapseClass:"collapse",collapseInClass:"in",collapsingClass:"collapsing"},p={SHOW:"show"+c,SHOWN:"shown"+c,HIDE:"hide"+c,HIDDEN:"hidden"+c,CLICK_DATA_API:"click"+c+d},_=!1,T={WebkitTransition:"webkitTransitionEnd",MozTransition:"transitionend",OTransition:"oTransitionEnd otransitionend",transition:"transitionend"},v={TRANSITION_END:"mmTransitionEnd",triggerTransitionEnd:function(i){n(i).trigger(_.end)},supportsTransitionEnd:function(){return Boolean(_)}};r();var C=function(){function i(n,t){e(this,i),this._element=n,this._config=this._getConfig(t),this._transitioning=null,this.init()}return o(i,[{key:"init",value:function(){var i=this;n(this._element).find("li."+this._config.activeClass).has("ul").children("ul").attr("aria-expanded",!0).addClass(this._config.collapseClass+" "+this._config.collapseInClass),n(this._element).find("li").not("."+this._config.activeClass).has("ul").children("ul").attr("aria-expanded",!1).addClass(this._config.collapseClass),this._config.doubleTapToGo&&n(this._element).find("li."+this._config.activeClass).has("ul").children("a").addClass("doubleTapToGo"),n(this._element).find("li").has("ul").children("a").on(p.CLICK_DATA_API,function(e){var t=n(this),o=t.parent("li"),s=o.children("ul");return i._config.preventDefault&&e.preventDefault(),"true"!==t.attr("aria-disabled")?(o.hasClass(i._config.activeClass)&&!i._config.doubleTapToGo?(t.attr("aria-expanded",!1),i._hide(s)):(i._show(s),t.attr("aria-expanded",!0)),i._config.onTransitionStart&&i._config.onTransitionStart(e),i._config.doubleTapToGo&&i._doubleTapToGo(t)&&"#"!==t.attr("href")&&""!==t.attr("href")?(e.stopPropagation(),void(document.location=t.attr("href"))):void 0):void 0})}},{key:"_show",value:function(i){if(!this._transitioning&&!n(i).hasClass(this._config.collapsingClass)){var e=this,t=n(i);if(t.length){var o=n.Event(p.SHOW);if(t.trigger(o),!o.isDefaultPrevented()){t.parent("li").addClass(this._config.activeClass),this._config.toggle&&this._hide(t.parent("li").siblings().children("ul."+this._config.collapseInClass).attr("aria-expanded",!1)),t.removeClass(this._config.collapseClass).addClass(this._config.collapsingClass).height(0),this.setTransitioning(!0);var s=function(){t.removeClass(e._config.collapsingClass).addClass(e._config.collapseClass+" "+e._config.collapseInClass).height("").attr("aria-expanded",!0),e.setTransitioning(!1),t.trigger(p.SHOWN)};if(!v.supportsTransitionEnd())return void s();t.height(t[0].scrollHeight).one(v.TRANSITION_END,s),a(h)}}}}},{key:"_hide",value:function(i){if(!this._transitioning&&n(i).hasClass(this._config.collapseInClass)){var e=this,t=n(i);if(t.length){var o=n.Event(p.HIDE);if(t.trigger(o),!o.isDefaultPrevented()){t.parent("li").removeClass(this._config.activeClass),t.height(t.height())[0].offsetHeight,t.addClass(this._config.collapsingClass).removeClass(this._config.collapseClass).removeClass(this._config.collapseInClass),this.setTransitioning(!0);var s=function(){e._transitioning&&e._config.onTransitionEnd&&e._config.onTransitionEnd(),e.setTransitioning(!1),t.trigger(p.HIDDEN),t.removeClass(e._config.collapsingClass).addClass(e._config.collapseClass).attr("aria-expanded",!1)};if(!v.supportsTransitionEnd())return void s();0==t.height()||"none"==t.css("display")?s():t.height(0).one(v.TRANSITION_END,s),a(h)}}}}},{key:"_doubleTapToGo",value:function(i){return i.hasClass("doubleTapToGo")?(i.removeClass("doubleTapToGo"),!0):i.parent().children("ul").length?(n(this._element).find(".doubleTapToGo").removeClass("doubleTapToGo"),i.addClass("doubleTapToGo"),!1):void 0}},{key:"setTransitioning",value:function(n){this._transitioning=n}},{key:"_getConfig",value:function(i){return i=n.extend({},g,i)}}],[{key:"_jQueryInterface",value:function(e){return this.each(function(){var o=n(this),s=o.data(f),a=n.extend({},g,o.data(),"object"===("undefined"==typeof e?"undefined":t(e))&&e);if(s||(s=new i(this,a),o.data(f,s)),"string"==typeof e){if(void 0===s[e])throw new Error('No method named "'+e+'"');s[e]()}})}}]),i}();return n.fn[l]=C._jQueryInterface,n.fn[l].Constructor=C,n.fn[l].noConflict=function(){return n.fn[l]=u,C._jQueryInterface},C})(jQuery)});
+/*
+ * metismenu - v2.5.2
+ * A jQuery menu plugin
+ * https://github.com/onokumus/metisMenu#readme
+ *
+ * Made by Osman Nuri Okumuş <onokumus@gmail.com> (https://github.com/onokumus)
+ * Under MIT License
+ */
 
+(function (global, factory) {
+    if (typeof define === "function" && define.amd) {
+        define(['jquery'], factory);
+    } else if (typeof exports !== "undefined") {
+        factory(require('jquery'));
+    } else {
+        var mod = {
+            exports: {}
+        };
+        factory(global.jquery);
+        global.metisMenu = mod.exports;
+    }
+})(this, function (_jquery) {
+    'use strict';
+
+    var _jquery2 = _interopRequireDefault(_jquery);
+
+    function _interopRequireDefault(obj) {
+        return obj && obj.__esModule ? obj : {
+            default: obj
+        };
+    }
+
+    var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
+        return typeof obj;
+    } : function (obj) {
+        return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj;
+    };
+
+    function _classCallCheck(instance, Constructor) {
+        if (!(instance instanceof Constructor)) {
+            throw new TypeError("Cannot call a class as a function");
+        }
+    }
+
+    var _createClass = function () {
+        function defineProperties(target, props) {
+            for (var i = 0; i < props.length; i++) {
+                var descriptor = props[i];
+                descriptor.enumerable = descriptor.enumerable || false;
+                descriptor.configurable = true;
+                if ("value" in descriptor) descriptor.writable = true;
+                Object.defineProperty(target, descriptor.key, descriptor);
+            }
+        }
+
+        return function (Constructor, protoProps, staticProps) {
+            if (protoProps) defineProperties(Constructor.prototype, protoProps);
+            if (staticProps) defineProperties(Constructor, staticProps);
+            return Constructor;
+        };
+    }();
+
+    var MetisMenu = function ($) {
+
+        var NAME = 'metisMenu';
+        var DATA_KEY = 'metisMenu';
+        var EVENT_KEY = '.' + DATA_KEY;
+        var DATA_API_KEY = '.data-api';
+        var JQUERY_NO_CONFLICT = $.fn[NAME];
+        var TRANSITION_DURATION = 350;
+
+        var Default = {
+            toggle: true,
+            doubleTapToGo: false,
+            preventDefault: true,
+            activeClass: 'active',
+            collapseClass: 'collapse',
+            collapseInClass: 'in',
+            collapsingClass: 'collapsing'
+        };
+
+        var Event = {
+            SHOW: 'show' + EVENT_KEY,
+            SHOWN: 'shown' + EVENT_KEY,
+            HIDE: 'hide' + EVENT_KEY,
+            HIDDEN: 'hidden' + EVENT_KEY,
+            CLICK_DATA_API: 'click' + EVENT_KEY + DATA_API_KEY
+        };
+
+        var Util = {
+            TRANSITION_END: 'mmTransitionEnd',
+
+            triggerTransitionEnd: function triggerTransitionEnd(element) {
+                $(element).trigger(transition.end);
+            },
+            supportsTransitionEnd: function supportsTransitionEnd() {
+                return Boolean(transition);
+            }
+        };
+
+        var transition = false;
+
+        var TransitionEndEvent = {
+            WebkitTransition: 'webkitTransitionEnd',
+            MozTransition: 'transitionend',
+            OTransition: 'oTransitionEnd otransitionend',
+            transition: 'transitionend'
+        };
+
+        function getSpecialTransitionEndEvent() {
+            return {
+                bindType: transition.end,
+                delegateType: transition.end,
+                handle: function handle(event) {
+                    if ($(event.target).is(this)) {
+                        return event.handleObj.handler.apply(this, arguments);
+                    }
+                }
+            };
+        }
+
+        function transitionEndTest() {
+            if (window.QUnit) {
+                return false;
+            }
+
+            var el = document.createElement('mm');
+
+            for (var name in TransitionEndEvent) {
+                if (el.style[name] !== undefined) {
+                    return {
+                        end: TransitionEndEvent[name]
+                    };
+                }
+            }
+
+            return false;
+        }
+
+        function transitionEndEmulator(duration) {
+            var _this2 = this;
+
+            var called = false;
+
+            $(this).one(Util.TRANSITION_END, function () {
+                called = true;
+            });
+
+            setTimeout(function () {
+                if (!called) {
+                    Util.triggerTransitionEnd(_this2);
+                }
+            }, duration);
+        }
+
+        function setTransitionEndSupport() {
+            transition = transitionEndTest();
+
+            if (Util.supportsTransitionEnd()) {
+                $.event.special[Util.TRANSITION_END] = getSpecialTransitionEndEvent();
+            }
+        }
+
+        setTransitionEndSupport();
+
+        var MetisMenu = function () {
+            function MetisMenu(element, config) {
+                _classCallCheck(this, MetisMenu);
+
+                this._element = element;
+                this._config = this._getConfig(config);
+                this._transitioning = null;
+
+                this.init();
+            }
+
+            _createClass(MetisMenu, [{
+                key: 'init',
+                value: function init() {
+                    var self = this;
+                    $(this._element).find('li.' + this._config.activeClass).has('ul').children('ul').attr('aria-expanded', true).addClass(this._config.collapseClass + ' ' + this._config.collapseInClass);
+
+                    $(this._element).find('li').not('.' + this._config.activeClass).has('ul').children('ul').attr('aria-expanded', false).addClass(this._config.collapseClass);
+
+                    //add the 'doubleTapToGo' class to active items if needed
+                    if (this._config.doubleTapToGo) {
+                        $(this._element).find('li.' + this._config.activeClass).has('ul').children('a').addClass('doubleTapToGo');
+                    }
+                    $(this._element).find('li').has('ul').children('a').on(Event.CLICK_DATA_API, function (e) {
+                        var _this = $(this);
+                        var _parent = _this.parent('li');
+                        var _list = _parent.children('ul');
+                        if (self._config.preventDefault) {
+                            e.preventDefault();
+                        }
+                        if (_this.attr('aria-disabled') === 'true') {
+                            return;
+                        }
+                        if (_parent.hasClass(self._config.activeClass) && !self._config.doubleTapToGo) {
+                            _this.attr('aria-expanded', false);
+                            self._hide(_list);
+                        } else {
+                            self._show(_list);
+                            _this.attr('aria-expanded', true);
+                        }
+
+                        if (self._config.onTransitionStart) {
+                            self._config.onTransitionStart(e);
+                        }
+
+                        //Do we need to enable the double tap
+                        if (self._config.doubleTapToGo) {
+                            //if we hit a second time on the link and the href is valid, navigate to that url
+                            if (self._doubleTapToGo(_this) && _this.attr('href') !== '#' && _this.attr('href') !== '') {
+                                e.stopPropagation();
+                                document.location = _this.attr('href');
+                                return;
+                            }
+                        }
+                    });
+                }
+            }, {
+                key: '_show',
+                value: function _show(element) {
+                    if (this._transitioning || $(element).hasClass(this._config.collapsingClass)) {
+                        return;
+                    }
+                    var _this = this;
+                    var _el = $(element);
+
+                    var startEvent = $.Event(Event.SHOW);
+                    _el.trigger(startEvent);
+
+                    if (startEvent.isDefaultPrevented()) {
+                        return;
+                    }
+
+                    _el.parent('li').addClass(this._config.activeClass);
+
+                    if (this._config.toggle) {
+                        this._hide(_el.parent('li').siblings().children('ul.' + this._config.collapseInClass).attr('aria-expanded', false));
+                    }
+
+                    _el.removeClass(this._config.collapseClass).addClass(this._config.collapsingClass).height(0);
+
+                    this.setTransitioning(true);
+
+                    var complete = function complete() {
+
+                        _el.removeClass(_this._config.collapsingClass).addClass(_this._config.collapseClass + ' ' + _this._config.collapseInClass).height('').attr('aria-expanded', true);
+
+                        _this.setTransitioning(false);
+
+                        _el.trigger(Event.SHOWN);
+                    };
+
+                    if (!Util.supportsTransitionEnd()) {
+                        complete();
+                        return;
+                    }
+
+                    _el.height(_el[0].scrollHeight).one(Util.TRANSITION_END, complete);
+
+                    transitionEndEmulator(TRANSITION_DURATION);
+                }
+            }, {
+                key: '_hide',
+                value: function _hide(element) {
+
+                    if (this._transitioning || !$(element).hasClass(this._config.collapseInClass)) {
+                        return;
+                    }
+                    var _this = this;
+                    var _el = $(element);
+
+                    var startEvent = $.Event(Event.HIDE);
+                    _el.trigger(startEvent);
+
+                    if (startEvent.isDefaultPrevented()) {
+                        return;
+                    }
+
+                    _el.parent('li').removeClass(this._config.activeClass);
+                    _el.height(_el.height())[0].offsetHeight;
+
+                    _el.addClass(this._config.collapsingClass).removeClass(this._config.collapseClass).removeClass(this._config.collapseInClass);
+
+                    this.setTransitioning(true);
+
+                    var complete = function complete() {
+                        if (_this._transitioning && _this._config.onTransitionEnd) {
+                            _this._config.onTransitionEnd();
+                        }
+
+                        _this.setTransitioning(false);
+                        _el.trigger(Event.HIDDEN);
+
+                        _el.removeClass(_this._config.collapsingClass).addClass(_this._config.collapseClass).attr('aria-expanded', false);
+                    };
+
+                    if (!Util.supportsTransitionEnd()) {
+                        complete();
+                        return;
+                    }
+
+                    _el.height() == 0 || _el.css('display') == 'none' ? complete() : _el.height(0).one(Util.TRANSITION_END, complete);
+
+                    transitionEndEmulator(TRANSITION_DURATION);
+                }
+            }, {
+                key: '_doubleTapToGo',
+                value: function _doubleTapToGo(element) {
+                    if (element.hasClass('doubleTapToGo')) {
+                        element.removeClass('doubleTapToGo');
+                        return true;
+                    }
+                    if (element.parent().children('ul').length) {
+                        $(this._element).find('.doubleTapToGo').removeClass('doubleTapToGo');
+
+                        element.addClass('doubleTapToGo');
+                        return false;
+                    }
+                }
+            }, {
+                key: 'setTransitioning',
+                value: function setTransitioning(isTransitioning) {
+                    this._transitioning = isTransitioning;
+                }
+            }, {
+                key: '_getConfig',
+                value: function _getConfig(config) {
+                    config = $.extend({}, Default, config);
+                    return config;
+                }
+            }], [{
+                key: '_jQueryInterface',
+                value: function _jQueryInterface(config) {
+                    return this.each(function () {
+                        var $this = $(this);
+                        var data = $this.data(DATA_KEY);
+                        var _config = $.extend({}, Default, $this.data(), (typeof config === 'undefined' ? 'undefined' : _typeof(config)) === 'object' && config);
+
+                        if (!data) {
+                            data = new MetisMenu(this, _config);
+                            $this.data(DATA_KEY, data);
+                        }
+
+                        if (typeof config === 'string') {
+                            if (data[config] === undefined) {
+                                throw new Error('No method named "' + config + '"');
+                            }
+                            data[config]();
+                        }
+                    });
+                }
+            }]);
+
+            return MetisMenu;
+        }();
+
+        /**
+         * ------------------------------------------------------------------------
+         * jQuery
+         * ------------------------------------------------------------------------
+         */
+
+        $.fn[NAME] = MetisMenu._jQueryInterface;
+        $.fn[NAME].Constructor = MetisMenu;
+        $.fn[NAME].noConflict = function () {
+            $.fn[NAME] = JQUERY_NO_CONFLICT;
+            return MetisMenu._jQueryInterface;
+        };
+        return MetisMenu;
+    }(jQuery);
+});
 
 
 
@@ -235,68 +608,68 @@
     "use strict";
 
     var defaults = {
-        'displayIcon'	: true,
-        // DESC	 		: Should we display the icon or not.
-        // VALUE	 	: true or false
-        // TYPE 	 	: Boolean
+            'displayIcon'	: true,
+            // DESC	 		: Should we display the icon or not.
+            // VALUE	 	: true or false
+            // TYPE 	 	: Boolean
 
 
-        'iconColor'		: 'text-dark',
-        // DESC	 		: The color of the icon..
-        // VALUE	 	: text-light || text-primary || text-info || text-success || text-warning || text-danger || text-mint || text-purple || text-pink || text-dark
-        // TYPE 	 	: String
+            'iconColor'		: 'text-dark',
+            // DESC	 		: The color of the icon..
+            // VALUE	 	: text-light || text-primary || text-info || text-success || text-warning || text-danger || text-mint || text-purple || text-pink || text-dark
+            // TYPE 	 	: String
 
-        'iconClass'		: 'fa fa-refresh fa-spin fa-2x',
-        // DESC  		: Class name of the font awesome icons", Currently we use font-awesome for default value.
-        // VALUE 		: (Icon Class Name)
-        // TYPE			: String
-
-
-        'title'			: '',
-        // DESC			: Overlay title
-        // TYPE			: String
-
-        'desc'			: ''
-        // DESC			: Descrition
-        // TYPE			: String
+            'iconClass'		: 'fa fa-refresh fa-spin fa-2x',
+            // DESC  		: Class name of the font awesome icons", Currently we use font-awesome for default value.
+            // VALUE 		: (Icon Class Name)
+            // TYPE			: String
 
 
-    },
-    uID = function() {
-        return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
-    },
-    methods = {
-        'show' : function(el){
-            var target = $(el.attr('data-target')),
-                ovId = 'nifty-overlay-' + uID() + uID()+"-" + uID(),
-                panelOv = $('<div id="'+ ovId +'" class="panel-overlay"></div>');
+            'title'			: '',
+            // DESC			: Overlay title
+            // TYPE			: String
 
-            el.prop('disabled', true).data('niftyOverlay',ovId);
-            target.addClass('panel-overlay-wrap');
-            panelOv.appendTo(target).html(el.data('overlayTemplate'));
-            return null;
+            'desc'			: ''
+            // DESC			: Descrition
+            // TYPE			: String
+
+
         },
-        'hide': function(el){
-            var target = $(el.attr('data-target'));
-            var boxLoad = $('#'+ el.data('niftyOverlay'));
+        uID = function() {
+            return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
+        },
+        methods = {
+            'show' : function(el){
+                var target = $(el.attr('data-target')),
+                    ovId = 'nifty-overlay-' + uID() + uID()+"-" + uID(),
+                    panelOv = $('<div id="'+ ovId +'" class="panel-overlay"></div>');
 
-            if (boxLoad.length) {
-                el.prop('disabled', false);
-                target.removeClass('panel-overlay-wrap');
-                boxLoad.hide().remove();
+                el.prop('disabled', true).data('niftyOverlay',ovId);
+                target.addClass('panel-overlay-wrap');
+                panelOv.appendTo(target).html(el.data('overlayTemplate'));
+                return null;
+            },
+            'hide': function(el){
+                var target = $(el.attr('data-target'));
+                var boxLoad = $('#'+ el.data('niftyOverlay'));
+
+                if (boxLoad.length) {
+                    el.prop('disabled', false);
+                    target.removeClass('panel-overlay-wrap');
+                    boxLoad.hide().remove();
+                }
+                return null;
             }
+        },
+        loadBox = function(el,options){
+            if (el.data('overlayTemplate')) {
+                return null;
+            }
+            var opt = $.extend({},defaults,options),
+                icon = (opt.displayIcon)?'<span class="panel-overlay-icon '+opt.iconColor+'"><i class="'+opt.iconClass+'"></i></span>':'';
+            el.data('overlayTemplate', '<div class="panel-overlay-content pad-all unselectable">'+icon+'<h4 class="panel-overlay-title">'+opt.title+'</h4><p>'+opt.desc+'</p></div>');
             return null;
-        }
-    },
-    loadBox = function(el,options){
-        if (el.data('overlayTemplate')) {
-            return null;
-        }
-        var opt = $.extend({},defaults,options),
-            icon = (opt.displayIcon)?'<span class="panel-overlay-icon '+opt.iconColor+'"><i class="'+opt.iconClass+'"></i></span>':'';
-        el.data('overlayTemplate', '<div class="panel-overlay-content pad-all unselectable">'+icon+'<h4 class="panel-overlay-title">'+opt.title+'</h4><p>'+opt.desc+'</p></div>');
-        return null;
-    };
+        };
 
     $.fn.niftyOverlay = function(method){
         if (methods[method]){
@@ -338,175 +711,175 @@
     }();
     $.niftyNoty = function(options){
         var defaults = {
-            type        : 'primary',
-            // DESC     : Specify style for the alerts.
-            // VALUE    : primary || info || success || warning || danger || mint || purple || pink ||  dark
-            // TYPE     : String
+                type        : 'primary',
+                // DESC     : Specify style for the alerts.
+                // VALUE    : primary || info || success || warning || danger || mint || purple || pink ||  dark
+                // TYPE     : String
 
 
-            icon        : '',
-            // DESC     : Icon class names
-            // VALUE    : (Icon Class Name)
-            // TYPE     : String
+                icon        : '',
+                // DESC     : Icon class names
+                // VALUE    : (Icon Class Name)
+                // TYPE     : String
 
 
-            title       : '',
-            // VALUE    : (The title of the alert)
-            // TYPE     : String
+                title       : '',
+                // VALUE    : (The title of the alert)
+                // TYPE     : String
 
-            message     : '',
-            // VALUE    : (Message of the alert.)
-            // TYPE     : String
-
-
-            closeBtn    : true,
-            // VALUE    : Show or hide the close button.
-            // TYPE     : Boolean
+                message     : '',
+                // VALUE    : (Message of the alert.)
+                // TYPE     : String
 
 
-
-            container   : 'page',
-            // DESC     : This option is particularly useful in that it allows you to position the notification.
-            // VALUE    : page || floating ||  "specified target name"
-            // TYPE     : STRING
+                closeBtn    : true,
+                // VALUE    : Show or hide the close button.
+                // TYPE     : Boolean
 
 
-            floating    : {
-                position    : 'top-right',
-                // Floating position.
-                // Currently only supports "top-right". We will make further development for the next version.
+
+                container   : 'page',
+                // DESC     : This option is particularly useful in that it allows you to position the notification.
+                // VALUE    : page || floating ||  "specified target name"
+                // TYPE     : STRING
 
 
-                animationIn : 'jellyIn',
-                // Please use the animated class name from animate.css
+                floating    : {
+                    position    : 'top-right',
+                    // Floating position.
+                    // Currently only supports "top-right". We will make further development for the next version.
 
-                animationOut: 'fadeOut'
-                // Please use the animated class name from animate.css
+
+                    animationIn : 'jellyIn',
+                    // Please use the animated class name from animate.css
+
+                    animationOut: 'fadeOut'
+                    // Please use the animated class name from animate.css
+
+                },
+
+                html        : null,
+                // Insert HTML into the notification.  If false, jQuery's text method will be used to insert content into the DOM.
+
+
+                focus       : true,
+                //Scroll to the notification
+
+
+                timer       : 0,
+                // DESC     : To enable the "auto close" alerts, please specify the time to show the alert before it closed.
+                // VALUE    : Value is in milliseconds. (0 to disable the autoclose.)
+                // TYPE     : Number
+
+
+                //EVENTS / CALLBACK FUNCTIONS
+
+                onShow      : function(){},
+                // This event fires immediately when the show instance method is called.
+
+                onShown     : function(){},
+                // This event is fired when the modal has been made visible to the user (will wait for CSS transitions to complete).
+
+                onHide      : function(){},
+                // This event is fired immediately when the hide instance method has been called.
+
+                onHidden    : function(){}
+                // This event is fired when the notification has finished being hidden from the user (will wait for CSS transitions to complete).
+
 
             },
-
-            html        : null,
-            // Insert HTML into the notification.  If false, jQuery's text method will be used to insert content into the DOM.
-
-
-            focus       : true,
-            //Scroll to the notification
-
-
-            timer       : 0,
-            // DESC     : To enable the "auto close" alerts, please specify the time to show the alert before it closed.
-            // VALUE    : Value is in milliseconds. (0 to disable the autoclose.)
-            // TYPE     : Number
-
-
-            //EVENTS / CALLBACK FUNCTIONS
-
-            onShow      : function(){},
-            // This event fires immediately when the show instance method is called.
-
-            onShown     : function(){},
-            // This event is fired when the modal has been made visible to the user (will wait for CSS transitions to complete).
-
-            onHide      : function(){},
-            // This event is fired immediately when the hide instance method has been called.
-
-            onHidden    : function(){}
-            // This event is fired when the notification has finished being hidden from the user (will wait for CSS transitions to complete).
-
-
-        },
-        opt = $.extend({},defaults, options ), el = $('<div class="alert-wrap"></div>'),
-        iconTemplate = function(){
-            var icon = '';
-            if (options && options.icon) {
-                icon = '<div class="media-left alert-icon"><i class="'+ opt.icon +'"></i></div>';
-            }
-            return icon;
-        },
-        alertTimer,
-        template = function(){
-            var clsBtn = opt.closeBtn ? '<button class="close" type="button"><i class="pci-cross pci-circle"></i></button>' : '';
-            var defTemplate = '<div class="alert alert-'+ opt.type + '" role="alert">'+ clsBtn + '<div class="media">';
-            if (!opt.html) {
-                return defTemplate + iconTemplate() + '<div class="media-body"><h4 class="alert-title">'+ opt.title +'</h4><p class="alert-message">'+ opt.message +'</p></div></div>';
-            }
-            return defTemplate + opt.html +'</div></div>';
-        }(),
-        closeAlert = function(e){
-            opt.onHide();
-            if (opt.container === 'floating' && opt.floating.animationOut) {
-                el.removeClass(opt.floating.animationIn).addClass(opt.floating.animationOut);
-                if (!supportTransition) {
-                    opt.onHidden();
-                    el.remove();
+            opt = $.extend({},defaults, options ), el = $('<div class="alert-wrap"></div>'),
+            iconTemplate = function(){
+                var icon = '';
+                if (options && options.icon) {
+                    icon = '<div class="media-left alert-icon"><i class="'+ opt.icon +'"></i></div>';
                 }
-            }
-
-            el.removeClass('in').on('transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd', function(e){
-                if (e.originalEvent.propertyName == "max-height") {
-                    opt.onHidden();
-                    el.remove();
+                return icon;
+            },
+            alertTimer,
+            template = function(){
+                var clsBtn = opt.closeBtn ? '<button class="close" type="button"><i class="pci-cross pci-circle"></i></button>' : '';
+                var defTemplate = '<div class="alert alert-'+ opt.type + '" role="alert">'+ clsBtn + '<div class="media">';
+                if (!opt.html) {
+                    return defTemplate + iconTemplate() + '<div class="media-body"><h4 class="alert-title">'+ opt.title +'</h4><p class="alert-message">'+ opt.message +'</p></div></div>';
                 }
-            });
-            clearInterval(alertTimer);
-            return null;
-        },
-        focusElement = function(pos){
-            $('body, html').animate({scrollTop: pos}, 300, function(){
-                el.addClass('in');
-            });
-        },
-        init = function(){
-            opt.onShow();
-            if (opt.container === 'page') {
-                if (!pageHolder) {
-                    pageHolder = $('<div id="page-alert"></div>');
-                    if(!niftyContentContainer || !niftyContentContainer.length) niftyContentContainer = $('#content-container');
-                    niftyContentContainer.prepend(pageHolder);
-                };
-
-                notyContainer = pageHolder;
-                if (opt.focus) focusElement(0);
-
-            }else if (opt.container === 'floating') {
-                if (!floatContainer[opt.floating.position]) {
-                    floatContainer[opt.floating.position] = $('<div id="floating-' + opt.floating.position + '" class="floating-container"></div>');
-                    if(!niftyContainer || !niftyContentContainer.length) niftyContainer = $('#container');
-                    niftyContainer.append(floatContainer[opt.floating.position]);
-                }
-
-                notyContainer = floatContainer[opt.floating.position];
-
-                if (opt.floating.animationIn) el.addClass('in animated ' + opt.floating.animationIn );
-                opt.focus = false;
-            }else {
-                var $ct =  $(opt.container);
-                var $panelct = $ct.children('.panel-alert');
-                var $panelhd = $ct.children('.panel-heading');
-
-                if (!$ct.length) {
-                    addNew = false;
-                    return false;
-                }
-
-
-                if(!$panelct.length){
-                    notyContainer = $('<div class="panel-alert"></div>');
-                    if($panelhd.length){
-                        $panelhd.after(notyContainer);
-                    }else{
-                        $ct.prepend(notyContainer)
+                return defTemplate + opt.html +'</div></div>';
+            }(),
+            closeAlert = function(e){
+                opt.onHide();
+                if (opt.container === 'floating' && opt.floating.animationOut) {
+                    el.removeClass(opt.floating.animationIn).addClass(opt.floating.animationOut);
+                    if (!supportTransition) {
+                        opt.onHidden();
+                        el.remove();
                     }
-                }else{
-                    notyContainer = $panelct;
                 }
 
-                if (opt.focus) focusElement($ct.offset().top - 30);
+                el.removeClass('in').on('transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd', function(e){
+                    if (e.originalEvent.propertyName == "max-height") {
+                        opt.onHidden();
+                        el.remove();
+                    }
+                });
+                clearInterval(alertTimer);
+                return null;
+            },
+            focusElement = function(pos){
+                $('body, html').animate({scrollTop: pos}, 300, function(){
+                    el.addClass('in');
+                });
+            },
+            init = function(){
+                opt.onShow();
+                if (opt.container === 'page') {
+                    if (!pageHolder) {
+                        pageHolder = $('<div id="page-alert"></div>');
+                        if(!niftyContentContainer || !niftyContentContainer.length) niftyContentContainer = $('#content-container');
+                        niftyContentContainer.prepend(pageHolder);
+                    };
 
-            }
-            addNew = true;
-            return false;
-        }();
+                    notyContainer = pageHolder;
+                    if (opt.focus) focusElement(0);
+
+                }else if (opt.container === 'floating') {
+                    if (!floatContainer[opt.floating.position]) {
+                        floatContainer[opt.floating.position] = $('<div id="floating-' + opt.floating.position + '" class="floating-container"></div>');
+                        if(!niftyContainer || !niftyContentContainer.length) niftyContainer = $('#container');
+                        niftyContainer.append(floatContainer[opt.floating.position]);
+                    }
+
+                    notyContainer = floatContainer[opt.floating.position];
+
+                    if (opt.floating.animationIn) el.addClass('in animated ' + opt.floating.animationIn );
+                    opt.focus = false;
+                }else {
+                    var $ct =  $(opt.container);
+                    var $panelct = $ct.children('.panel-alert');
+                    var $panelhd = $ct.children('.panel-heading');
+
+                    if (!$ct.length) {
+                        addNew = false;
+                        return false;
+                    }
+
+
+                    if(!$panelct.length){
+                        notyContainer = $('<div class="panel-alert"></div>');
+                        if($panelhd.length){
+                            $panelhd.after(notyContainer);
+                        }else{
+                            $ct.prepend(notyContainer)
+                        }
+                    }else{
+                        notyContainer = $panelct;
+                    }
+
+                    if (opt.focus) focusElement($ct.offset().top - 30);
+
+                }
+                addNew = true;
+                return false;
+            }();
 
         if (addNew) {
             notyContainer.append(el.html(template));
@@ -548,70 +921,70 @@
     "use strict";
 
     var defaults = {
-        'dynamicMode'       : true,
-        'selectedOn'        : null,
-        'onChange'          : null
-    },
+            'dynamicMode'       : true,
+            'selectedOn'        : null,
+            'onChange'          : null
+        },
 
-    langSelector = function(el, opt){
-        var options = $.extend({},defaults, opt );
-        var $el = el.find('.lang-selected'),
-            $langMenu = $el.parent('.lang-selector').siblings('.dropdown-menu'),
-            $langBtn = $langMenu.find('a'),
-            selectedID = $langBtn.filter('.active').find('.lang-id').text(),
-            selectedName = $langBtn.filter('.active').find('.lang-name').text();
+        langSelector = function(el, opt){
+            var options = $.extend({},defaults, opt );
+            var $el = el.find('.lang-selected'),
+                $langMenu = $el.parent('.lang-selector').siblings('.dropdown-menu'),
+                $langBtn = $langMenu.find('a'),
+                selectedID = $langBtn.filter('.active').find('.lang-id').text(),
+                selectedName = $langBtn.filter('.active').find('.lang-name').text();
 
-        var changeTo = function(te){
-            $langBtn.removeClass('active');
-            te.addClass('active');
-            $el.html(te.html());
+            var changeTo = function(te){
+                $langBtn.removeClass('active');
+                te.addClass('active');
+                $el.html(te.html());
 
-            selectedID = te.find('.lang-id').text();
-            selectedName = te.find('.lang-name').text();
-            el.trigger('onChange', [{id:selectedID, name : selectedName}]);
-
-
-
-            if(typeof options.onChange == 'function'){
-                options.onChange.call(this, {id:selectedID, name : selectedName});
-            }
-        };
+                selectedID = te.find('.lang-id').text();
+                selectedName = te.find('.lang-name').text();
+                el.trigger('onChange', [{id:selectedID, name : selectedName}]);
 
 
-        $langBtn.on('click', function(e){
-            if (options.dynamicMode) {
-                e.preventDefault();
-                e.stopPropagation();
+
+                if(typeof options.onChange == 'function'){
+                    options.onChange.call(this, {id:selectedID, name : selectedName});
+                }
             };
 
-            el.dropdown('toggle');
-            changeTo($(this));
-        });
+
+            $langBtn.on('click', function(e){
+                if (options.dynamicMode) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                };
+
+                el.dropdown('toggle');
+                changeTo($(this));
+            });
 
 
-        if (options.selectedOn) changeTo( $(options.selectedOn) );
+            if (options.selectedOn) changeTo( $(options.selectedOn) );
 
-    },
-    methods = {
-        'getSelectedID' : function(){
-            return $(this).find('.lang-id').text();
         },
-        'getSelectedName' : function(){
-            return $(this).find('.lang-name').text();
-        },
-        'getSelected' :function(){
-            var el = $(this);
-            return {id:el.find('.lang-id').text() ,name:el.find('.lang-name').text()};
-        },
-        'setDisable' : function(){
-            $(this).addClass('disabled');
-            return null;
-        },
-        'setEnable' : function(el){
-            $(this).removeClass('disabled');
-            return null;
-        }
-    };
+        methods = {
+            'getSelectedID' : function(){
+                return $(this).find('.lang-id').text();
+            },
+            'getSelectedName' : function(){
+                return $(this).find('.lang-name').text();
+            },
+            'getSelected' :function(){
+                var el = $(this);
+                return {id:el.find('.lang-id').text() ,name:el.find('.lang-name').text()};
+            },
+            'setDisable' : function(){
+                $(this).addClass('disabled');
+                return null;
+            },
+            'setEnable' : function(el){
+                $(this).removeClass('disabled');
+                return null;
+            }
+        };
 
     $.fn.niftyLanguage = function(method){
         var chk = false;
@@ -646,82 +1019,82 @@
     "use strict";
 
     var allFormEl,
-    formElement = function(el){
-        if (el.data('nifty-check')){
-            return;
-        }else{
-            el.data('nifty-check', true);
-            if (el.text().trim().length){
-                el.addClass("form-text");
+        formElement = function(el){
+            if (el.data('nifty-check')){
+                return;
             }else{
-                el.removeClass("form-text");
-            }
-        }
-
-
-        var input 	= el.find('input')[0],
-            groupName 	= input.name,
-            $groupInput	= function(){
-                if (input.type == 'radio' && groupName) {
-                    //return $('.form-radio').not(el).find('input').filter('input[name='+groupName+']').parent();
-                    return $('.form-radio').not(el).find('input').filter('input[name="' + groupName + '"]').parent();
+                el.data('nifty-check', true);
+                if (el.text().trim().length){
+                    el.addClass("form-text");
                 }else{
-                    return false;
+                    el.removeClass("form-text");
                 }
-            }(),
-            changed = function(){
-                if(input.type == 'radio' && $groupInput.length) {
-                    $groupInput.each(function(){
-                        var $gi = $(this);
-                        if ($gi.hasClass('active')) $gi.trigger('nifty.ch.unchecked');
-                        $gi.removeClass('active');
-                    });
-                }
-
-
-                if (input.checked) {
-                    el.addClass('active').trigger('nifty.ch.checked');
-                }else{
-                    el.removeClass('active').trigger('nifty.ch.unchecked');
-                }
-            };
-
-        if (input.checked) {
-            el.addClass('active');
-        }else{
-            el.removeClass('active');
-        }
-
-        $(input).on('change', changed);
-    },
-    methods = {
-        isChecked : function(){
-            return this[0].checked;
-        },
-        toggle : function(){
-            this[0].checked = !this[0].checked;
-            this.trigger('change');
-            return null;
-        },
-        toggleOn : function(){
-            if(!this[0].checked){
-                this[0].checked = true;
-                this.trigger('change');
             }
-            return null;
-        },
-        toggleOff : function(){
-            if(this[0].checked && this[0].type == 'checkbox'){
-                this[0].checked = false;
-                this.trigger('change');
+
+
+            var input 	= el.find('input')[0],
+                groupName 	= input.name,
+                $groupInput	= function(){
+                    if (input.type == 'radio' && groupName) {
+                        //return $('.form-radio').not(el).find('input').filter('input[name='+groupName+']').parent();
+                        return $('.form-radio').not(el).find('input').filter('input[name="' + groupName + '"]').parent();
+                    }else{
+                        return false;
+                    }
+                }(),
+                changed = function(){
+                    if(input.type == 'radio' && $groupInput.length) {
+                        $groupInput.each(function(){
+                            var $gi = $(this);
+                            if ($gi.hasClass('active')) $gi.trigger('nifty.ch.unchecked');
+                            $gi.removeClass('active');
+                        });
+                    }
+
+
+                    if (input.checked) {
+                        el.addClass('active').trigger('nifty.ch.checked');
+                    }else{
+                        el.removeClass('active').trigger('nifty.ch.unchecked');
+                    }
+                };
+
+            if (input.checked) {
+                el.addClass('active');
+            }else{
+                el.removeClass('active');
             }
-            return null;
+
+            $(input).on('change', changed);
+        },
+        methods = {
+            isChecked : function(){
+                return this[0].checked;
+            },
+            toggle : function(){
+                this[0].checked = !this[0].checked;
+                this.trigger('change');
+                return null;
+            },
+            toggleOn : function(){
+                if(!this[0].checked){
+                    this[0].checked = true;
+                    this.trigger('change');
+                }
+                return null;
+            },
+            toggleOff : function(){
+                if(this[0].checked && this[0].type == 'checkbox'){
+                    this[0].checked = false;
+                    this.trigger('change');
+                }
+                return null;
+            }
+        },
+        bindForm = function(){
+            allFormEl = $('.form-checkbox, .form-radio');
+            if(allFormEl.length) allFormEl.niftyCheck();
         }
-    },
-    bindForm = function(){
-        allFormEl = $('.form-checkbox, .form-radio');
-        if(allFormEl.length) allFormEl.niftyCheck();
-    }
 
     $.fn.niftyCheck = function(method){
         var chk = false;
@@ -985,39 +1358,39 @@
                 })
 
                     .on('click', function(){
-                    if(!niftyContainer.hasClass('mainnav-sm')) return;
-                    $menulink.popover('hide');
-                    $el.addClass('hover').popover('show');
-                })
-                    .hover(
-                    function(){
+                        if(!niftyContainer.hasClass('mainnav-sm')) return;
                         $menulink.popover('hide');
-                        $el.addClass('hover').popover('show').one('hidden.bs.popover', function () {
-                            // detach from popover, fire event then clean up data
-                            $el.removeClass('hover');
-                            if (elHasSub) {
-                                $listSub.removeAttr('style').appendTo($el.parent());
-                            }else if($listWidget.length){
-                                $listWidget.appendTo($listWidgetParent);
-                            }
-                            clearInterval(hidePopover);
-                        })
-                    },
-                    function(){
-                        clearInterval(hidePopover);
-                        hidePopover = setInterval(function(){
-                            if ($popover) {
-                                $popover.one('mouseleave', function(){
-                                    $el.removeClass('hover').popover('hide');
-                                });
-                                if(!$popover.is(":hover")){
-                                    $el.removeClass('hover').popover('hide');
+                        $el.addClass('hover').popover('show');
+                    })
+                    .hover(
+                        function(){
+                            $menulink.popover('hide');
+                            $el.addClass('hover').popover('show').one('hidden.bs.popover', function () {
+                                // detach from popover, fire event then clean up data
+                                $el.removeClass('hover');
+                                if (elHasSub) {
+                                    $listSub.removeAttr('style').appendTo($el.parent());
+                                }else if($listWidget.length){
+                                    $listWidget.appendTo($listWidgetParent);
                                 }
-                            };
+                                clearInterval(hidePopover);
+                            })
+                        },
+                        function(){
                             clearInterval(hidePopover);
-                        }, 100);
-                    }
-                );
+                            hidePopover = setInterval(function(){
+                                if ($popover) {
+                                    $popover.one('mouseleave', function(){
+                                        $el.removeClass('hover').popover('hide');
+                                    });
+                                    if(!$popover.is(":hover")){
+                                        $el.removeClass('hover').popover('hide');
+                                    }
+                                };
+                                clearInterval(hidePopover);
+                            }, 100);
+                        }
+                    );
             });
             isSmallNav = true;
         },
@@ -1238,20 +1611,20 @@
                 var toggleBtn = $('.mainnav-toggle');
                 if(toggleBtn.length){
                     toggleBtn.on('click', function(e){
-                        e.preventDefault();
-                        e.stopPropagation();
+                            e.preventDefault();
+                            e.stopPropagation();
 
-                        if(toggleBtn.hasClass('push')){
-                            $.niftyNav('pushToggle');
-                        }else if(toggleBtn.hasClass('slide')){
-                            $.niftyNav('slideToggle');
-                        }else if(toggleBtn.hasClass('reveal')){
-                            $.niftyNav('revealToggle');
-                        }else{
-                            $.niftyNav('colExpToggle');
+                            if(toggleBtn.hasClass('push')){
+                                $.niftyNav('pushToggle');
+                            }else if(toggleBtn.hasClass('slide')){
+                                $.niftyNav('slideToggle');
+                            }else if(toggleBtn.hasClass('reveal')){
+                                $.niftyNav('revealToggle');
+                            }else{
+                                $.niftyNav('colExpToggle');
+                            }
                         }
-                    }
-                )};
+                    )};
 
 
                 // COLLAPSIBLE MENU LIST
@@ -1506,28 +1879,28 @@
     "use strict";
 
     var niftyMainNav, niftyAside, niftyContainer, niftyMainnavScroll, niftyAsideScroll, updateScrollInterval,
-    updateScroll = function(e){
-        clearInterval(updateScrollInterval);
-        updateScrollInterval = setInterval(function(){
-            if(e[0] == niftyMainNav[0]){
-                niftyMainnavScroll.nanoScroller({flash : true, preventPageScrolling: (niftyContainer.hasClass('mainnav-fixed')?true:false)});
-            }else if(e[0] == niftyAside[0]){
-                niftyAsideScroll.nanoScroller({preventPageScrolling: (niftyContainer.hasClass('aside-fixed')?true:false)});
-            }
+        updateScroll = function(e){
             clearInterval(updateScrollInterval);
-            updateScrollInterval = null;
-        }, 500);
-    },
-    bindAffix = function(){
-        niftyContainer          = $('#container')
-        niftyMainNav           	= $('#mainnav-container');
-        niftyAside             	= $('#aside-container');
-        niftyMainnavScroll      = $('#mainnav-menu-wrap > .nano');
-        niftyAsideScroll        = $('#aside > .nano');
+            updateScrollInterval = setInterval(function(){
+                if(e[0] == niftyMainNav[0]){
+                    niftyMainnavScroll.nanoScroller({flash : true, preventPageScrolling: (niftyContainer.hasClass('mainnav-fixed')?true:false)});
+                }else if(e[0] == niftyAside[0]){
+                    niftyAsideScroll.nanoScroller({preventPageScrolling: (niftyContainer.hasClass('aside-fixed')?true:false)});
+                }
+                clearInterval(updateScrollInterval);
+                updateScrollInterval = null;
+            }, 500);
+        },
+        bindAffix = function(){
+            niftyContainer          = $('#container')
+            niftyMainNav           	= $('#mainnav-container');
+            niftyAside             	= $('#aside-container');
+            niftyMainnavScroll      = $('#mainnav-menu-wrap > .nano');
+            niftyAsideScroll        = $('#aside > .nano');
 
-        if (niftyMainNav.length) niftyMainNav.niftyAffix({className : 'mainnav-fixed'});
-        if (niftyAside.length) niftyAside.niftyAffix({className : 'aside-fixed'});
-    };
+            if (niftyMainNav.length) niftyMainNav.niftyAffix({className : 'mainnav-fixed'});
+            if (niftyAside.length) niftyAside.niftyAffix({className : 'aside-fixed'});
+        };
 
     $.fn.niftyAffix = function(method){
         return this.each(function(){
